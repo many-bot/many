@@ -1,0 +1,30 @@
+{
+  "quote": {
+    "needReply": "Esse comando funciona diferente: responda a uma mensagem com !quote, sem escrever texto junto.",
+    "replyNoText": "A mensagem respondida não tem texto pra virar quote."
+  },
+  "classico": {
+    "needMedia": "Responda a uma imagem, vídeo, gif ou figurinha (ou envie o comando já com a mídia).",
+    "needText": "Informe o texto. Ex: !classico topo / base — pode omitir um dos lados."
+  },
+  "simples": {
+    "needMedia": "Responda a uma imagem, vídeo, gif ou figurinha (ou envie o comando já com a mídia).",
+    "needText": "Informe o texto. Ex: !simples seu texto aqui."
+  },
+  "desmot": {
+    "needMedia": "Responda a uma imagem, vídeo, gif ou figurinha (ou envie o comando já com a mídia).",
+    "needText": "Informe título e legenda. Ex: !desmot título / legenda — pode omitir um dos lados."
+  },
+  "brat": {
+    "needText": "Informe o texto (ou responda a uma mensagem de texto). Ex: !brat seu texto aqui."
+  },
+  "brat2": {
+    "needText": "Informe o texto (ou responda a uma mensagem de texto). Ex: !brat2 seu texto aqui."
+  },
+  "papa": {
+    "needTarget": "Mencione alguém ou responda a uma mensagem (ou envie o comando com uma imagem).",
+    "noTemplate": "Template do papa não encontrado. Coloque pope-top.png e pope-bottom.png na pasta de dados do plugin."
+  },
+  "downloadFailed": "Não consegui baixar a mídia.",
+  "error": "Algo deu errado. Tente novamente."
+}

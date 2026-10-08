@@ -1,0 +1,7 @@
+{
+  "plugin": {
+    "name": "birthday",
+    "description": "Plugin birthday para ManyBot"
+  },
+  "commands": {}
+}

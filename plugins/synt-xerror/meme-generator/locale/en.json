@@ -1,0 +1,30 @@
+{
+  "quote": {
+    "needReply": "This command works differently: reply to a message with !quote, don't type text with it.",
+    "replyNoText": "The replied message has no text to quote."
+  },
+  "classico": {
+    "needMedia": "Reply to an image, video, gif or sticker (or send the command together with the media).",
+    "needText": "Provide the text. E.g: !classico top / bottom — you can omit one side."
+  },
+  "simples": {
+    "needMedia": "Reply to an image, video, gif or sticker (or send the command together with the media).",
+    "needText": "Provide the text. E.g: !simples your text here."
+  },
+  "desmot": {
+    "needMedia": "Reply to an image, video, gif or sticker (or send the command together with the media).",
+    "needText": "Provide title and caption. E.g: !desmot title / caption — you can omit one side."
+  },
+  "brat": {
+    "needText": "Provide the text (or reply to a text message). E.g: !brat your text here."
+  },
+  "brat2": {
+    "needText": "Provide the text (or reply to a text message). E.g: !brat2 your text here."
+  },
+  "papa": {
+    "needTarget": "Mention someone or reply to a message (or send the command with an image).",
+    "noTemplate": "Pope template not found. Place pope-top.png and pope-bottom.png in the plugin data folder."
+  },
+  "downloadFailed": "Couldn't download the media.",
+  "error": "Something went wrong. Try again."
+}

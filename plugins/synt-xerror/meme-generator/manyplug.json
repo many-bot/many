@@ -1,0 +1,22 @@
+{
+  "name": "meme-generator",
+  "key": "synt-xerror/meme-generator",
+  "version": "1.2.0",
+  "description": "Generate memes with images and text!",
+  "category": "fun",
+  "author": {
+    "name": "synt-xerror",
+    "email": "me@stxerr.dev",
+    "website": "https://www.stxerr.dev"
+  },
+  "license": "MIT",
+  "repo": "https://github.com/synt-xerror/meme-generator.many",
+  "main": "index.js",
+  "dependencies": {},
+  "externalDependencies": {
+    "ffmpeg": {
+      "optional": false,
+      "command": "ffmpeg"
+    }
+  }
+}
