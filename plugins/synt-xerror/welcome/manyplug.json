@@ -1,0 +1,17 @@
+{
+  "name": "welcome",
+  "key": "synt-xerror/welcome",
+  "version": "1.1.0",
+  "description": "Sends a custom card and message when someone enters in your group.",
+  "category": "admin",
+  "author": {
+    "name": "synt-xerror",
+    "email": "me@stxerr.dev",
+    "website": "https://www.stxerr.dev"
+  },
+  "license": "MIT",
+  "repo": "https://github.com/synt-xerror/welcome.many",
+  "main": "index.js",
+  "dependencies": {},
+  "externalDependencies": {}
+}

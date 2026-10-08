@@ -1,0 +1,14 @@
+{
+  "name": "manyreport",
+  "key": "synt-xerror/manyreport",
+  "version": "1.1.0",
+  "description": "Reporte bugs e envie sugestões direto para o número configurado nas configurações do bot.",
+  "category": "utility",
+  "author": {
+    "name": "seu-usuario"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "dependencies": {}
+}
+

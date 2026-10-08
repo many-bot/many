@@ -1,0 +1,15 @@
+{
+  "title": "Jogo da Contagem",
+  "description": "Se revezem contando. Não repita você mesmo!",
+  "rulesLine1": "Envie o próximo número da sequência.",
+  "rulesLine2": "Você não pode continuar seu próprio número (mas pode recomeçar do 1).",
+  "rulesLine3": "Qualquer erro zera a contagem.",
+  "current": "Contagem atual: *{{number}}*",
+  "reset": "Contagem zerada.",
+  "onlyGroups": "Esse comando só funciona em grupos.",
+  "onlyAdmins": "Só administradores do grupo podem ativar/desativar o counting.",
+  "enabled": "Counting ativado neste grupo! ✅",
+  "disabled": "Counting desativado neste grupo. ❌",
+  "notEnabled": "O counting não está ativado neste chat. Um admin pode ativar com !counting on",
+  "lastCounter": "Último a contar: "
+}

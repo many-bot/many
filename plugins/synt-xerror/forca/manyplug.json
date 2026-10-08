@@ -1,0 +1,16 @@
+{
+  "name": "forca",
+  "key": "synt-xerror/forca",
+  "author": {
+    "name": "synt-xerror",
+    "email": "me@stxerr.dev",
+    "website": "https://www.stxerr.dev"
+  },
+  "description": "Hangman game for Manybot.",
+  "version": "3.3.1",
+  "license": "MIT",
+  "repo": "https://github.com/synt-xerror/forca.many",
+  "category": "games",
+  "service": false,
+  "dependencies": {}
+}

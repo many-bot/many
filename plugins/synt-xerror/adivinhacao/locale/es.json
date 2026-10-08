@@ -1,0 +1,18 @@
+{
+  "title": "🎲 Juego de Adivinanza",
+  "startCommand": "Iniciar un nuevo juego",
+  "stopCommand": "Detener el juego actual",
+  "started": "¡Juego iniciado! Adivina un número entre 1 y 100.",
+  "stopped": "Juego detenido.",
+  "invalidCommand": "Subcomando desconocido: {{sub}}. Usa",
+  "or": "o",
+  "range": "El número debe estar entre {{min}} y {{max}}.",
+  "correct": "🎉 ¡Correcto! El número era {{number}}. Escribe",
+  "playAgain": "para jugar de nuevo.",
+  "higher": "📈 ¡Mayor!",
+  "lower": "📉 ¡Menor!",
+  "gameLog": {
+    "started": "Juego de adivinanza iniciado.",
+    "stopped": "Juego de adivinanza detenido."
+  }
+}

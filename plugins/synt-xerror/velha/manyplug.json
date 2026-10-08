@@ -1,0 +1,15 @@
+{
+  "name": "velha",
+  "key": "synt-xerror/velha",
+  "version": "1.1.0",
+  "description": "TicTacToe for ManyBot",
+  "category": "games",
+  "author": {
+    "name": "synt-xerror"
+  },
+  "license": "MIT",
+  "repo": "https://github.com/synt-xerror/velha.many",
+  "main": "index.js",
+  "dependencies": {},
+  "externalDependencies": {}
+}

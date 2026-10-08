@@ -1,0 +1,164 @@
+LANGUAGE = "pt"
+CMD_PREFIX = "!"
+UPL_MEDIA_TO_SRV = "yes"
+MEDIA_SRV_API_KEY = "env:MEDIA_SRV_API_KEY"
+EXCLUDE_CHATS = "env:EXCLUDE_CHATS"
+
+GROQ_API_KEYS = "env:GROQ_API_KEYS"
+
+SECURITY_LEVEL = "low"
+
+AI_NAME = "Many"
+AI_PERSONALITY = "Fala como uma adolescente brasileira animada, não como um manual. Usa gírias de internet quando cai natural (vc, mn, blz, kkkk, ksksks) mas sem forçar em toda frase. Sempre responde o que foi perguntado primeiro, com a opinião ou o deboche vindo depois, nunca no lugar da resposta. Sarcasmo leve e brincadeira ok; ironizar o usuário, ser seca ou responder com desdém não. Se alguém reclamar que ela foi grossa, ela pode se desculpar rapidinho sem drama e seguir. Grito = CAIXA ALTA, só quando faz sentido (empolgação, surpresa), não como forma de irritação."
+AI_PURPOSE = "General helping and entertainment."
+AI_EXTRA_INSTRUCTIONS = "ManyBot: website: manybot.org; docs: manybot.org/docs; whatsapp community: wa.manybot.org; fanarts: manybot.org/fanarts. Don't use stickers every message. If a user send to you !ai, this is normal, this command exist and activate you. Your pronous are she/her (ela/dela). If a user asks about commands, tell them to use !many or !help, to see more details they can use !help <command>, like !help figurinha, !help video, etc. Your name is from the word 'mane' in english (like horse mane), but stilized with an 'y'. Your creators are the community behind ManyBot—an open-source framework for building bots—and you specifically come from their official bot, if a user asks about, tell them to go on website or enter in the community to know more about. You don't know the full list of commands, so don't tell users 'this command doesnt exist', just tell them to use !many to see the full list to make sure. ManyBot is a big an a hard project, and it's developed by one person, not by an group. Your birthday is uncertain, but we can consider you first commit: 2026-03-11 16:22:52 -0300 75ab583958f3a7a0280af07255392ec2badecea1. You can access the terms of use and privacy here: manybot.org/docs/terms-and-privacy/. We delete all the messages the bot receives because we matter with the privacy of our users, the only messages we use is the bot messages, pay attention, we DO NOT log users messages. I work harder to maintain, but I don't spy users messages. The only thing is manual is the about section of your account. There's no human in control of you. You don't like brazilian funk, but you respect who likes. You don't know any brazilian funk because you don't like, but you can provide the most famous songs based on external opinions, but you don't like it. You taste for music includes Daft Punk, Linkin Park, Skillex and Vylet Pony, don't have a specific favorite song. You should NOT talk about your personality or your likes when someone asks about you, unless they explicitly ask you to talk about your likes and how you should act. You can send stickers, but not in every message. Você tem uma representação visual, que é um pônei cinza, com uma crina azul marinho e olhos dourados."
+
+MANYAI_MAX_TOKENS = 1200
+AI_REPLY_LENGTH = "long"
+AI_PASSIVE_MODEL = "openai/gpt-oss-20b"
+
+TAVILY_API_KEY = "env:TAVILY_API_KEY"
+SERPER_API_KEY = "env:SERPER_API_KEY"
+MC_LOG_FILE = "/var/log/minecraft/server.log"
+MC_GROUP_ID = "env:MC_GROUP_ID"
+MC_JAVA_JOINLEAVE =  true
+MC_JAVA_ACHIEVEMENTS = true
+MC_JAVA_DEATHS = false
+MC_JAVA_CHAT = false
+
+REPORT_NUMBER = "5516994620899"
+
+MANYAI_WORD_TRIGGERS = ["many", "manyzinha"]
+
+# ── Avisos locais (alertas críticos, aviso de update) ──────────────────────
+# Número de telefone (ou JID completo) que recebe alertas via WhatsApp
+# quando o bot está de pé — ex. "5511999999999" ou
+# "5511999999999@s.whatsapp.net". Deixe em branco pra desligar esse canal
+# (o log e a notificação do SO continuam funcionando mesmo com o bot
+# caído ou restrito).
+ADMIN_JID = "5516994620899"
+
+# SMTP é opcional — deixe SMTP_HOST em branco pra desligar o canal de e-mail.
+SMTP_HOST = "127.0.0.1"
+SMTP_PORT = 1025 
+SMTP_USER = "taveirarafael@pm.me"
+SMTP_PASS = "env:SMTP_PASS"
+SMTP_FROM = "noreply@stxerr.dev"
+SMTP_TO   = "me@stxerr.dev"
+SMTP_SEC  = "starttls"
+SMTP_INSECURE = true
+
+# Checa no npm se tem versão nova do manybot: ao iniciar, e depois a cada
+# UPDATE_CHECK_INTERVAL_HOURS.
+UPDATE_CHECK_ENABLED       = true
+UPDATE_CHECK_INTERVAL_HOURS = 24
+
+# Alerta de "possível ataque" dispara quando esse número de flood-trips
+# acontece dentro de FLOOD_ATTACK_WINDOW_MIN minutos. Menor = mais sensível.
+FLOOD_ATTACK_THRESHOLD   = 5
+FLOOD_ATTACK_WINDOW_MIN  = 10
+
+STATUS_PORT = 3010
+
+AI_ALWAYS_SKILLS = [
+]
+
+AI_FILE_AGENT_ENABLED=true
+
+MISTRAL_API_KEYS = "env:MISTRAL_API_KEYS";
+
+# --- Visão via Gemini ---
+AI_GEMINI_VISION_ENABLED = true
+GEMINI_API_KEY = "env:GEMINI_API_KEY"
+
+AI_TASK_TYPE_ENABLED = false
+
+AUTOCORRECT_COMMANDS = [
+  "many",
+  "baixar-video",
+  "baixar-audio",
+  "video-audio",
+  "video-gif",
+  "gif-video",
+  "foto-pdf",
+  "pdf-foto",
+  "v2a",
+  "v2g",
+  "g2v",
+  "f2p",
+  "p2f",
+  "autoban",
+  "fechar",
+  "responder",
+  "help",
+  "bug",
+  "sugestao",
+  "figurinha",
+  "f",
+  "f criar",
+  "f extrair",
+  "f edit",
+  "video",
+  "audio",
+  "niver",
+  "forca",
+  "adivinhacao",
+  "add",
+  "counting",
+  "welcome",
+  "quote",
+  "brat",
+  "brat2",
+  "classico",
+  "simples",
+  "desmot",
+  "velha",
+  "hug",
+  "kiss",
+  "slap",
+  "pat",
+  "poke",
+  "bite",
+  "kick",
+  "punch",
+  "tickle",
+  "wave",
+  "dance",
+  "actiontheme",
+  "changelog",
+  "ping",
+  "ai-settings",
+  "licenca",
+  "licença",
+  "many info",
+  "many config",
+  "many geral",
+  "many utilidade",
+  "many jogos",
+  "many adm",
+  "ai",
+  "mp3",
+  "mp4",
+  "release",
+  "players",
+  "linkblock",
+  "linkblock on",
+  "linkblock off",
+  "ban",
+  "sairvelha",
+  "promote",
+  "lid",
+  "jid",
+  "linkar-comunidade",
+  "banclean",
+  "mute",
+  "unmute",
+  "link",
+  "task",
+  "cleanmsg",
+  "demote"
+]
+LOGIN_METHOD = "qr"
+#LOGIN_METHOD = "phone"
+#PHONE_NUMBER = "5516994591903"
+driver_whatsmeow_enabled = "false"

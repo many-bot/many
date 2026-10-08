@@ -1,0 +1,15 @@
+{
+  "name": "counting",
+  "key": "synt-xerror/counting",
+  "author": {
+    "name": "synt-xerror",
+    "email": "me@stxerr.dev",
+    "website": "https://www.stxerr.dev"
+  },
+  "description": "Counting game for Manybot.",
+  "license": "MIT",
+  "repo": "https://github.com/synt-xerror/counting.many",
+  "version": "2.1.3",
+  "category": "games",
+  "dependencies": {}
+}

@@ -1,0 +1,21 @@
+{
+  "title": "Jogo da Forca",
+  "startCommand": "começar",
+  "startCommandAlt": "comecar",
+  "stopCommand": "parar",
+  "startCommandHelp": "inicia o jogo",
+  "stopCommandHelp": "encerra o jogo",
+  "started": "Jogo da Forca iniciado!\n\nTema: *{{theme}}*\nPalavra: `{{word}}`\nVidas: {{lives}}\n\nDigite uma letra ou a palavra completa para adivinhar!",
+  "stopped": "Jogo da Forca encerrado.",
+  "alreadyRunning": "*Já existe um jogo em andamento!*",
+  "invalidCommand": "Subcomando *{{sub}}* não existe.\nUse",
+  "or": "ou",
+  "won": "Parabéns! Palavra completa: `{{word}}`",
+  "lost": "Fim de jogo! Palavra era: `{{word}}`",
+  "status": "Palavra: `{{word}}`\nVidas: {{lives}}\nLetras já usadas: {{guessed}}\n",
+  "correct": "✅ Acertou a letra!",
+  "wrong": "❌ Errou a letra!",
+  "noGame": "Nenhum jogo em andamento. Envie `{{cmd}}` para começar um novo.",
+  "timeout": "⏱️ Tempo esgotado! Ninguém jogou por um tempo, então o jogo foi encerrado. A palavra era: *{{word}}*",
+  "alreadyGuessed": "Você já tentou a letra *{{letter}}*."
+}

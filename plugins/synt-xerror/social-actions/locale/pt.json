@@ -1,0 +1,66 @@
+{
+  "verbs": {
+    "hug": "abraçou",
+    "kiss": "beijou",
+    "slap": "deu um tapa em",
+    "pat": "fez cafuné em",
+    "poke": "cutucou",
+    "bite": "mordeu",
+    "kick": "chutou",
+    "punch": "socou",
+    "tickle": "fez cócegas em",
+    "wave": "acenou para",
+    "dance": "chamou pra dançar com"
+  },
+  "infinitives": {
+    "hug": "abraçar",
+    "kiss": "beijar",
+    "slap": "dar um tapa em",
+    "pat": "fazer cafuné em",
+    "poke": "cutucar",
+    "bite": "morder",
+    "kick": "chutar",
+    "punch": "socar",
+    "tickle": "fazer cócegas em",
+    "wave": "acenar para",
+    "dance": "chamar pra dançar com"
+  },
+  "everyone": {
+    "hug": "abraçou todo mundo",
+    "kiss": "beijou todo mundo",
+    "slap": "deu um tapa em todo mundo",
+    "pat": "fez cafuné em todo mundo",
+    "poke": "cutucou todo mundo",
+    "bite": "mordeu todo mundo",
+    "kick": "chutou todo mundo",
+    "punch": "socou todo mundo",
+    "tickle": "fez cócegas em todo mundo",
+    "wave": "acenou para todo mundo",
+    "dance": "chamou todo mundo pra dançar"
+  },
+  "toBot": {
+    "hug": "me abraçou",
+    "kiss": "me beijou",
+    "slap": "me deu um tapa",
+    "pat": "fez cafuné em mim",
+    "poke": "me cutucou",
+    "bite": "me mordeu",
+    "kick": "me chutou",
+    "punch": "me socou",
+    "tickle": "me fez cócegas",
+    "wave": "acenou pra mim",
+    "dance": "me chamou pra dançar"
+  },
+  "noTarget": "Marque alguém ou responda a mensagem da pessoa pra usar {{command}}.",
+  "selfTarget": "Vai {{infinitive}} a si mesmo? {{emoji}}",
+  "fetchError": "Não consegui buscar um gif agora, tenta de novo.",
+  "actionLine": "{{sender}} {{verb}} {{target}}! {{emoji}}",
+  "themeStatus": "Tema atual: {{current}}\nTemas locais disponíveis: {{available}}",
+  "themeNoneLocal": "nenhum ainda — coloque arquivos numa subpasta tipo hug/<tema>/ pra criar um",
+  "themeNotFound": "Sem arquivos locais pro tema \"{{theme}}\". Rode {{command}} sem argumentos pra ver os temas disponíveis.",
+  "themeSet": "Tema definido como \"{{theme}}\".",
+  "groupOrAdmin": "Você não é administrador ou não estamos em um grupo.",
+  "everyoneLine": "{{sender}} {{action}}! {{emoji}}",
+  "botLine": "{{sender}} {{action}}! {{emoji}}"
+}
+

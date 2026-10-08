@@ -1,0 +1,18 @@
+{
+  "title": "🎲 Guessing Game",
+  "startCommand": "Start a new game",
+  "stopCommand": "Stop the current game",
+  "started": "Game started! Guess a number between 1 and 100.",
+  "stopped": "Game stopped.",
+  "invalidCommand": "Unknown subcommand: {{sub}}. Use",
+  "or": "or",
+  "range": "The number must be between {{min}} and {{max}}.",
+  "correct": "🎉 Correct! The number was {{number}}. Type",
+  "playAgain": "to play again.",
+  "higher": "📈 Higher!",
+  "lower": "📉 Lower!",
+  "gameLog": {
+    "started": "Guessing game started.",
+    "stopped": "Guessing game stopped."
+  }
+}

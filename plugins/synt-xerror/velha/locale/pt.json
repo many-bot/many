@@ -1,0 +1,16 @@
+{
+  "iniciada": "🎮 Jogo da velha iniciado!\n❌ {{jogadorX}}  vs  ⭕ {{jogadorO}}",
+  "vez": "Vez de {{simbolo}} {{jogador}}. Mande a coordenada (ex: B2).",
+  "jaTemPartida": "Já tem uma partida rolando neste chat. Use !sairvelha pra encerrar antes de iniciar outra.",
+  "precisaResponder": "Marque (responda) a mensagem do seu oponente e mande !velha pra desafiar.",
+  "escolhaOutraPessoa": "Escolha uma mensagem de outra pessoa pra desafiar.",
+  "naoDesafiarBot": "Não dá pra desafiar o bot :)",
+  "nomeBot": "Bot",
+  "semPartida": "Não há partida ativa neste chat.",
+  "somenteJogadores": "Só quem está na partida pode encerrá-la.",
+  "casaOcupada": "Essa casa já foi jogada. Escolha outra.",
+  "empate": "🤝 Deu velha! Empate.",
+  "vitoria": "🏆 {{simbolo}} {{jogador}} venceu!",
+  "encerrada": "Partida encerrada."
+}
+

@@ -1,0 +1,21 @@
+{
+  "title": "Hangman Game",
+  "startCommand": "start",
+  "stopCommand": "stop",
+  "startCommandHelp": "starts the game",
+  "stopCommandHelp": "stops the game",
+  "started": "Hangman game started!\n\nTheme: *{{theme}}*\nWord: `{{word}}`\nLives: {{lives}}\n\nType a letter or the whole word to guess!",
+  "stopped": "Hangman game ended.",
+  "alreadyRunning": "*There is already a game in progress!*",
+  "invalidCommand": "Subcommand *{{sub}}* does not exist.\nUse",
+  "or": "or",
+  "won": "Congratulations! Complete word: `{{word}}`",
+  "lost": "Game over! Word was: `{{word}}`",
+  "status": "Word: `{{word}}`\nLives: {{lives}}\nUsed letters: {{guessed}}\n",
+  "correct": "✅ Got the letter!",
+  "wrong": "❌ Wrong letter!",
+  "noGame": "No games in progress. Send `{{cmd}}` to start a new one.",
+  "timeout": "⏱️ Time's up! No one played for a while, so the game ended. The word was: *{{word}}*",
+  "alreadyGuessed": "You already tried the letter *{{letter}}*."
+},
+

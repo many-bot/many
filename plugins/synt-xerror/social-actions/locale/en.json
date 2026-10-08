@@ -1,0 +1,66 @@
+{
+  "verbs": {
+    "hug": "hugged",
+    "kiss": "kissed",
+    "slap": "slapped",
+    "pat": "patted",
+    "poke": "poked",
+    "bite": "bit",
+    "kick": "kicked",
+    "punch": "punched",
+    "tickle": "tickled",
+    "wave": "waved at",
+    "dance": "asked to dance with"
+  },
+  "infinitives": {
+    "hug": "hug",
+    "kiss": "kiss",
+    "slap": "slap",
+    "pat": "pat",
+    "poke": "poke",
+    "bite": "bite",
+    "kick": "kick",
+    "punch": "punch",
+    "tickle": "tickle",
+    "wave": "wave at",
+    "dance": "ask to dance with"
+  },
+  "everyone": {
+    "hug": "hugged everyone",
+    "kiss": "kissed everyone",
+    "slap": "slapped everyone",
+    "pat": "patted everyone",
+    "poke": "poked everyone",
+    "bite": "bit everyone",
+    "kick": "kicked everyone",
+    "punch": "punched everyone",
+    "tickle": "tickled everyone",
+    "wave": "waved at everyone",
+    "dance": "asked everyone to dance"
+  },
+  "toBot": {
+    "hug": "hugged me",
+    "kiss": "kissed me",
+    "slap": "slapped me",
+    "pat": "patted me",
+    "poke": "poked me",
+    "bite": "bit me",
+    "kick": "kicked me",
+    "punch": "punched me",
+    "tickle": "tickled me",
+    "wave": "waved at me",
+    "dance": "asked me to dance"
+  },
+  "noTarget": "Mention someone or reply to their message to use {{command}}.",
+  "selfTarget": "Going to {{infinitive}} yourself? {{emoji}}",
+  "fetchError": "Couldn't fetch a gif right now, try again.",
+  "actionLine": "{{sender}} {{verb}} {{target}}! {{emoji}}",
+  "themeStatus": "Current theme: {{current}}\nLocal themes available: {{available}}",
+  "themeNoneLocal": "none yet — drop files into a subfolder like hug/<theme>/ to create one",
+  "themeNotFound": "No local files for theme \"{{theme}}\". Run {{command}} with no arguments to see available themes.",
+  "themeSet": "Theme set to \"{{theme}}\".",
+  "groupOrAdmin": "You're not administrator or we're not in a group.",
+  "everyoneLine": "{{sender}} {{action}}! {{emoji}}",
+  "botLine": "{{sender}} {{action}}! {{emoji}}"
+}
+

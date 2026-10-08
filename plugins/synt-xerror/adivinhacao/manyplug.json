@@ -1,0 +1,15 @@
+{
+    "name": "adivinhacao",
+    "key": "synt-xerror/adivinhacao",
+    "author": {
+      "name": "synt-xerror",
+      "email": "me@stxerr.dev",
+      "website": "https://www.stxerr.dev"
+    },
+    "license": "MIT",
+    "repo": "https://github.com/synt-xerror/adivinhacao.many",
+    "description": "Number guessing game for Manybot.", 
+    "version": "3.0.0",
+    "category": "games",
+    "dependencies": {}
+}

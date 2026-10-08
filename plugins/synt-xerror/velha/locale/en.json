@@ -1,0 +1,16 @@
+{
+  "iniciada": "🎮 Tic-tac-toe started!\n❌ {{jogadorX}}  vs  ⭕ {{jogadorO}}",
+  "vez": "{{simbolo}} {{jogador}}'s turn. Send the coordinate (e.g. B2).",
+  "jaTemPartida": "There's already a match running in this chat. Use !sairvelha to end it before starting another.",
+  "precisaResponder": "Reply to your opponent's message and send !velha to challenge them.",
+  "escolhaOutraPessoa": "Pick a message from someone else to challenge them.",
+  "naoDesafiarBot": "You can't challenge the bot :)",
+  "nomeBot": "Bot",
+  "semPartida": "There's no active match in this chat.",
+  "somenteJogadores": "Only players in the match can end it.",
+  "casaOcupada": "That spot is already taken. Pick another one.",
+  "empate": "🤝 It's a tie!",
+  "vitoria": "🏆 {{simbolo}} {{jogador}} won!",
+  "encerrada": "Match ended."
+}
+

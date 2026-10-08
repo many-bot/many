@@ -1,0 +1,47 @@
+ManyBot é o framework open-source (GPLv3) sobre o qual este bot roda — não é o bot em si, é o motor
+por baixo. Sem plugins instalados ele não faz absolutamente nada: todo comando/funcionalidade vem de
+um plugin. Plugins são escritos em JavaScript ou TypeScript, cada um independente dos outros.
+
+Prefixo de comando: configurável via CMD_PREFIX no manybot.toml, padrão "!". Pode ter mais de um
+caractere (ex: "bot "). Cada comando pode ter vários aliases (ex: !figurinha, !sticker, !f).
+
+Instalação/gestão de plugins: feita pelo ManyPlug (comando `manyplug` ou `mp`), a ferramenta oficial
+de linha de comando do ManyBot. `manyplug search <termo>` procura plugins disponíveis no índice.
+
+Configuração: arquivo manybot.toml, criado automaticamente na primeira execução. A maioria das
+mudanças (incluindo CMD_PREFIX) recarrega sozinha, sem precisar reiniciar o bot.
+
+Licença: GPLv3 — qualquer um pode inspecionar, modificar, redistribuir e rodar sua própria instância
+do ManyBot, inclusive comercialmente. Isso é a licença de CÓDIGO do framework — diferente da licença
+de uso do bot Many em si (skill "license") e da licença de código do plugin many-ai, que é MIT.
+
+Links do projeto ManyBot (o framework, não este bot especificamente):
+- Repositório: https://github.com/many-bot/manybot
+- Documentação (índice completo): https://manybot.org/sitemap.xml
+- Comunidade no WhatsApp: https://wa.manybot.org
+- Discord: https://discord.gg/gC7aKChXmA
+- E-mail: manybot@pm.me
+
+Páginas de doc mais úteis pra CRIAR um plugin (FETCH direto na que encaixar, sem precisar navegar):
+- Anatomia de um plugin: https://manybot.org/docs/01-plugins-basic/
+- O objeto ctx (visão geral): https://manybot.org/docs/02-ctx-overview/
+- Mensagens (ctx.send/ctx.msg): https://manybot.org/docs/03-ctx-messaging/
+- Chat, admin, meu contato (ctx.chat/ctx.admin/ctx.me): https://manybot.org/docs/04-ctx-chat-admin-me/
+- Contatos (ctx.contacts): https://manybot.org/docs/05-ctx-contacts/
+- Eventos (ctx.events): https://manybot.org/docs/06-ctx-events/
+- Enquetes (ctx.poll): https://manybot.org/docs/07-ctx-polls/
+- Utilidades (config/i18n/storage/plugins/log): https://manybot.org/docs/08-ctx-utilities/
+- Padrões comuns: https://manybot.org/docs/09-common-patterns/
+- Como fazer um plugin (passo a passo): https://manybot.org/docs/how-to-make-a-plugin/
+- Boas práticas: https://manybot.org/docs/best-practices/
+- ManyPlug CLI (instalar/publicar plugin): https://manybot.org/docs/manyplug-cli/
+Se nenhuma dessas cobrir o que precisa, use o sitemap acima pra achar a página certa antes de responder
+de memória.
+
+Use suas tools de FILE_AGENT para criar um plugin e empacotar se necessário.
+
+Quando o pedido for "faz/cria um plugin" (ou script/arquivo em geral): depois de ler a doc certa, ESCREVA
+o código de verdade e ENTREGUE como arquivo de verdade via FILE_AGENT (write + deliver, ou zip com
+"send":true) — nunca responda só explicando os passos ou colando o código como texto no lugar de
+entregar o arquivo. Se o FILE_AGENT não estiver disponível nas suas ferramentas desta vez, aí sim colar
+o código como texto é o único jeito possível — diga isso ao usuário em vez de fingir que devia funcionar.

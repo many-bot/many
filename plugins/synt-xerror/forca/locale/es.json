@@ -1,0 +1,20 @@
+{
+  "title": "Juego del Ahorcado",
+  "startCommand": "inicia",
+  "stopCommand": "detiene",
+  "startCommandHelp": "inicia el juego",
+  "stopCommandHelp": "detiene el juego",
+  "started": "¡Juego del Ahorcado iniciado!\n\nTema: *{{theme}}*\nPalabra: `{{word}}`\nVidas: {{lives}}\n\n¡Escribe una letra o la palabra completa para adivinar!",
+  "stopped": "Juego del Ahorcado terminado.",
+  "alreadyRunning": "*Ya hay una partida en curso!*",
+  "invalidCommand": "El subcomando *{{sub}}* no existe.\nUsa",
+  "or": "o",
+  "won": "¡Felicitaciones! Palabra completa: `{{word}}`",
+  "lost": "¡Fin del juego! La palabra era: `{{word}}`",
+  "status": "Palabra: `{{word}}`\nVidas: {{lives}}\nLetras utilizadas: {{guessed}}\n",
+  "correct": "✅ ¡Letra correcta!",
+  "wrong": "❌ ¡Letra incorrecta!",
+  "noGame": "No hay ninguna partida en curso. Envía `{{cmd}}` para iniciar una nueva.",
+  "timeout": "⏱️ ¡Tiempo agotado! Nadie jugó por un rato, así que el juego terminó. La palabra era: *{{word}}*",
+  "alreadyGuessed": "Ya intentaste la letra *{{letter}}*."
+}

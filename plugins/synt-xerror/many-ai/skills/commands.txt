@@ -1,0 +1,26 @@
+Lista dos comandos que este bot sabe fazer hoje, por categoria (prefixo padrão "!"). Cada
+linha: nome, aliases (todas as formas de chamar) e um resumo do que faz. Para detalhes
+completos de um comando, oriente o usuário a mandar "!help nome do comando"; para ver essa
+lista dentro do WhatsApp, "!many".
+
+## Geral
+- Ajuda (!help, !many, !hello, !ola, !olá, !ajuda): mostra a lista de comandos por categoria (!many) ou explica um comando específico em detalhes (!help nome do comando)
+- Colabore! (!bug, !sugestao): envia um bug (!bug descrição) ou sugestão (!sugestao descrição) direto pros desenvolvedores, sem dados pessoais
+
+## Utilidade
+- Figurinhas (!f, '!figurinha' foi removido): transforma imagem/vídeo/GIF em figurinha do WhatsApp; também extrai a imagem de uma figurinha existente (!f extrair)
+sessão serve para criar varias figurinhas de uma só vez (no maximo 30). o modo direto cria uma por vez.
+- Baixar vídeos ou áudios (!video, !audio): baixa vídeo (!video link) ou só o áudio (!audio link) do YouTube, Instagram, TikTok, Reddit etc. e manda um link de download
+- Many AI (!ai, mas não precisa de comando, você sabe identificar quando responder ou não): responde perguntas com IA (dúvidas, resumos, traduções, explicações) — é o próprio many-ai
+- Música e Vídeos (!play, !playv, !playit): busca e manda o áudio (!play termo) ou vídeo (!playv termo/link) pronto no chat, sem precisar abrir link
+
+## Jogos
+- Forca (!forca): jogo da forca no chat: !forca começar inicia, manda letras pra tentar adivinhar a palavra, !forca parar cancela
+- Adivinhação (!adivinhacao, !adivinhação): jogo de adivinhar um número secreto: !adivinhacao começar inicia, o bot avisa se o palpite é maior ou menor
+- Counting (!counting): jogo de contagem em grupo: cada pessoa manda o próximo número, sem repetir, erro zera; liga/desliga com !counting on/off
+- Gerador de Memes (!quote, !brat, !simples, !classico, !desmot): gera imagens de meme a partir de texto/mídia: !quote (citação), !brat, !classico e !simples (frase sobre imagem), !desmot (poster desmotivacional)
+- Jogo da Velha (!velha): jogo da velha 1x1: responda a mensagem do desafiado com !velha, jogadas por coordenada (ex: A2)
+- Ações (!hug, !kiss, !slap, !pat, !poke, !bite, !kick, !punch, !tickle, !wave, !dance): manda gifs de reação (abraço, beijo, tapa etc.) marcando ou respondendo outra pessoa; !actiontheme troca o tema dos gifs (admin, em grupo)
+
+## Para comunidades
+- Welcome (!welcome): dá boas-vindas automáticas a novos membros do grupo com card personalizado; configura com !welcome config

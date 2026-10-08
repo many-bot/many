@@ -1,0 +1,15 @@
+{
+  "name": "figurinha",
+  "key": "synt-xerror/figurinha",
+  "author": {
+    "name": "synt-xerror",
+    "email": "me@stxerr.dev",
+    "website": "https://www.stxerr.dev"
+  },
+  "description": "Sticker creation plugin for Manybot.",
+  "version": "3.2.0",
+  "license": "MIT",
+  "repo": "https://github.com/synt-xerror/figurinha.many",
+  "category": "media",
+  "dependencies": {}
+}

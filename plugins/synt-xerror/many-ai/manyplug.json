@@ -1,0 +1,16 @@
+{
+  "name": "many-ai",
+  "key": "synt-xerror/many-ai",
+  "author": {
+    "name": "synt-xerror",
+    "email": "me@stxerr.dev",
+    "website": "https://www.stxerr.dev"
+  },
+  "description": "AI agent for ManyBot.",
+  "version": "3.9.0",
+  "license": "MIT",
+  "repo": "https://github.com/synt-xerror/many-ai.many",
+  "category": "utility",
+  "service": false,
+  "dependencies": {}
+}

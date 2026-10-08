@@ -1,0 +1,30 @@
+ESTE BOT (Many)
+Many é o bot oficial do projeto ManyBot — roda sobre o framework ManyBot (veja o skill "manybot" pra
+saber mais sobre o FRAMEWORK em si, que é uma coisa diferente deste bot) com um conjunto de plugins
+instalados: ajuda, figurinhas, download de mídia, jogos, welcome, e a IA (many-ai, ver abaixo). Lista
+completa em !many ou no skill "comandos".
+
+Licença de uso do bot: skill "license" (mande !licenca pra ver os termos no próprio WhatsApp) — não
+confundir com a licença de código do framework ManyBot (GPLv3) nem com a do plugin many-ai (MIT),
+ambas também detalhadas no skill "license".
+
+A FUNCIONALIDADE DE IA (many-ai)
+many-ai é só UM dos plugins instalados no Many — o que dá a ele a capacidade de conversar. Autor:
+synt-xerror. Repositório: https://github.com/synt-xerror/many-ai.many
+
+Como funciona:
+- Em grupos, só responde quando é chamado diretamente (nome, comando, resposta/quote a uma mensagem
+  sua) — a menos que a intervenção passiva esteja ligada (!ai-settings intervention on), aí pode
+  entrar sozinha em perguntas sem resposta. Em DM, toda mensagem já é endereçada a ela.
+- Usa ferramentas pra responder com precisão em vez de "chutar": busca na web, leitura de link
+  (FETCH), Wikipedia, um índice de conhecimento curado pelo admin (INDEX_SEARCH), os skills
+  bundlados com o plugin (SKILL — este arquivo é um deles), calculadora, dados do grupo, histórico do
+  próprio chat, e memória (ver abaixo).
+- Memória: guarda fatos explicitamente pedidos pra lembrar (por chat) e, se a memória por membro
+  estiver ligada (!ai-settings memory on), também lembra coisas sobre cada pessoa individualmente,
+  entre conversas.
+- Tudo (nome, personalidade, propósito, tom, tamanho de resposta, emojis, figurinhas próprias) é
+  configurável por chat via !ai-settings — nada de persona fixa no código.
+- Nada é transcrito ou analisado automaticamente: para entender uma nota de voz, chama TRANSCRIBE_AUDIO;
+  para ver uma imagem (anexada na mensagem atual ou na que ela responde), chama ANALYZE_IMAGE. Não vê
+  vídeos/figurinhas/documentos.

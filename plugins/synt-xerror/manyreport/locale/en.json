@@ -1,0 +1,26 @@
+{
+  "usoBug": "Usage: {{prefixo}}bug <bug description>",
+  "usoSugestao": "Usage: {{prefixo}}sugestao <your suggestion>",
+  "usoResponder": "Usage: {{prefixo}}responder <ticket> <reply>",
+  "naoConfigurado": "This feature hasn't been configured by the bot admin yet.",
+  "tipoBug": "🐞 Bug",
+  "tipoSugestao": "💡 Suggestion",
+  "privado": "Private message",
+  "semHistorico": "No recent messages recorded.",
+  "grupo": "Group",
+  "templateRelatorio": "*{{tipo}}*\n\n{{conteudo}}\n\n---\n🎫 Ticket #{{ticket}}\n💬 {{origem}}\n🕒 {{data}}\n\n🗒️ *Last messages in the chat:*\n{{historico}}",
+  "confirmadoBug": "Thanks! Your report was sent. 🐞",
+  "confirmadoSugestao": "Thanks! Your suggestion was sent. 💡",
+  "falhaEnvio": "Couldn't send your report right now. Try again later.",
+  "ticketNaoEncontrado": "Ticket #{{ticket}} not found.",
+  "templateResposta": "💬 *Support reply:*\n\n{{texto}}",
+  "templateRespostaFallback": "🎫 *Reply to your ticket #{{ticket}}:*\n\n{{texto}}",
+  "respostaEnviada": "Reply for ticket #{{ticket}} sent.",
+  "respostaEnviadaSemCitar": "Reply for ticket #{{ticket}} sent (the original message was no longer available to quote, so I sent it as a regular message).",
+  "falhaEnvioResposta": "Couldn't send the reply right now. Try again later.",
+  "usoFechar": "Usage: {{prefixo}}fechar <ticket>",
+  "ticketFechado": "Ticket #{{ticket}} closed.",
+  "ticketJaFechado": "Ticket #{{ticket}} was already closed.",
+  "ticketJaFechadoResponder": "Ticket #{{ticket}} is already closed — reopen it manually if you need to reply."
+}
+

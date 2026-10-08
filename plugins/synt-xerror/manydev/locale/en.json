@@ -1,0 +1,7 @@
+{
+  "plugin": {
+    "name": "manydev",
+    "description": "manydev plugin for ManyBot"
+  },
+  "commands": {}
+}

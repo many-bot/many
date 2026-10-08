@@ -1,0 +1,38 @@
+{
+  "pack": "Sticker creado por ManyBot\n",
+  "author": "\nmanybot.stxerr.dev",
+  "error": {
+    "tooLarge": "El archivo es demasiado grande para WhatsApp, incluso reduciendo la calidad.",
+    "invalidFormat": "Este archivo parece dañado o el formato no es compatible.",
+    "conversionFailed": "No se pudo transformar este archivo en sticker. Intenta con otro.",
+    "cmdDeprecated": "El comando `{{old}}` ha sido eliminado.\nUtilice `{{new}}` en su lugar.",
+    "sendMedia": "Responde o envía junto con el comando una imagen, gif, video u otro sticker.\n\nObs: el modo lote (sesión) tuvo una actualización, para abrirlo ahora usas `{{lote}}`, y para crear usas `{{batch}}`."
+  },
+  "session": {
+    "noneActive": "No hay ningún lote activo. Escribe {{command}} para comenzar.",
+    "stopped": "Lote cancelado.",
+    "noMedia": "Aún no has enviado ninguna foto o video.",
+    "generating": "Preparando tus stickers, por favor espera...",
+    "generatingOne": "Creando el sticker, espera un momento...",
+    "alreadyOpen": "Ya tienes un lote abierto. Para crear las pegatinas, escribe {{command}}. O bien, espera a que se acabe el tiempo.",
+    "expired": "El tiempo se ha agotado. Escribe",
+    "expiredEnd": "para iniciar un nuevo lote.",
+    "started": "¡Lote de stickers iniciado! Envía los archivos multimedia y luego envía: `{{command}}`\nPara cancelar: `{{cancel}}`",
+    "created": "creados con éxito",
+    "failed": "fallaron",
+    "failDetail": "Motivo de los errores:",
+  "hintDirectMode": "Para crear un solo sticker no hace falta abrir un lote: responde o envía la foto/video directo con `{{command}}`.",
+  "hintMaxReached": "Este lote llegó al límite de {{max}} archivos por sesión.",
+  "burstDetected": "💡 Vi varios stickers seguidos con `{{command}}`. Es más rápido en lote: escribe `{{lote}}`, envía todas las fotos/videos y luego `{{batch}}`."
+  },
+  "extract": {
+    "noSticker": "Responde un sticker con el comando para extraer el archivo."
+  },
+  "edit": {
+    "usage": "Usa `{{command}} edit pack <nombre>`, `{{command}} edit autor <nombre>` o `{{command}} edit reset`.",
+    "missingValue": "Indica el {{field}} deseado después del comando.",
+    "saved": "{{field}} actualizado a: {{value}}",
+    "resetDone": "Pack y autor volvieron al valor predeterminado."
+  }
+}
+

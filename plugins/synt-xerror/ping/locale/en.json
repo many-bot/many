@@ -1,0 +1,7 @@
+{
+  "plugin": {
+    "name": "ping",
+    "description": "ping plugin for ManyBot"
+  },
+  "commands": {}
+}

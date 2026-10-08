@@ -1,0 +1,28 @@
+{
+  "name": "manymedia",
+  "key": "synt-xerror/manymedia",
+  "author": {
+    "name": "synt-xerror",
+    "email": "me@stxerr.dev",
+    "website": "https://www.stxerr.dev"
+  },
+  "description": "Download videos and audio from any link.",
+  "version": "4.2.0",
+  "license": "MIT",
+  "repo": "https://github.com/synt-xerror/manymedia.many",
+  "category": "media",
+  "externalDependencies": {
+    "yt-dlp": {
+      "command": "yt-dlp",
+      "optional": false
+    },
+    "ffmpeg": {
+      "command": "ffmpeg",
+      "optional": true
+    },
+    "gallery-dl": {
+      "command": "gallery-dl",
+      "optional": true
+    }
+  }
+}

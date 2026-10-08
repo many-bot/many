@@ -1,0 +1,153 @@
+// src/plugins/many-ai/search.js
+
+import { fetchWithTimeout } from "./httpUtils.js";
+
+const SEARX_INSTANCES = [
+  "https://search.sapti.me",
+  "https://search.rhscz.eu",
+  "https://search.bus-hit.me",
+  "https://search.xcloud.live",
+  "https://search.projectsegfault.com",
+];
+
+/** Hostname only (no "www."), or "" if the URL is missing/unparseable — never throws. */
+function hostnameOf(url) {
+  try { return new URL(url).hostname.replace(/^www\./, ""); } catch { return ""; }
+}
+
+/** "Title: text (hostname)" — omits ": text" if text is empty, omits "(hostname)" if there's no usable URL. */
+function formatResult(title, text, url) {
+  const base = text ? `${title}: ${text}` : title;
+  const host = hostnameOf(url);
+  return host ? `${base} (${host})` : base;
+}
+
+export async function doSearch(query, { TAVILY_API_KEY, SERPER_API_KEY, log } = {}) {
+  // 1. Tavily
+  if (TAVILY_API_KEY) {
+    try {
+      const res = await fetchWithTimeout("https://api.tavily.com/search", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          api_key: TAVILY_API_KEY,
+          query,
+          search_depth: "basic",
+          max_results: 3,
+        }),
+      });
+      if (!res.ok) {
+        log?.warn?.(`[many-ai] Tavily search failed with status ${res.status}, falling back`);
+      } else {
+        const data = await res.json();
+        if (data.results?.length > 0) {
+          return data.results.map(r => formatResult(r.title, r.content, r.url)).join(" | ");
+        }
+      }
+    } catch (err) {
+      log?.warn?.(`[many-ai] Tavily search errored, falling back: ${err.message}`);
+    }
+  }
+
+  // 2. Serper
+  if (SERPER_API_KEY) {
+    try {
+      const res = await fetchWithTimeout("https://google.serper.dev/search", {
+        method: "POST",
+        headers: {
+          "X-API-KEY": SERPER_API_KEY,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ q: query, hl: "pt-br" }),
+      });
+      if (!res.ok) {
+        log?.warn?.(`[many-ai] Serper search failed with status ${res.status}, falling back`);
+      } else {
+        const data = await res.json();
+        if (data.organic?.length > 0) {
+          return data.organic.slice(0, 3).map(r => formatResult(r.title, r.snippet, r.link)).join(" | ");
+        }
+      }
+    } catch (err) {
+      log?.warn?.(`[many-ai] Serper search errored, falling back: ${err.message}`);
+    }
+  }
+
+  // 3. SearXNG (tries instances in parallel with a timeout)
+  const searxResult = await searxSearch(query);
+  if (searxResult) return searxResult;
+
+  // 4. DuckDuckGo HTML scrape
+  const ddgResult = await ddgSearch(query);
+  if (ddgResult) return ddgResult;
+
+  // 5. Wikipedia pt fallback
+  return wikiSearch(query);
+}
+
+async function searxSearch(query) {
+  for (const instance of SEARX_INSTANCES) {
+    try {
+      const url = `${instance}/search?q=${encodeURIComponent(query)}&format=json&safesearch=0&language=pt-BR`;
+      const res = await fetchWithTimeout(url, { headers: { Accept: "application/json" } });
+      if (!res.ok) continue;
+      const data = await res.json();
+      if (data.results?.length > 0) {
+        return data.results.slice(0, 3).map(r => formatResult(r.title, r.content || r.title, r.url)).join(" | ");
+      }
+    } catch (_) {
+      continue;
+    }
+  }
+  return null;
+}
+
+/** DuckDuckGo's HTML result links are redirects (`//duckduckgo.com/l/?uddg=<encoded-real-url>&...`) — unwrap to the real URL so a hostname can be extracted from it. */
+function unwrapDdgHref(href) {
+  try {
+    const uddg = new URL(href, "https://duckduckgo.com").searchParams.get("uddg");
+    return uddg ? decodeURIComponent(uddg) : href;
+  } catch { return href; }
+}
+
+async function ddgSearch(query) {
+  try {
+    const res = await fetchWithTimeout(
+      `https://html.duckduckgo.com/html/?q=${encodeURIComponent(query)}`,
+      { headers: { "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36" } }
+    );
+    const html = await res.text();
+    const results = [];
+    const blocks = html.split('class="result"');
+
+    for (let i = 1; i < blocks.length && results.length < 3; i++) {
+      const block = blocks[i];
+      const hrefMatch = block.match(/class="result__a"[^>]*href="([^"]+)"/);
+      const titleMatch = block.match(/class="result__a"[^>]*>([^<]+)/);
+      const snippetMatch = block.match(/class="result__snippet"[^>]*>([\s\S]*?)<\/a>/);
+      const title = titleMatch?.[1]?.trim() ?? "";
+      const snippet = snippetMatch?.[1]
+        ?.replace(/<[^>]+>/g, "")
+        ?.replace(/\s+/g, " ")
+        ?.trim() ?? "";
+      const url = hrefMatch ? unwrapDdgHref(hrefMatch[1]) : "";
+      if (title || snippet) results.push(formatResult(title, snippet, url));
+    }
+
+    return results.length > 0 ? results.join(" | ") : null;
+  } catch (_) {
+    return null;
+  }
+}
+
+async function wikiSearch(query) {
+  try {
+    const res = await fetchWithTimeout(
+      `https://pt.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`
+    );
+    const data = await res.json();
+    return data.extract ? `${data.extract} (pt.wikipedia.org)` : "No result.";
+  } catch (_) {
+    return "Couldn't find any information.";
+  }
+}

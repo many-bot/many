@@ -1,0 +1,26 @@
+{
+  "usoBug": "Use: {{prefixo}}bug <descrição do problema>",
+  "usoSugestao": "Use: {{prefixo}}sugestao <sua sugestão>",
+  "usoResponder": "Use: {{prefixo}}responder <ticket> <resposta>",
+  "naoConfigurado": "Esse recurso ainda não foi configurado pelo administrador do bot.",
+  "tipoBug": "🐞 Bug",
+  "tipoSugestao": "💡 Sugestão",
+  "privado": "Mensagem privada",
+  "semHistorico": "Nenhuma mensagem recente registrada.",
+  "grupo": "Grupo",
+  "templateRelatorio": "*{{tipo}}*\n\n{{conteudo}}\n\n---\n🎫 Ticket #{{ticket}}\n💬 {{origem}}\n🕒 {{data}}\n\n🗒️ *Últimas mensagens no chat:*\n{{historico}}",
+  "confirmadoBug": "Valeu! Seu report foi enviado. 🐞",
+  "confirmadoSugestao": "Valeu! Sua sugestão foi enviada. 💡",
+  "falhaEnvio": "Não consegui enviar seu report agora. Tenta de novo mais tarde.",
+  "ticketNaoEncontrado": "Ticket #{{ticket}} não encontrado.",
+  "templateResposta": "💬 *Resposta do suporte:*\n\n{{texto}}",
+  "templateRespostaFallback": "🎫 *Resposta ao seu ticket #{{ticket}}:*\n\n{{texto}}",
+  "respostaEnviada": "Resposta do ticket #{{ticket}} enviada.",
+  "respostaEnviadaSemCitar": "Resposta do ticket #{{ticket}} enviada (a mensagem original não estava mais disponível pra citar, mandei como mensagem normal).",
+  "falhaEnvioResposta": "Não consegui enviar a resposta agora. Tenta de novo mais tarde.",
+  "usoFechar": "Use: {{prefixo}}fechar <ticket>",
+  "ticketFechado": "Ticket #{{ticket}} fechado.",
+  "ticketJaFechado": "Ticket #{{ticket}} já estava fechado.",
+  "ticketJaFechadoResponder": "Ticket #{{ticket}} já está fechado — reabra manualmente se precisar responder."
+}
+

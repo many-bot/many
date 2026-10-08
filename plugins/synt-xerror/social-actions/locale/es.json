@@ -1,0 +1,66 @@
+{
+  "verbs": {
+    "hug": "abrazó",
+    "kiss": "besó",
+    "slap": "abofeteó",
+    "pat": "acarició",
+    "poke": "pinchó",
+    "bite": "mordió",
+    "kick": "pateó",
+    "punch": "golpeó",
+    "tickle": "le hizo cosquillas a",
+    "wave": "saludó a",
+    "dance": "invitó a bailar a"
+  },
+  "infinitives": {
+    "hug": "abrazar",
+    "kiss": "besar",
+    "slap": "abofetear",
+    "pat": "acariciar",
+    "poke": "pinchar",
+    "bite": "morder",
+    "kick": "patear",
+    "punch": "golpear",
+    "tickle": "hacer cosquillas",
+    "wave": "saludar a",
+    "dance": "invitar a bailar a"
+  },
+  "everyone": {
+    "hug": "abrazó a todos",
+    "kiss": "besó a todos",
+    "slap": "abofeteó a todos",
+    "pat": "acarició a todos",
+    "poke": "pinchó a todos",
+    "bite": "mordió a todos",
+    "kick": "pateó a todos",
+    "punch": "golpeó a todos",
+    "tickle": "le hizo cosquillas a todos",
+    "wave": "saludó a todos",
+    "dance": "invitó a bailar a todos"
+  },
+  "toBot": {
+    "hug": "me abrazó",
+    "kiss": "me besó",
+    "slap": "me abofeteó",
+    "pat": "me acarició",
+    "poke": "me pinchó",
+    "bite": "me mordió",
+    "kick": "me pateó",
+    "punch": "me golpeó",
+    "tickle": "me hizo cosquillas",
+    "wave": "me saludó",
+    "dance": "me invitó a bailar"
+  },
+  "noTarget": "Menciona a alguien o responde su mensaje para usar {{command}}.",
+  "selfTarget": "¿Vas a {{infinitive}} a ti mismo? {{emoji}}",
+  "fetchError": "No pude conseguir un gif ahora, intenta de nuevo.",
+  "actionLine": "{{sender}} {{verb}} {{target}}! {{emoji}}",
+  "themeStatus": "Tema actual: {{current}}\nTemas locales disponibles: {{available}}",
+  "themeNoneLocal": "ninguno todavía — pon archivos en una subcarpeta como hug/<tema>/ para crear uno",
+  "themeNotFound": "No hay archivos locales para el tema \"{{theme}}\". Ejecuta {{command}} sin argumentos para ver los temas disponibles.",
+  "themeSet": "Tema configurado como \"{{theme}}\".",
+  "groupOrAdmin": "No eres administrador o no estamos en un grupo.",
+  "everyoneLine": "{{sender}} {{action}}! {{emoji}}",
+  "botLine": "{{sender}} {{action}}! {{emoji}}"
+}
+

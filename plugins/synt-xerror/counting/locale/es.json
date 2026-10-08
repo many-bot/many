@@ -1,0 +1,15 @@
+{
+  "title": "Juego de Conteo",
+  "description": "Turnarse contando. ¡No te repitas!",
+  "rulesLine1": "Envía el siguiente número en la secuencia.",
+  "rulesLine2": "No puedes continuar tu propio número (pero puedes reiniciar desde 1).",
+  "rulesLine3": "Cualquier error reinicia el conteo.",
+  "current": "Conteo actual: *{{number}}*",
+  "reset": "Conteo reiniciado.",
+  "onlyGroups": "Este comando solo funciona en grupos.",
+  "onlyAdmins": "Solo los administradores de grupo pueden activar/desactivar el conteo.",
+  "enabled": "¡Conteo activado en este grupo! ✅",
+  "disabled": "Conteo desactivado en este grupo. ❌",
+  "notEnabled": "El conteo no está activado en este chat. Un administrador puede activarlo con !counting on",
+  "lastCounter": "Último conteo: "
+}

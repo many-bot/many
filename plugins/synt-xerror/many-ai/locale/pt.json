@@ -1,0 +1,111 @@
+{
+  "plugin": {
+    "name": "many-ai",
+    "description": "Converse com uma IA via Mistral API, com busca, memória e ferramentas extras"
+  },
+  "commands": {},
+  "errors": {
+    "generic": "Ops! Algo deu errado.",
+    "apiError": "Erro na API Mistral: {{error}}",
+    "missingApiKey": "Minha chave da API Mistral não está configurada. Peça pro admin do bot configurar MISTRAL_API_KEY em ~/.manybot/manybot.toml.",
+    "toolError": "Deu erro ao tentar usar {{tool}}.",
+    "rateLimit": "Rate limit atingido, tenta de novo daqui a pouco.",
+    "rateLimitWithRetry": "Rate limit atingido. Tenta de novo em {{retryIn}}.",
+    "allKeysRateLimit": "Nenhuma das chaves de API configuradas está funcionando agora (limite de uso, chave inválida ou instabilidade da Mistral). Tenta de novo em um momento.",
+    "emptyReply": "Não consegui montar uma resposta agora. Pode repetir ou reformular?"
+  },
+  "memory": {
+    "dbOpened": "Banco de memória aberto",
+    "saved": "Memória salva com sucesso",
+    "dbOpenError": "Erro ao abrir banco de memória: {{error}}",
+    "walError": "Erro ao ativar WAL mode: {{error}}",
+    "tableCreateError": "Erro ao criar tabela de memória: {{error}}",
+    "insertError": "Falha ao salvar memória: {{error}}",
+    "selectError": "Falha ao consultar memória: {{error}}",
+    "noResults": "Nenhum resultado encontrado."
+  },
+  "tools": {
+    "resultLabel": "Resultado",
+    "stickerSent": "Figurinha enviada.",
+    "stickerNotFound": "Não achei nenhuma figurinha chamada \"{{name}}\".",
+    "progress": {
+      "search": "Pesquisando",
+      "fetch": "Acessando o link",
+      "skill": "Lendo skill",
+      "skillDone": "Skill lida.",
+      "thinkingDone": "Pensei por {{seconds}}s.",
+      "memwrite": "Salvando memória",
+      "memwriteDone": "Memória salva.",
+      "transcribeaudioDone": "Áudio transcrito.",
+      "searchhistory": "Pesquisando histórico",
+      "searchhistoryDone": "Histórico pesquisado.",
+      "groupinfo": "Consultando dados do grupo",
+      "groupinfoDone": "Dados do grupo obtidos.",
+      "sticker": "Enviando figurinha",
+      "stickerDone": "Figurinha enviada.",
+      "wikisearch": "Pesquisando na Wikipédia",
+      "wikisearchDone": "Pesquisei na Wikipédia.",
+      "wikifetch": "Lendo artigo da Wikipédia",
+      "wikifetchDone": "Artigo da Wikipédia lido.",
+      "indexsearch": "Pesquisando no índice",
+      "indexsearchDone": "Pesquisei no índice.",
+      "visionanalyze": "Analisando imagem",
+      "visionanalyzeDone": "Imagem analisada.",
+      "visionanalyzeFailed": "Não consegui analisar a imagem.",
+      "transcribeaudio": "Transcrevendo áudio",
+      "thinking": "Pensando",
+      "searchDone": "Pesquisei: {{query}}.",
+      "searchDoneSites": "Pesquisei em: {{sites}}{{more}}.",
+      "fetchDone": "Página lida.",
+      "memread": "Lendo memória",
+      "memreadDone": "Leitura de memória concluída.",
+      "calc": "Calculando",
+      "calcDone": "Calculado.",
+      "fileagent": "Trabalhando com arquivos",
+      "fileagentDone": "Concluído.",
+      "filecreate": "Criando arquivo",
+      "filecreateDone": "Arquivo criado: {{filename}}.",
+      "fileread": "Lendo arquivo",
+      "filereadDone": "Arquivo lido: {{filename}}.",
+      "filepackage": "Empacotando arquivos",
+      "filepackageDone": "Pacote pronto: {{filename}}.",
+      "filedeliver": "Enviando arquivo",
+      "filedeliverDone": "Arquivo enviado: {{filename}}.",
+      "failed": "Não consegui."
+    }
+  },
+  "settings": {
+    "adminOnly": "Só admins do grupo podem mudar essas configurações.",
+    "disabled": "IA desativada neste chat. Manda \"!ai-settings on\" pra reativar.",
+    "enabled": "IA ativada neste chat.",
+    "interventionOn": "Intervenção passiva ativada — posso entrar em perguntas sem resposta, pedidos de ajuda claros ou correções, mesmo sem ser chamada.",
+    "interventionOff": "Intervenção passiva desativada — só respondo quando chamada diretamente.",
+    "interventionUsage": "Uso: \"!ai-settings intervention on\" ou \"!ai-settings intervention off\".",
+    "status": "📋 *Configurações da IA*\n\n🤖 IA: {{enabled}}\n   Liga/desliga a IA neste chat. Desativada, ela não responde a nada (nem comando, nem menção).\n   _!{{cmd}} on / off_\n\n👂 Intervenção passiva: {{intervention}}\n   Deixa a IA entrar sozinha na conversa (sem ser chamada) quando percebe uma pergunta sem resposta ou um pedido de ajuda claro. Desativada, ela só responde quando é chamada diretamente.\n   _!{{cmd}} intervention on / off_\n\n🎨 Figurinhas: {{sticker}}\n   Permite a IA mandar uma figurinha própria como reação, só em momentos leves e descontraídos. Desativada, ela nunca manda figurinha, só texto.\n   _!{{cmd}} sticker on / off_\n\n🧠 Pensamento antes de responder: {{thinking}}\n   Mostra a bolha \"Pensando...\" enquanto a IA elabora a resposta. Desativada, ela responde direto, sem essa etapa visível.\n   _!{{cmd}} thinking on / off_\n\n🔧 Mostrar uso de ferramentas: {{tools}}\n   Mostra avisos de progresso (\"pesquisando...\", \"lendo arquivo...\") enquanto a IA usa uma ferramenta. Desativada, as ferramentas rodam por baixo dos panos, sem aviso.",
+    "saveError": "Não consegui salvar essa configuração — o armazenamento de settings pode não estar disponível ainda.",
+    "yes": "✅ ativado",
+    "no": "❌ desativado",
+    "stickerOn": "Figurinhas ativadas — posso mandar uma quando fizer sentido.",
+    "stickerOff": "Figurinhas desativadas — não vou mais mandar nenhuma.",
+    "stickerUsage": "Uso: \"!ai-settings sticker on\" ou \"!ai-settings sticker off\".",
+    "thinkingOn": "Pensamento antes de responder ativado — a bolha \"Pensando...\" volta a aparecer enquanto espero a resposta.",
+    "thinkingOff": "Pensamento antes de responder desativado — respostas mais diretas, sem a etapa de raciocínio, e sem a bolha \"Pensando...\" enquanto espero a resposta.",
+    "thinkingUsage": "Uso: \"!ai-settings thinking on\" ou \"!ai-settings thinking off\".",
+    "toolsOn": "Aviso de uso de ferramentas ativado — mostro uma mensagem (pesquisando, lendo arquivo, etc.) enquanto uso uma ferramenta.",
+    "toolsOff": "Aviso de uso de ferramentas desativado — as ferramentas rodam por baixo dos panos, sem mensagem de progresso.",
+    "toolsUsage": "Uso: \"!ai-settings tools on\" ou \"!ai-settings tools off\"."
+  },
+  "logs": {
+    "maxIterationsReached": "resolveReply: máximo de iterações alcançado sem resposta final",
+    "missingApiKeyWarning": "MISTRAL_API_KEY não configurada — a Many não vai responder até isso ser configurado em ~/.manybot/manybot.toml.",
+    "ready": "many-ai pronta (modelo: {{model}}, {{count}} chave(s) de API configurada(s)).",
+    "shouldRespond": {
+      "quotedError": "Erro ao pegar mensagem citada → silencioso ({{error}})"
+    },
+    "noMediaResponse": "Só entendo mensagens de texto. Ainda não consigo ler imagens, figurinhas, áudio ou vídeos."
+  },
+  "warnings": {
+    "hallucinationRisk": "⚠️ Isso envolve comandos, o próprio ManyBot ou fontes externas — vale conferir antes de confiar 100% na resposta acima."
+  }
+}
+

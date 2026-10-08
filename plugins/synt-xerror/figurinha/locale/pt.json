@@ -1,0 +1,38 @@
+{
+  "pack": "Figurinha gerada por ManyBot\n",
+  "author": "\nmanybot.stxerr.dev",
+  "error": {
+    "tooLarge": "O arquivo é grande demais para o WhatsApp, mesmo reduzindo a qualidade.",
+    "invalidFormat": "Este arquivo parece corrompido ou o formato não é aceito.",
+    "conversionFailed": "Não foi possível transformar este arquivo em figurinha. Tente outro.",
+    "cmdDeprecated": "O comando `{{old}}` foi removido.\nUse `{{new}}` em vez disso.",
+    "sendMedia": "Responda ou mande junto do comando uma imagem, gif, vídeo ou outra figurinha.\n\nObs: o modo de lote (sessão) teve uma atualização, para abrir ele agora você usa `{{lote}}`, e para criar você usa `{{batch}}`."
+  },
+  "session": {
+    "noneActive": "Nenhum lote está ativo. Digite {{command}} para começar.",
+    "stopped": "Lote cancelado.",
+    "noMedia": "Você ainda não enviou nenhuma foto ou vídeo.",
+    "generating": "Preparando suas figurinhas, por favor aguarde...",
+    "generatingOne": "Fazendo a figurinha, aguarde...",
+    "alreadyOpen": "Você já tem um lote aberto. Para criar as figurinhas, digite {{command}}. Ou, espere o tempo acabar.",
+    "expired": "O tempo limite acabou. Digite",
+    "expiredEnd": "para iniciar um novo lote.",
+    "started": "Lote de figurinhas iniciado! Envie as mídias e depois mande: `{{command}}`\nPara cancelar: `{{cancel}}`",
+    "created": "criadas com sucesso",
+    "failed": "falharam",
+    "failDetail": "Motivo dos erros:",
+  "hintDirectMode": "Pra criar só uma figurinha, não precisa abrir um lote: responda ou mande a foto/vídeo direto com `{{command}}`.",
+  "hintMaxReached": "Esse lote chegou ao limite de {{max}} mídias por sessão.",
+  "burstDetected": "💡 Notei várias figurinhas seguidas com `{{command}}`. Fica mais rápido no lote: digite `{{lote}}`, envie todas as fotos/vídeos e *depois* `{{batch}}`."
+  },
+  "extract": {
+    "noSticker": "Responda uma figurinha com esse comando para extrair a mídia."
+  },
+  "edit": {
+    "usage": "Use `{{command}} edit pack <nome>`, `{{command}} edit autor <nome>` ou `{{command}} edit reset`.",
+    "missingValue": "Informe o {{field}} desejado depois do comando.",
+    "saved": "{{field}} atualizado para: {{value}}",
+    "resetDone": "Pack e autor voltaram ao padrão."
+  }
+}
+

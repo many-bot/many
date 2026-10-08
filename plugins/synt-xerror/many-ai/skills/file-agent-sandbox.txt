@@ -1,0 +1,111 @@
+Skill: file-agent-sandbox
+
+Resumo
+
+Esta skill documenta o FILE_AGENT: um sandbox por chat onde a IA recebe arquivos que o usuário
+manda, inspeciona, edita, renomeia, empacota e devolve. Sem commits, sem download por URL — só
+o que o usuário anexar no chat entra no sandbox.
+
+Sessão e persistência
+
+- session_id é automático e determinístico por chat (não é gerado/mostrado ao usuário). A mesma
+  conversa sempre reusa o mesmo sandbox, então uma sessão nova (ex.: depois de uma interrupção)
+  já enxerga os arquivos e checkpoints da anterior.
+- Estrutura por sessão: in/ (arquivos recebidos), out/ (arquivos gerados/editados), logs/ops.log
+  (auditoria), checkpoints/ (progresso salvo).
+- Retenção: ~24h de inatividade após a última operação; depois disso a pasta é removida
+  automaticamente (limpeza best-effort, roda no máximo uma vez por hora).
+
+Entrada de arquivos
+
+- O usuário anexa um arquivo no chat → é salvo automaticamente em in/<nome> com sha256 calculado.
+  Isso já acontece antes de qualquer chamada do FILE_AGENT; a IA nunca baixa nada por conta própria
+  nem aceita URL como origem.
+- Se a IA precisar de um arquivo e ninguém mandou nada ainda, ela pede pro usuário anexar — não
+  existe forma de puxar um arquivo de um link/ID/histórico.
+
+Actions reais (nada além disso existe)
+
+- write {action, session_id, path, content (ou content_base64), overwrite?} — cria/sobrescreve um
+  arquivo a partir de conteúdo GERADO pela IA. Não serve para salvar o que o usuário anexou (isso já
+  é automático). Limite: 20MB. Se o path já tiver conteúdo, a chamada falha com "write-target-exists"
+  em vez de apagar silenciosamente — é sinal de que o certo ali é "append", a menos que a intenção seja
+  mesmo recomeçar do zero (nesse caso, passar "overwrite":true).
+  Use "content" (texto puro, sem codificação nenhuma) para QUALQUER arquivo de texto — html, css, js,
+  json, csv, md, código, etc. É o campo padrão a usar. Só use "content_base64" para dados que
+  realmente não são texto (binário).
+- append {action, session_id, path, content (ou content_base64)} — acrescenta ao final de um arquivo já
+  existente (criado antes com "write"). Existe pra montar um arquivo grande (ex.: uma landing page em
+  HTML) em VÁRIAS chamadas pequenas em vez de uma só gigante — cada resposta da IA tem um limite de
+  tamanho, então um "content" enorme numa chamada só pode ser cortado no meio. Com "content" (texto
+  puro), os pedaços só se concatenam em ordem — não tem alinhamento de base64 pra se preocupar, então
+  basta cortar o texto em qualquer ponto (uma quebra de linha é um lugar natural) até caber no limite
+  de tamanho da resposta. Fluxo: write com o primeiro pedaço → append com o segundo → append com o
+  terceiro... → no final, opcionalmente checksum pra conferir o arquivo completo antes de zip/deliver.
+  ("content_base64" ainda existe pra binário — nesse caso sim, cada pedaço tem que ser o base64 do
+  PRÓPRIO trecho bruto, nunca uma fatia de uma base64 grande cortada por posição de caractere.)
+- read {action, session_id, path, encoding?} — lê o conteúdo de um arquivo do sandbox (texto por
+  padrão, "encoding":"base64" para binário). Acima de ~200KB a leitura inline é recusada; usar
+  checksum ou deliver/zip nesse caso. Sempre ler antes de editar "às cegas".
+- replace {action, session_id, path, search, replace, out?} — find/replace literal em texto,
+  grava em "out" (ou sobrescreve no lugar se "out" for omitido).
+- list {action, session_id, path?} — lista arquivos de uma subpasta do sandbox.
+- checksum {action, session_id, path} — sha256 de um arquivo.
+- mv / cp {action, session_id, src, dst} — mover/copiar.
+- mkdir {action, session_id, path}.
+- rm {action, session_id, path} — DESTRUTIVO. Só depois de confirmação explícita do usuário para
+  aquele arquivo/pasta específico.
+- zip {action, session_id, dest, paths[], send?, filename?} — empacota; com "send":true já entrega
+  no chat. Gera também "<dest>.manifest.json" com sha256/tamanho de cada arquivo incluído.
+- checkpoint {action, session_id, data} — salva um JSON pequeno de progresso, útil em jobs longos.
+- resume {action, session_id} — devolve o último checkpoint, as últimas operações do log e a
+  listagem atual de in/out. É o ponto de partida pra retomar um trabalho que pode já estar em
+  andamento nesse chat.
+- deliver {action, session_id, path, filename?} — envia um único arquivo já existente no sandbox
+  como anexo pro usuário.
+- clear {action, session_id} — apaga TUDO do sandbox desta conversa (in/out/logs/checkpoints) e
+  recria vazio. Não apaga nada no dispositivo do usuário, só o workspace da própria IA. Como no
+  WhatsApp só existe UM chat por conversa (sem sessões separadas), um pedido novo pode colidir com
+  arquivo/estado de uma tarefa anterior (ex.: "write-target-exists"). Se isso acontecer: 1) explicar
+  em texto simples pro usuário que o ambiente de trabalho tem sobras de uma tarefa anterior e que
+  vai ser limpo — deixar claro que só o workspace da IA é apagado, nada do usuário; 2) pedir
+  autorização explícita antes de chamar clear; 3) só depois de confirmação, chamar clear e
+  recomeçar do zero. Nunca chamar clear sem essa confirmação prévia.
+
+Fluxo recomendado
+
+1) Usuário anexa arquivo → IA recebe a notinha "[FILE RECEIVED] ... session_id: X" no histórico e
+   usa ESSE session_id em toda chamada seguinte.
+2) Antes de editar, ler o arquivo (read) pra saber o que tem dentro — nunca assumir.
+3) Anunciar o plano em texto simples e pedir confirmação antes de qualquer rm ou write/replace que
+   sobrescreva algo que o usuário não pediu.
+4) Executar as operações necessárias (replace/write/mv/cp/mkdir).
+5) Assim que TODOS os arquivos do plano voltarem "ok", parar de escrever — nunca chamar write/append
+   de novo num path que já teve sucesso nesta mesma tarefa (isso é o que causa loop infinito de
+   recriação). Passar pra fase de verificação: list (e read se precisar checar conteúdo).
+6) Empacotar (zip com send:true) ou entregar (deliver) o resultado.
+7) Opcional: checkpoint em jobs longos, pra permitir retomar com resume depois.
+
+Se a sessão for interrompida no meio
+
+- Não é preciso pedir um "token" ao usuário — o session_id já é o mesmo nessa conversa/chat.
+- Ao continuar (nova sessão de conversa, mesmo chat), chamar resume primeiro para recuperar o
+  estado: último checkpoint, últimas operações, e o que já está em in/out.
+
+Erros
+
+- Toda chamada com problema volta como "FILE_AGENT_ERROR: <motivo>" (ex.: campo obrigatório
+  faltando, JSON mal formado no próprio argumento, path inválido, ou action inexistente — nesse
+  último caso o erro já lista as actions válidas). Ler o motivo, corrigir e tentar de novo — nunca
+  repetir a mesma chamada quebrada, nunca fingir que deu certo.
+
+Segurança e privacidade
+
+- Sem git commit/push — o sandbox é isolado, entrega é só via zip/deliver.
+- Sem execução de binários/scripts arbitrários — não existe action de exec.
+- Se um arquivo recebido contiver segredos/credenciais, avisar o usuário em vez de processar/
+  reenviar sem mais.
+- rm só com confirmação explícita, sempre para o path exato mencionado.
+
+-- End of skill --
+

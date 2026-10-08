@@ -1,0 +1,13 @@
+{
+  "noUrl": "Please provide a URL.",
+  "downloading": "Downloading video... This may take some time.",
+  "deprecated": "⚠️ `!{{old}}` was renamed to `!{{new}}`. Please use the new command from now on.",
+  "error": {
+    "noPermission": "yt-dlp: permission denied",
+    "notFound": "yt-dlp: not found",
+    "startError": "Failed to start download:",
+    "downloadFailed": "Download failed. Check the URL.",
+    "fileNotFound": "Downloaded file not found.",
+    "generic": "Failed to download video. Try again later."
+  }
+}

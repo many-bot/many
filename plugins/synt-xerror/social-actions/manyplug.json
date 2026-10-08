@@ -1,0 +1,14 @@
+{
+  "name": "social-actions",
+  "key": "synt-xerror/social-actions",
+  "version": "1.0.0",
+  "description": "Action commands: hug, kiss, slap and more.",
+  "category": "fun",
+  "author": {
+    "name": "synt-xerror",
+    "email": "me@stxerr.dev",
+    "website": "www.stxerr.dev"
+  },
+  "license": "MIT",
+  "main": "index.js"
+}

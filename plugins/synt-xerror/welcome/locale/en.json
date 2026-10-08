@@ -1,0 +1,145 @@
+{
+  "plugin": {
+    "name": "welcome",
+    "description": "welcome plugin for ManyBot"
+  },
+  "help": {
+    "text": "🤖 *Welcome*\n\nSends a welcome message (with or without a card) when someone joins the group.\n\n🆕 \"{{prefix}}welcome config\" — turns it on with default options\n📋 \"{{prefix}}welcome status\" — view and tweak the configuration\n🧪 \"{{prefix}}welcome test\" — shows a preview without affecting anyone\n🤖 \"{{prefix}}welcome\" — shows this help",
+    "needGroup": "⚠️ Run this command inside the group you want to configure."
+  },
+  "prompts": {
+    "watchGroup": {
+      "label": "Watched group",
+      "body": "👋 Let's set up the welcome message! It's quick — I'll guide you through every step, no prior knowledge needed.\n\nTo start, send *any message* inside the group you want me to watch (I'll announce it when someone joins). For communities, use the announcements group."
+    },
+    "useCard": {
+      "label": "Welcome card",
+      "body": "Should the welcome come with a *card* (an image with the person's photo)?\n\n➜ \"sim\" → with card\n➜ \"não\" → plain message, no card\n\n_(you can customize the card's look — background, frame, font, default photo — afterward, with \"{{prefix}}welcome set\")_"
+    },
+    "cardTarget": {
+      "label": "Target group",
+      "body": "Which group should I send the welcome to?\n\n➜ Send a message there\n➜ or type \"pular\" to use the same group as before"
+    },
+    "groupName": {
+      "label": "Group name",
+      "body": "What name should show up in the welcome messages (on the card and in the texts)?\n\n➜ Type the name\n➜ or \"pular\" to use the group's own name"
+    },
+    "cardMessage": {
+      "label": "Welcome message",
+      "body": "What message should I send when someone joins? (If the card is on, it goes along with it.)\n\nUse \"{nome}\" and \"{grupo}\" wherever you like.\nType \"padrão\" to use this one:\n\n{{defaultMessage}}"
+    },
+    "smallWelcomeMessage": {
+      "label": "Plain-text welcome message",
+      "body": "What message should I send in those extra groups (text only, no card)?\n\nUse \"{nome}\" and \"{grupo}\" wherever you like, or type \"padrão\" to reuse the main message."
+    },
+    "dmMessage": {
+      "label": "DM message (optional)",
+      "body": "Message I'd send in the person's DM, welcoming them — it's just a suggestion, same as the card message: use it, tweak it, or skip it, whatever you prefer.\n\nUse \"{nome}\" wherever you want their name.\nType \"padrão\" to use the suggestion below, or \"nenhuma\" to skip the DM entirely:\n\n{{defaultMessage}}"
+    },
+    "cardBackground": {
+      "label": "Card background",
+      "body": "Pick the card's look:\n\n🎨 \"pular\" → purple theme (default)\n🎨 a ready-made theme: {{themes}}\n🎨 a color with automatic gradient: a #hex code, e.g. #1f1147\n🎨 a solid color (no gradient): \"sólido #hex\"\n🎨 a gradient with 2 colors of your choice: \"gradiente #hex1 #hex2\"\n🎨 or send a photo/image to use as background"
+    },
+    "cardFrame": {
+      "label": "Avatar frame",
+      "body": "Now the avatar frame style:\n\n🔲 \"pular\" → circle (default)\n🔲 or one of these: {{frames}}"
+    }
+  },
+  "wizard": {
+    "cancelled": "❌ Setup cancelled.",
+    "editCancelled": "❌ Edit cancelled.",
+    "timeout": "⏱️ Setup ended due to inactivity (10 minutes with no reply).",
+    "smallWelcomeAdded": "✅ Added: \"{{name}}\".\nSend another group or type \"pronto\".",
+    "smallWelcomeRemoved": "➖ Removed: \"{{name}}\".\nSend another group, or type \"pronto\".",
+    "savedCard": "🎉 *Welcome is on, with card!* It already applies to the next person who joins.\n\nType \"{{prefix}}welcome status\" to see or tweak anything.",
+    "savedSimple": "🎉 *Welcome is on, message only!* It already applies to the next person who joins.\n\nWant the card later? Type \"{{prefix}}welcome set card\" and answer \"sim\".\nTo see or tweak the rest: \"{{prefix}}welcome status\".",
+    "alreadyInProgress": "⚠️ You already have a setup or edit in progress.\n\nType \"cancelar\" in that chat, or wait for it to expire.",
+    "startConfigNeedGroup": "⚠️ Run this command inside the group that will start the configuration.",
+    "confirmConfig": "👋 Are you sure you want to set up welcome messages for new members in this group?\n\nType *sim* (yes) or *não* (no).",
+    "chooseCard": "🖼️ Should the welcome come with a *card* (an image with the person's photo)?\n\n➜ Send *sim* (yes) → with card\n➜ Anything else → I take it as *não* (no): plain message, no card\n\nYou can change this later with \"{{prefix}}welcome set card\".",
+    "alreadyConfigured": "This group already has welcome messages configured.\n\nType \"{{prefix}}welcome status\" to see it, or \"{{prefix}}welcome reset\" to delete it and start over."
+  },
+  "status": {
+    "needGroup": "⚠️ Run this command inside the group you want to check.",
+    "notConfigured": "This group doesn't have welcome messages configured yet.\n\nRun \"{{prefix}}welcome config\" to turn it on.",
+    "header": "📋 *This group's configuration*\n\n👀 Watching: {{watchGroup}}",
+    "summaryCardOn": "🖼️ Welcome *with card*, sent to: {{target}}",
+    "summaryCardOff": "💬 *Plain* welcome (text only), sent to: {{target}}",
+    "enabled": "on",
+    "disabled": "off",
+    "summaryLine": "{{summary}}\n✉️ DM message: {{dm}}",
+    "fieldsList": "*Fields you can adjust* (`{{prefix}}welcome set <field> <value>`):\n{{fields}}",
+    "example": "Example: `{{prefix}}welcome set nomegrupo Volleyball Crew`",
+    "fieldDesc": {
+      "mensagem": "welcome text (goes with the card, if on)",
+      "card": "turns the card with the person's photo on/off (sim/não)",
+      "destino": "group where the welcome is sent",
+      "nomegrupo": "name shown in the welcome messages",
+      "pv": "message sent to the person's DM",
+      "fundo": "card background: color, gradient or image",
+      "moldura": "photo frame on the card: circulo, neon, quadrado",
+      "fonte": "card font: padrao, serifa, monoespacada",
+      "avatar": "photo used on the card for people without a profile picture",
+      "simples": "welcome text in the extra groups (text only)",
+      "simplesgrupo": "extra groups that get the plain-text welcome (advanced)",
+      "grupo": "changes the watched group (advanced)"
+    }
+  },
+  "reset": {
+    "needGroup": "⚠️ Run this command inside the group you want to reset.",
+    "nothing": "This group has no configuration to delete.",
+    "confirmNeeded": "⚠️ *Heads up*\nThis deletes this group's entire welcome configuration.\n\nAre you sure? Type \"{{prefix}}welcome reset confirmar\" to delete it for good.",
+    "done": "✅ Configuration deleted.\n\nRun \"{{prefix}}welcome config\" whenever you want to set it up again."
+  },
+  "set": {
+    "needGroup": "⚠️ Run this command inside the configured group.",
+    "notConfigured": "This group doesn't have a configuration yet.\n\nRun \"{{prefix}}welcome config\" first.",
+    "invalidField": "⚠️ Invalid field.\n\nUse one of these: {{fields}}.\nEx: \"{{prefix}}welcome set moldura neon\"",
+    "updated": "✅ *Updated!*\n\n{{status}}",
+    "suggestSimplesGrupo": "💡 You edited the plain-text message, but there's no group set in \"simplesgrupo\" to receive it yet. Type \"{{prefix}}welcome set simplesgrupo\" to choose the groups.",
+    "cardOffNote": "💡 The card is off, so this won't show up yet. To turn it on: \"{{prefix}}welcome set card\" and answer \"sim\"."
+  },
+  "quickEdit": {
+    "title": "🔧 *Editing \"{{field}}\"*\n\n{{prompt}}\n\n_Type \"cancelar\" to exit without changing anything._",
+    "configGone": "⚠️ That configuration no longer exists.",
+    "simplesGroupPrompt": "Send a message inside each group that should get the plain-text welcome (sending it again *removes* that group from the list).\n\n➜ Type \"pronto\" when done\n➜ or \"nenhuma\" to turn it all off"
+  },
+  "applySet": {
+    "imageDownloadFail": "⚠️ Couldn't download that image, try again.",
+    "darkenOnlyImage": "⚠️ This only applies to an image background.\n\nSend an image first with the caption \"{{prefix}}welcome set fundo\".",
+    "backgroundInvalid": "⚠️ Didn't get that background.\n\nUse a theme ({{themes}}), a #hex code, \"sólido #hex\", \"gradiente #hex1 #hex2\", or send the image with the caption \"{{prefix}}welcome set fundo\".",
+    "frameInvalid": "⚠️ Invalid frame.\n\nUse one of these: {{frames}}.",
+    "fontInvalid": "⚠️ Invalid font.\n\nUse one of these: {{fonts}}.",
+    "avatarNeedsImage": "⚠️ Send an image along with \"{{prefix}}welcome set avatar\" to use as the default photo, or type \"{{prefix}}welcome set avatar padrão\" to go back to the plugin's default photo.",
+    "cardInvalid": "⚠️ Didn't get that. Type \"sim\" to use the card with the photo, or \"não\" for a plain message.\n\nTo change the welcome *text*, use \"{{prefix}}welcome set mensagem\".",
+    "groupNeedsGroup": "⚠️ This field doesn't take typed text — to change the watched group, just type \"{{prefix}}welcome set grupo\" (no value) and then send a message inside the new group.",
+    "groupSame": "⚠️ That's already the current watched group — nothing to change.",
+    "groupTaken": "⚠️ {{target}} already has its own configuration — pick a different group, or run \"{{prefix}}welcome reset\" there first.",
+    "targetNeedsGroup": "⚠️ This field doesn't take typed text — to change the target group, just type \"{{prefix}}welcome set destino\" (no value) and then send a message inside the new group, or \"{{prefix}}welcome set destino padrão\" to use the watched group.",
+    "simplesGroupNeedsGroup": "⚠️ This field doesn't take typed text — just type \"{{prefix}}welcome set simplesgrupo\" (no value) and I'll guide you, or \"{{prefix}}welcome set simplesgrupo nenhuma\" to turn it all off."
+  },
+  "test": {
+    "notConfigured": "⚠️ This chat has no configuration associated with it.\n\nRun \"{{prefix}}welcome config\" inside the configured group, or check with \"{{prefix}}welcome status\".",
+    "previewHeader": "🧪 *Welcome preview*\n\nThis is just a simulation using your own contact data — nothing was sent to the real groups.",
+    "previewCardLabel": "🧪 Card that would be sent to \"{{target}}\":",
+    "previewMessageLabel": "🧪 Message that would be sent to \"{{target}}\":",
+    "previewSmallLabel": "🧪 Plain-text welcome that would be sent to \"{{target}}\":",
+    "previewNoSmall": "🧪 No plain-text welcome group configured.",
+    "previewDmLabel": "🧪 Message that would be sent in the DM:",
+    "previewNoDm": "🧪 DM message disabled — nothing would be sent.",
+    "previewFooter": "✅ Preview complete. Nothing was sent to the configured groups.",
+    "realHeader": "🧪 *Real test* — sending to the actual configured groups, using your own data. Every message is marked as a test.",
+    "realCaptionPrefix": "🧪 _(test message — ignore)_\n\n",
+    "realDone": "✅ Real test complete. Check the configured groups.",
+    "fieldHint": "📌 To change this: {{prefix}}welcome set {{field}}"
+  },
+  "defaults": {
+    "dmMessage": "Hi, *{nome}*! Welcome to our group! 👋\n\nA quick summary of the rules:\n\n• No NSFW or dark humor\n• No spam links, flooding, or annoying content\n• Keep topics on-topic\n\nHope you enjoy the group!",
+    "cardMessage": "🎉 Welcome, *{nome}*!\nYou're now part of the group *{grupo}*.",
+    "cardSubtitle": "joined {{group}}",
+    "cardHeader": "WELCOME",
+    "cardWelcomeTitle": "Welcome!",
+    "fallbackName": "new member"
+  }
+}
+

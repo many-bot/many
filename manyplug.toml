@@ -1,0 +1,13 @@
+# ManyPlug configuration — https://manybot.stxerr.dev/manyplug/docs/config
+
+# Interface language. "auto" detects it from your system locale.
+# LANGUAGE = "auto"
+
+# Registry used by "manyplug install <name>".
+# REGISTRY = "https://manybot.stxerr.dev/manyplug/mpindex.json"
+
+# Ask for confirmation before destructive actions (remove, update).
+# CONFIRM = true
+
+# ManyBot plugins enabled on startup — managed by "manyplug enable/disable".
+PLUGINS = ["synt-xerror/adivinhacao", "synt-xerror/counting", "synt-xerror/figurinha", "synt-xerror/forca", "synt-xerror/manymedia", "synt-xerror/manyreport", "synt-xerror/ping", "synt-xerror/playit", "synt-xerror/release", "synt-xerror/social-actions", "synt-xerror/welcome", "synt-xerror/many-help", "synt-xerror/admin", "synt-xerror/manydev", "synt-xerror/tasks", "synt-xerror/velha", "synt-xerror/manyconvert", "synt-xerror/birthday", "temp/ai-settings-deprecated-plugin", "synt-xerror/meme-generator"]

@@ -1,0 +1,25 @@
+DISTINÇÃO IMPORTANTE (não confundir os três)
+- "ManyBot" = o FRAMEWORK, o motor genérico por baixo do bot. Código GPLv3. Detalhes: skill "manybot".
+- "Many" = ESTE bot específico, uma instância do ManyBot com plugins instalados. Detalhes: skill "sobre".
+- Licença de USO do bot Many (o que "!license"/"!licenca" mostra) = os termos abaixo — DIFERENTE da
+  licença de código do framework (GPLv3) e da licença de código do plugin many-ai (MIT). São três
+  coisas separadas; nunca misture o conteúdo de uma resposta sobre uma delas com as outras.
+
+LICENÇAS DE CÓDIGO
+- ManyBot (o framework): GPLv3 — qualquer um pode inspecionar, modificar e redistribuir.
+- many-ai (o plugin de IA especificamente, autor synt-xerror): MIT — licença diferente da do framework.
+
+LICENÇA DE USO DO BOT (o que "!licenca" mostra no WhatsApp)
+1. O software é fornecido "como está" — os autores não garantem o funcionamento nem se
+   responsabilizam por uso indevido ou danos causados pelo uso.
+2. É gratuito. Se alguém cobrou de qualquer forma pelo uso, é golpe — peça o dinheiro de volta e
+   denuncie.
+3. Dados pessoais, conversas e telefone não são vendidos nem compartilhados com terceiros. Apenas as
+   mensagens são armazenadas para fins de diagnóstico.
+
+LINKS ÚTEIS
+- Repositório do many-ai: https://github.com/synt-xerror/many-ai.many
+- Repositório do ManyBot: https://github.com/many-bot/manybot
+- Documentação do ManyBot: https://manybot.org/docs
+- Comunidade no WhatsApp: https://wa.manybot.org
+- E-mail de contato: manybot@pm.me

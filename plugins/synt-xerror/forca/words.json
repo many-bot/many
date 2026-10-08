@@ -1,0 +1,2240 @@
+{
+  "pt": [
+    {
+      "word": "python",
+      "theme": "Linguagem de Programação"
+    },
+    {
+      "word": "javascript",
+      "theme": "Linguagem de Programação"
+    },
+    {
+      "word": "java",
+      "theme": "Linguagem de Programação"
+    },
+    {
+      "word": "cachorro",
+      "theme": "Animal"
+    },
+    {
+      "word": "gato",
+      "theme": "Animal"
+    },
+    {
+      "word": "elefante",
+      "theme": "Animal"
+    },
+    {
+      "word": "girafa",
+      "theme": "Animal"
+    },
+    {
+      "word": "tartaruga",
+      "theme": "Animal"
+    },
+    {
+      "word": "papagaio",
+      "theme": "Animal"
+    },
+    {
+      "word": "violao",
+      "theme": "Instrumento Musical"
+    },
+    {
+      "word": "piano",
+      "theme": "Instrumento Musical"
+    },
+    {
+      "word": "bateria",
+      "theme": "Instrumento Musical"
+    },
+    {
+      "word": "violino",
+      "theme": "Instrumento Musical"
+    },
+    {
+      "word": "flauta",
+      "theme": "Instrumento Musical"
+    },
+    {
+      "word": "futebol",
+      "theme": "Esporte"
+    },
+    {
+      "word": "basquete",
+      "theme": "Esporte"
+    },
+    {
+      "word": "natacao",
+      "theme": "Esporte"
+    },
+    {
+      "word": "tenis",
+      "theme": "Esporte"
+    },
+    {
+      "word": "volei",
+      "theme": "Esporte"
+    },
+    {
+      "word": "brasil",
+      "theme": "País"
+    },
+    {
+      "word": "japao",
+      "theme": "País"
+    },
+    {
+      "word": "canada",
+      "theme": "País"
+    },
+    {
+      "word": "franca",
+      "theme": "País"
+    },
+    {
+      "word": "argentina",
+      "theme": "País"
+    },
+    {
+      "word": "marte",
+      "theme": "Planeta"
+    },
+    {
+      "word": "venus",
+      "theme": "Planeta"
+    },
+    {
+      "word": "jupiter",
+      "theme": "Planeta"
+    },
+    {
+      "word": "saturno",
+      "theme": "Planeta"
+    },
+    {
+      "word": "minecraft",
+      "theme": "Jogo"
+    },
+    {
+      "word": "fortnite",
+      "theme": "Jogo"
+    },
+    {
+      "word": "roblox",
+      "theme": "Jogo"
+    },
+    {
+      "word": "rosa",
+      "theme": "Flor"
+    },
+    {
+      "word": "girassol",
+      "theme": "Flor"
+    },
+    {
+      "word": "tulipa",
+      "theme": "Flor"
+    },
+    {
+      "word": "orquidea",
+      "theme": "Flor"
+    },
+    {
+      "word": "tesoura",
+      "theme": "Objeto"
+    },
+    {
+      "word": "caderno",
+      "theme": "Objeto"
+    },
+    {
+      "word": "computador",
+      "theme": "Objeto"
+    },
+    {
+      "word": "celular",
+      "theme": "Objeto"
+    },
+    {
+      "word": "geladeira",
+      "theme": "Objeto"
+    },
+    {
+      "word": "lua",
+      "theme": "Corpo Celeste"
+    },
+    {
+      "word": "sol",
+      "theme": "Corpo Celeste"
+    },
+    {
+      "word": "estrela",
+      "theme": "Corpo Celeste"
+    },
+    {
+      "word": "cometa",
+      "theme": "Corpo Celeste"
+    },
+    {
+      "word": "oceano",
+      "theme": "Natureza"
+    },
+    {
+      "word": "montanha",
+      "theme": "Natureza"
+    },
+    {
+      "word": "floresta",
+      "theme": "Natureza"
+    },
+    {
+      "word": "cachoeira",
+      "theme": "Natureza"
+    },
+    {
+      "word": "relampago",
+      "theme": "Natureza"
+    },
+    {
+      "word": "chocolate",
+      "theme": "Comida"
+    },
+    {
+      "word": "pizza",
+      "theme": "Comida"
+    },
+    {
+      "word": "brigadeiro",
+      "theme": "Comida"
+    },
+    {
+      "word": "coxinha",
+      "theme": "Comida"
+    },
+    {
+      "word": "pastel",
+      "theme": "Comida"
+    },
+    {
+      "word": "leao",
+      "theme": "Animal"
+    },
+    {
+      "word": "tigre",
+      "theme": "Animal"
+    },
+    {
+      "word": "urso",
+      "theme": "Animal"
+    },
+    {
+      "word": "macaco",
+      "theme": "Animal"
+    },
+    {
+      "word": "zebra",
+      "theme": "Animal"
+    },
+    {
+      "word": "canguru",
+      "theme": "Animal"
+    },
+    {
+      "word": "golfinho",
+      "theme": "Animal"
+    },
+    {
+      "word": "baleia",
+      "theme": "Animal"
+    },
+    {
+      "word": "tubarao",
+      "theme": "Animal"
+    },
+    {
+      "word": "coruja",
+      "theme": "Animal"
+    },
+    {
+      "word": "raposa",
+      "theme": "Animal"
+    },
+    {
+      "word": "lobo",
+      "theme": "Animal"
+    },
+    {
+      "word": "coelho",
+      "theme": "Animal"
+    },
+    {
+      "word": "cobra",
+      "theme": "Animal"
+    },
+    {
+      "word": "cavalo",
+      "theme": "Animal"
+    },
+    {
+      "word": "beisebol",
+      "theme": "Esporte"
+    },
+    {
+      "word": "golfe",
+      "theme": "Esporte"
+    },
+    {
+      "word": "boxe",
+      "theme": "Esporte"
+    },
+    {
+      "word": "surfe",
+      "theme": "Esporte"
+    },
+    {
+      "word": "ciclismo",
+      "theme": "Esporte"
+    },
+    {
+      "word": "hoquei",
+      "theme": "Esporte"
+    },
+    {
+      "word": "mexico",
+      "theme": "País"
+    },
+    {
+      "word": "alemanha",
+      "theme": "País"
+    },
+    {
+      "word": "italia",
+      "theme": "País"
+    },
+    {
+      "word": "espanha",
+      "theme": "País"
+    },
+    {
+      "word": "portugal",
+      "theme": "País"
+    },
+    {
+      "word": "china",
+      "theme": "País"
+    },
+    {
+      "word": "india",
+      "theme": "País"
+    },
+    {
+      "word": "egito",
+      "theme": "País"
+    },
+    {
+      "word": "australia",
+      "theme": "País"
+    },
+    {
+      "word": "chile",
+      "theme": "País"
+    },
+    {
+      "word": "hamburguer",
+      "theme": "Comida"
+    },
+    {
+      "word": "espaguete",
+      "theme": "Comida"
+    },
+    {
+      "word": "sushi",
+      "theme": "Comida"
+    },
+    {
+      "word": "taco",
+      "theme": "Comida"
+    },
+    {
+      "word": "pipoca",
+      "theme": "Comida"
+    },
+    {
+      "word": "sorvete",
+      "theme": "Comida"
+    },
+    {
+      "word": "rosquinha",
+      "theme": "Comida"
+    },
+    {
+      "word": "panqueca",
+      "theme": "Comida"
+    },
+    {
+      "word": "salada",
+      "theme": "Comida"
+    },
+    {
+      "word": "sopa",
+      "theme": "Comida"
+    },
+    {
+      "word": "chave",
+      "theme": "Objeto"
+    },
+    {
+      "word": "guarda-chuva",
+      "theme": "Objeto"
+    },
+    {
+      "word": "carteira",
+      "theme": "Objeto"
+    },
+    {
+      "word": "relogio",
+      "theme": "Objeto"
+    },
+    {
+      "word": "espelho",
+      "theme": "Objeto"
+    },
+    {
+      "word": "vela",
+      "theme": "Objeto"
+    },
+    {
+      "word": "mochila",
+      "theme": "Objeto"
+    },
+    {
+      "word": "professor",
+      "theme": "Profissão"
+    },
+    {
+      "word": "medico",
+      "theme": "Profissão"
+    },
+    {
+      "word": "engenheiro",
+      "theme": "Profissão"
+    },
+    {
+      "word": "bombeiro",
+      "theme": "Profissão"
+    },
+    {
+      "word": "dentista",
+      "theme": "Profissão"
+    },
+    {
+      "word": "fazendeiro",
+      "theme": "Profissão"
+    },
+    {
+      "word": "cozinheiro",
+      "theme": "Profissão"
+    },
+    {
+      "word": "pintor",
+      "theme": "Profissão"
+    },
+    {
+      "word": "cantor",
+      "theme": "Profissão"
+    },
+    {
+      "word": "piloto",
+      "theme": "Profissão"
+    },
+    {
+      "word": "vermelho",
+      "theme": "Cor"
+    },
+    {
+      "word": "azul",
+      "theme": "Cor"
+    },
+    {
+      "word": "verde",
+      "theme": "Cor"
+    },
+    {
+      "word": "amarelo",
+      "theme": "Cor"
+    },
+    {
+      "word": "preto",
+      "theme": "Cor"
+    },
+    {
+      "word": "branco",
+      "theme": "Cor"
+    },
+    {
+      "word": "roxo",
+      "theme": "Cor"
+    },
+    {
+      "word": "laranja",
+      "theme": "Cor"
+    },
+    {
+      "word": "cinza",
+      "theme": "Cor"
+    },
+    {
+      "word": "marrom",
+      "theme": "Cor"
+    },
+    {
+      "word": "cabeca",
+      "theme": "Parte do Corpo"
+    },
+    {
+      "word": "mao",
+      "theme": "Parte do Corpo"
+    },
+    {
+      "word": "pe",
+      "theme": "Parte do Corpo"
+    },
+    {
+      "word": "coracao",
+      "theme": "Parte do Corpo"
+    },
+    {
+      "word": "cerebro",
+      "theme": "Parte do Corpo"
+    },
+    {
+      "word": "estomago",
+      "theme": "Parte do Corpo"
+    },
+    {
+      "word": "joelho",
+      "theme": "Parte do Corpo"
+    },
+    {
+      "word": "ombro",
+      "theme": "Parte do Corpo"
+    },
+    {
+      "word": "dedo",
+      "theme": "Parte do Corpo"
+    },
+    {
+      "word": "lingua",
+      "theme": "Parte do Corpo"
+    },
+    {
+      "word": "carro",
+      "theme": "Veículo"
+    },
+    {
+      "word": "bicicleta",
+      "theme": "Veículo"
+    },
+    {
+      "word": "aviao",
+      "theme": "Veículo"
+    },
+    {
+      "word": "moto",
+      "theme": "Veículo"
+    },
+    {
+      "word": "trem",
+      "theme": "Veículo"
+    },
+    {
+      "word": "barco",
+      "theme": "Veículo"
+    },
+    {
+      "word": "caminhao",
+      "theme": "Veículo"
+    },
+    {
+      "word": "helicoptero",
+      "theme": "Veículo"
+    },
+    {
+      "word": "submarino",
+      "theme": "Veículo"
+    },
+    {
+      "word": "patinete",
+      "theme": "Veículo"
+    },
+    {
+      "word": "borboleta",
+      "theme": "Inseto"
+    },
+    {
+      "word": "formiga",
+      "theme": "Inseto"
+    },
+    {
+      "word": "abelha",
+      "theme": "Inseto"
+    },
+    {
+      "word": "aranha",
+      "theme": "Inseto"
+    },
+    {
+      "word": "joaninha",
+      "theme": "Inseto"
+    },
+    {
+      "word": "mosquito",
+      "theme": "Inseto"
+    },
+    {
+      "word": "gafanhoto",
+      "theme": "Inseto"
+    },
+    {
+      "word": "barata",
+      "theme": "Inseto"
+    },
+    {
+      "word": "libelula",
+      "theme": "Inseto"
+    },
+    {
+      "word": "grilo",
+      "theme": "Inseto"
+    },
+    {
+      "word": "camisa",
+      "theme": "Roupa"
+    },
+    {
+      "word": "calca",
+      "theme": "Roupa"
+    },
+    {
+      "word": "sapato",
+      "theme": "Roupa"
+    },
+    {
+      "word": "chapeu",
+      "theme": "Roupa"
+    },
+    {
+      "word": "jaqueta",
+      "theme": "Roupa"
+    },
+    {
+      "word": "meia",
+      "theme": "Roupa"
+    },
+    {
+      "word": "luva",
+      "theme": "Roupa"
+    },
+    {
+      "word": "cachecol",
+      "theme": "Roupa"
+    },
+    {
+      "word": "vestido",
+      "theme": "Roupa"
+    },
+    {
+      "word": "cinto",
+      "theme": "Roupa"
+    },
+    {
+      "word": "colher",
+      "theme": "Cozinha"
+    },
+    {
+      "word": "garfo",
+      "theme": "Cozinha"
+    },
+    {
+      "word": "faca",
+      "theme": "Cozinha"
+    },
+    {
+      "word": "prato",
+      "theme": "Cozinha"
+    },
+    {
+      "word": "panela",
+      "theme": "Cozinha"
+    },
+    {
+      "word": "forno",
+      "theme": "Cozinha"
+    },
+    {
+      "word": "liquidificador",
+      "theme": "Cozinha"
+    },
+    {
+      "word": "chaleira",
+      "theme": "Cozinha"
+    },
+    {
+      "word": "xicara",
+      "theme": "Cozinha"
+    },
+    {
+      "word": "cacarola",
+      "theme": "Cozinha"
+    },
+    {
+      "word": "chuva",
+      "theme": "Clima"
+    },
+    {
+      "word": "neve",
+      "theme": "Clima"
+    },
+    {
+      "word": "vento",
+      "theme": "Clima"
+    },
+    {
+      "word": "trovao",
+      "theme": "Clima"
+    },
+    {
+      "word": "neblina",
+      "theme": "Clima"
+    },
+    {
+      "word": "tempestade",
+      "theme": "Clima"
+    },
+    {
+      "word": "furacao",
+      "theme": "Clima"
+    },
+    {
+      "word": "tornado",
+      "theme": "Clima"
+    },
+    {
+      "word": "seca",
+      "theme": "Clima"
+    },
+    {
+      "word": "arco-iris",
+      "theme": "Clima"
+    },
+    {
+      "word": "xadrez",
+      "theme": "Jogo de Tabuleiro"
+    },
+    {
+      "word": "damas",
+      "theme": "Jogo de Tabuleiro"
+    },
+    {
+      "word": "domino",
+      "theme": "Jogo de Tabuleiro"
+    },
+    {
+      "word": "cartas",
+      "theme": "Jogo de Tabuleiro"
+    }
+  ],
+  "en": [
+    {
+      "word": "python",
+      "theme": "Programming Language"
+    },
+    {
+      "word": "javascript",
+      "theme": "Programming Language"
+    },
+    {
+      "word": "java",
+      "theme": "Programming Language"
+    },
+    {
+      "word": "dog",
+      "theme": "Animal"
+    },
+    {
+      "word": "cat",
+      "theme": "Animal"
+    },
+    {
+      "word": "elephant",
+      "theme": "Animal"
+    },
+    {
+      "word": "giraffe",
+      "theme": "Animal"
+    },
+    {
+      "word": "turtle",
+      "theme": "Animal"
+    },
+    {
+      "word": "parrot",
+      "theme": "Animal"
+    },
+    {
+      "word": "guitar",
+      "theme": "Musical Instrument"
+    },
+    {
+      "word": "piano",
+      "theme": "Musical Instrument"
+    },
+    {
+      "word": "drums",
+      "theme": "Musical Instrument"
+    },
+    {
+      "word": "violin",
+      "theme": "Musical Instrument"
+    },
+    {
+      "word": "flute",
+      "theme": "Musical Instrument"
+    },
+    {
+      "word": "soccer",
+      "theme": "Sport"
+    },
+    {
+      "word": "basketball",
+      "theme": "Sport"
+    },
+    {
+      "word": "swimming",
+      "theme": "Sport"
+    },
+    {
+      "word": "tennis",
+      "theme": "Sport"
+    },
+    {
+      "word": "volleyball",
+      "theme": "Sport"
+    },
+    {
+      "word": "brazil",
+      "theme": "Country"
+    },
+    {
+      "word": "japan",
+      "theme": "Country"
+    },
+    {
+      "word": "canada",
+      "theme": "Country"
+    },
+    {
+      "word": "france",
+      "theme": "Country"
+    },
+    {
+      "word": "argentina",
+      "theme": "Country"
+    },
+    {
+      "word": "mars",
+      "theme": "Planet"
+    },
+    {
+      "word": "venus",
+      "theme": "Planet"
+    },
+    {
+      "word": "jupiter",
+      "theme": "Planet"
+    },
+    {
+      "word": "saturn",
+      "theme": "Planet"
+    },
+    {
+      "word": "minecraft",
+      "theme": "Game"
+    },
+    {
+      "word": "fortnite",
+      "theme": "Game"
+    },
+    {
+      "word": "roblox",
+      "theme": "Game"
+    },
+    {
+      "word": "rose",
+      "theme": "Flower"
+    },
+    {
+      "word": "sunflower",
+      "theme": "Flower"
+    },
+    {
+      "word": "tulip",
+      "theme": "Flower"
+    },
+    {
+      "word": "orchid",
+      "theme": "Flower"
+    },
+    {
+      "word": "scissors",
+      "theme": "Object"
+    },
+    {
+      "word": "notebook",
+      "theme": "Object"
+    },
+    {
+      "word": "computer",
+      "theme": "Object"
+    },
+    {
+      "word": "phone",
+      "theme": "Object"
+    },
+    {
+      "word": "refrigerator",
+      "theme": "Object"
+    },
+    {
+      "word": "moon",
+      "theme": "Celestial Body"
+    },
+    {
+      "word": "sun",
+      "theme": "Celestial Body"
+    },
+    {
+      "word": "star",
+      "theme": "Celestial Body"
+    },
+    {
+      "word": "comet",
+      "theme": "Celestial Body"
+    },
+    {
+      "word": "ocean",
+      "theme": "Nature"
+    },
+    {
+      "word": "mountain",
+      "theme": "Nature"
+    },
+    {
+      "word": "forest",
+      "theme": "Nature"
+    },
+    {
+      "word": "waterfall",
+      "theme": "Nature"
+    },
+    {
+      "word": "lightning",
+      "theme": "Nature"
+    },
+    {
+      "word": "chocolate",
+      "theme": "Food"
+    },
+    {
+      "word": "pizza",
+      "theme": "Food"
+    },
+    {
+      "word": "brigadeiro",
+      "theme": "Food"
+    },
+    {
+      "word": "coxinha",
+      "theme": "Food"
+    },
+    {
+      "word": "pastel",
+      "theme": "Food"
+    },
+    {
+      "word": "lion",
+      "theme": "Animal"
+    },
+    {
+      "word": "tiger",
+      "theme": "Animal"
+    },
+    {
+      "word": "bear",
+      "theme": "Animal"
+    },
+    {
+      "word": "monkey",
+      "theme": "Animal"
+    },
+    {
+      "word": "zebra",
+      "theme": "Animal"
+    },
+    {
+      "word": "kangaroo",
+      "theme": "Animal"
+    },
+    {
+      "word": "dolphin",
+      "theme": "Animal"
+    },
+    {
+      "word": "whale",
+      "theme": "Animal"
+    },
+    {
+      "word": "shark",
+      "theme": "Animal"
+    },
+    {
+      "word": "owl",
+      "theme": "Animal"
+    },
+    {
+      "word": "fox",
+      "theme": "Animal"
+    },
+    {
+      "word": "wolf",
+      "theme": "Animal"
+    },
+    {
+      "word": "rabbit",
+      "theme": "Animal"
+    },
+    {
+      "word": "snake",
+      "theme": "Animal"
+    },
+    {
+      "word": "horse",
+      "theme": "Animal"
+    },
+    {
+      "word": "baseball",
+      "theme": "Sport"
+    },
+    {
+      "word": "golf",
+      "theme": "Sport"
+    },
+    {
+      "word": "boxing",
+      "theme": "Sport"
+    },
+    {
+      "word": "surfing",
+      "theme": "Sport"
+    },
+    {
+      "word": "cycling",
+      "theme": "Sport"
+    },
+    {
+      "word": "hockey",
+      "theme": "Sport"
+    },
+    {
+      "word": "mexico",
+      "theme": "Country"
+    },
+    {
+      "word": "germany",
+      "theme": "Country"
+    },
+    {
+      "word": "italy",
+      "theme": "Country"
+    },
+    {
+      "word": "spain",
+      "theme": "Country"
+    },
+    {
+      "word": "portugal",
+      "theme": "Country"
+    },
+    {
+      "word": "china",
+      "theme": "Country"
+    },
+    {
+      "word": "india",
+      "theme": "Country"
+    },
+    {
+      "word": "egypt",
+      "theme": "Country"
+    },
+    {
+      "word": "australia",
+      "theme": "Country"
+    },
+    {
+      "word": "chile",
+      "theme": "Country"
+    },
+    {
+      "word": "hamburger",
+      "theme": "Food"
+    },
+    {
+      "word": "spaghetti",
+      "theme": "Food"
+    },
+    {
+      "word": "sushi",
+      "theme": "Food"
+    },
+    {
+      "word": "taco",
+      "theme": "Food"
+    },
+    {
+      "word": "popcorn",
+      "theme": "Food"
+    },
+    {
+      "word": "icecream",
+      "theme": "Food"
+    },
+    {
+      "word": "donut",
+      "theme": "Food"
+    },
+    {
+      "word": "pancake",
+      "theme": "Food"
+    },
+    {
+      "word": "salad",
+      "theme": "Food"
+    },
+    {
+      "word": "soup",
+      "theme": "Food"
+    },
+    {
+      "word": "key",
+      "theme": "Object"
+    },
+    {
+      "word": "umbrella",
+      "theme": "Object"
+    },
+    {
+      "word": "wallet",
+      "theme": "Object"
+    },
+    {
+      "word": "clock",
+      "theme": "Object"
+    },
+    {
+      "word": "mirror",
+      "theme": "Object"
+    },
+    {
+      "word": "candle",
+      "theme": "Object"
+    },
+    {
+      "word": "backpack",
+      "theme": "Object"
+    },
+    {
+      "word": "teacher",
+      "theme": "Profession"
+    },
+    {
+      "word": "doctor",
+      "theme": "Profession"
+    },
+    {
+      "word": "engineer",
+      "theme": "Profession"
+    },
+    {
+      "word": "firefighter",
+      "theme": "Profession"
+    },
+    {
+      "word": "dentist",
+      "theme": "Profession"
+    },
+    {
+      "word": "farmer",
+      "theme": "Profession"
+    },
+    {
+      "word": "chef",
+      "theme": "Profession"
+    },
+    {
+      "word": "painter",
+      "theme": "Profession"
+    },
+    {
+      "word": "singer",
+      "theme": "Profession"
+    },
+    {
+      "word": "pilot",
+      "theme": "Profession"
+    },
+    {
+      "word": "red",
+      "theme": "Color"
+    },
+    {
+      "word": "blue",
+      "theme": "Color"
+    },
+    {
+      "word": "green",
+      "theme": "Color"
+    },
+    {
+      "word": "yellow",
+      "theme": "Color"
+    },
+    {
+      "word": "black",
+      "theme": "Color"
+    },
+    {
+      "word": "white",
+      "theme": "Color"
+    },
+    {
+      "word": "purple",
+      "theme": "Color"
+    },
+    {
+      "word": "orange",
+      "theme": "Color"
+    },
+    {
+      "word": "gray",
+      "theme": "Color"
+    },
+    {
+      "word": "brown",
+      "theme": "Color"
+    },
+    {
+      "word": "head",
+      "theme": "Body Part"
+    },
+    {
+      "word": "hand",
+      "theme": "Body Part"
+    },
+    {
+      "word": "foot",
+      "theme": "Body Part"
+    },
+    {
+      "word": "heart",
+      "theme": "Body Part"
+    },
+    {
+      "word": "brain",
+      "theme": "Body Part"
+    },
+    {
+      "word": "stomach",
+      "theme": "Body Part"
+    },
+    {
+      "word": "knee",
+      "theme": "Body Part"
+    },
+    {
+      "word": "shoulder",
+      "theme": "Body Part"
+    },
+    {
+      "word": "finger",
+      "theme": "Body Part"
+    },
+    {
+      "word": "tongue",
+      "theme": "Body Part"
+    },
+    {
+      "word": "car",
+      "theme": "Vehicle"
+    },
+    {
+      "word": "bicycle",
+      "theme": "Vehicle"
+    },
+    {
+      "word": "airplane",
+      "theme": "Vehicle"
+    },
+    {
+      "word": "motorcycle",
+      "theme": "Vehicle"
+    },
+    {
+      "word": "train",
+      "theme": "Vehicle"
+    },
+    {
+      "word": "boat",
+      "theme": "Vehicle"
+    },
+    {
+      "word": "truck",
+      "theme": "Vehicle"
+    },
+    {
+      "word": "helicopter",
+      "theme": "Vehicle"
+    },
+    {
+      "word": "submarine",
+      "theme": "Vehicle"
+    },
+    {
+      "word": "scooter",
+      "theme": "Vehicle"
+    },
+    {
+      "word": "butterfly",
+      "theme": "Insect"
+    },
+    {
+      "word": "ant",
+      "theme": "Insect"
+    },
+    {
+      "word": "bee",
+      "theme": "Insect"
+    },
+    {
+      "word": "spider",
+      "theme": "Insect"
+    },
+    {
+      "word": "ladybug",
+      "theme": "Insect"
+    },
+    {
+      "word": "mosquito",
+      "theme": "Insect"
+    },
+    {
+      "word": "grasshopper",
+      "theme": "Insect"
+    },
+    {
+      "word": "cockroach",
+      "theme": "Insect"
+    },
+    {
+      "word": "dragonfly",
+      "theme": "Insect"
+    },
+    {
+      "word": "cricket",
+      "theme": "Insect"
+    },
+    {
+      "word": "shirt",
+      "theme": "Clothing"
+    },
+    {
+      "word": "pants",
+      "theme": "Clothing"
+    },
+    {
+      "word": "shoes",
+      "theme": "Clothing"
+    },
+    {
+      "word": "hat",
+      "theme": "Clothing"
+    },
+    {
+      "word": "jacket",
+      "theme": "Clothing"
+    },
+    {
+      "word": "socks",
+      "theme": "Clothing"
+    },
+    {
+      "word": "gloves",
+      "theme": "Clothing"
+    },
+    {
+      "word": "scarf",
+      "theme": "Clothing"
+    },
+    {
+      "word": "dress",
+      "theme": "Clothing"
+    },
+    {
+      "word": "belt",
+      "theme": "Clothing"
+    },
+    {
+      "word": "spoon",
+      "theme": "Kitchen"
+    },
+    {
+      "word": "fork",
+      "theme": "Kitchen"
+    },
+    {
+      "word": "knife",
+      "theme": "Kitchen"
+    },
+    {
+      "word": "plate",
+      "theme": "Kitchen"
+    },
+    {
+      "word": "pan",
+      "theme": "Kitchen"
+    },
+    {
+      "word": "oven",
+      "theme": "Kitchen"
+    },
+    {
+      "word": "blender",
+      "theme": "Kitchen"
+    },
+    {
+      "word": "kettle",
+      "theme": "Kitchen"
+    },
+    {
+      "word": "cup",
+      "theme": "Kitchen"
+    },
+    {
+      "word": "pot",
+      "theme": "Kitchen"
+    },
+    {
+      "word": "rain",
+      "theme": "Weather"
+    },
+    {
+      "word": "snow",
+      "theme": "Weather"
+    },
+    {
+      "word": "wind",
+      "theme": "Weather"
+    },
+    {
+      "word": "thunder",
+      "theme": "Weather"
+    },
+    {
+      "word": "fog",
+      "theme": "Weather"
+    },
+    {
+      "word": "storm",
+      "theme": "Weather"
+    },
+    {
+      "word": "hurricane",
+      "theme": "Weather"
+    },
+    {
+      "word": "tornado",
+      "theme": "Weather"
+    },
+    {
+      "word": "drought",
+      "theme": "Weather"
+    },
+    {
+      "word": "rainbow",
+      "theme": "Weather"
+    },
+    {
+      "word": "chess",
+      "theme": "Board Game"
+    },
+    {
+      "word": "checkers",
+      "theme": "Board Game"
+    },
+    {
+      "word": "dominoes",
+      "theme": "Board Game"
+    },
+    {
+      "word": "cards",
+      "theme": "Board Game"
+    }
+  ],
+  "es": [
+    {
+      "word": "python",
+      "theme": "Lenguaje de Programación"
+    },
+    {
+      "word": "javascript",
+      "theme": "Lenguaje de Programación"
+    },
+    {
+      "word": "java",
+      "theme": "Lenguaje de Programación"
+    },
+    {
+      "word": "perro",
+      "theme": "Animal"
+    },
+    {
+      "word": "gato",
+      "theme": "Animal"
+    },
+    {
+      "word": "elefante",
+      "theme": "Animal"
+    },
+    {
+      "word": "jirafa",
+      "theme": "Animal"
+    },
+    {
+      "word": "tortuga",
+      "theme": "Animal"
+    },
+    {
+      "word": "loro",
+      "theme": "Animal"
+    },
+    {
+      "word": "guitarra",
+      "theme": "Instrumento Musical"
+    },
+    {
+      "word": "piano",
+      "theme": "Instrumento Musical"
+    },
+    {
+      "word": "bateria",
+      "theme": "Instrumento Musical"
+    },
+    {
+      "word": "violin",
+      "theme": "Instrumento Musical"
+    },
+    {
+      "word": "flauta",
+      "theme": "Instrumento Musical"
+    },
+    {
+      "word": "futbol",
+      "theme": "Deporte"
+    },
+    {
+      "word": "baloncesto",
+      "theme": "Deporte"
+    },
+    {
+      "word": "natacion",
+      "theme": "Deporte"
+    },
+    {
+      "word": "tenis",
+      "theme": "Deporte"
+    },
+    {
+      "word": "voleibol",
+      "theme": "Deporte"
+    },
+    {
+      "word": "brasil",
+      "theme": "País"
+    },
+    {
+      "word": "japon",
+      "theme": "País"
+    },
+    {
+      "word": "canada",
+      "theme": "País"
+    },
+    {
+      "word": "francia",
+      "theme": "País"
+    },
+    {
+      "word": "argentina",
+      "theme": "País"
+    },
+    {
+      "word": "marte",
+      "theme": "Planeta"
+    },
+    {
+      "word": "venus",
+      "theme": "Planeta"
+    },
+    {
+      "word": "jupiter",
+      "theme": "Planeta"
+    },
+    {
+      "word": "saturno",
+      "theme": "Planeta"
+    },
+    {
+      "word": "minecraft",
+      "theme": "Juego"
+    },
+    {
+      "word": "fortnite",
+      "theme": "Juego"
+    },
+    {
+      "word": "roblox",
+      "theme": "Juego"
+    },
+    {
+      "word": "rosa",
+      "theme": "Flor"
+    },
+    {
+      "word": "girasol",
+      "theme": "Flor"
+    },
+    {
+      "word": "tulipan",
+      "theme": "Flor"
+    },
+    {
+      "word": "orquidea",
+      "theme": "Flor"
+    },
+    {
+      "word": "tijeras",
+      "theme": "Objeto"
+    },
+    {
+      "word": "cuaderno",
+      "theme": "Objeto"
+    },
+    {
+      "word": "computadora",
+      "theme": "Objeto"
+    },
+    {
+      "word": "celular",
+      "theme": "Objeto"
+    },
+    {
+      "word": "refrigerador",
+      "theme": "Objeto"
+    },
+    {
+      "word": "luna",
+      "theme": "Cuerpo Celeste"
+    },
+    {
+      "word": "sol",
+      "theme": "Cuerpo Celeste"
+    },
+    {
+      "word": "estrella",
+      "theme": "Cuerpo Celeste"
+    },
+    {
+      "word": "cometa",
+      "theme": "Cuerpo Celeste"
+    },
+    {
+      "word": "oceano",
+      "theme": "Naturaleza"
+    },
+    {
+      "word": "montana",
+      "theme": "Naturaleza"
+    },
+    {
+      "word": "bosque",
+      "theme": "Naturaleza"
+    },
+    {
+      "word": "cascada",
+      "theme": "Naturaleza"
+    },
+    {
+      "word": "relampago",
+      "theme": "Naturaleza"
+    },
+    {
+      "word": "chocolate",
+      "theme": "Comida"
+    },
+    {
+      "word": "pizza",
+      "theme": "Comida"
+    },
+    {
+      "word": "brigadeiro",
+      "theme": "Comida"
+    },
+    {
+      "word": "coxinha",
+      "theme": "Comida"
+    },
+    {
+      "word": "pastel",
+      "theme": "Comida"
+    },
+    {
+      "word": "leon",
+      "theme": "Animal"
+    },
+    {
+      "word": "tigre",
+      "theme": "Animal"
+    },
+    {
+      "word": "oso",
+      "theme": "Animal"
+    },
+    {
+      "word": "mono",
+      "theme": "Animal"
+    },
+    {
+      "word": "cebra",
+      "theme": "Animal"
+    },
+    {
+      "word": "canguro",
+      "theme": "Animal"
+    },
+    {
+      "word": "delfin",
+      "theme": "Animal"
+    },
+    {
+      "word": "ballena",
+      "theme": "Animal"
+    },
+    {
+      "word": "tiburon",
+      "theme": "Animal"
+    },
+    {
+      "word": "buho",
+      "theme": "Animal"
+    },
+    {
+      "word": "zorro",
+      "theme": "Animal"
+    },
+    {
+      "word": "lobo",
+      "theme": "Animal"
+    },
+    {
+      "word": "conejo",
+      "theme": "Animal"
+    },
+    {
+      "word": "serpiente",
+      "theme": "Animal"
+    },
+    {
+      "word": "caballo",
+      "theme": "Animal"
+    },
+    {
+      "word": "beisbol",
+      "theme": "Deporte"
+    },
+    {
+      "word": "golf",
+      "theme": "Deporte"
+    },
+    {
+      "word": "boxeo",
+      "theme": "Deporte"
+    },
+    {
+      "word": "surf",
+      "theme": "Deporte"
+    },
+    {
+      "word": "ciclismo",
+      "theme": "Deporte"
+    },
+    {
+      "word": "hockey",
+      "theme": "Deporte"
+    },
+    {
+      "word": "mexico",
+      "theme": "País"
+    },
+    {
+      "word": "alemania",
+      "theme": "País"
+    },
+    {
+      "word": "italia",
+      "theme": "País"
+    },
+    {
+      "word": "espana",
+      "theme": "País"
+    },
+    {
+      "word": "portugal",
+      "theme": "País"
+    },
+    {
+      "word": "china",
+      "theme": "País"
+    },
+    {
+      "word": "india",
+      "theme": "País"
+    },
+    {
+      "word": "egipto",
+      "theme": "País"
+    },
+    {
+      "word": "australia",
+      "theme": "País"
+    },
+    {
+      "word": "chile",
+      "theme": "País"
+    },
+    {
+      "word": "hamburguesa",
+      "theme": "Comida"
+    },
+    {
+      "word": "espagueti",
+      "theme": "Comida"
+    },
+    {
+      "word": "sushi",
+      "theme": "Comida"
+    },
+    {
+      "word": "taco",
+      "theme": "Comida"
+    },
+    {
+      "word": "palomitas",
+      "theme": "Comida"
+    },
+    {
+      "word": "helado",
+      "theme": "Comida"
+    },
+    {
+      "word": "dona",
+      "theme": "Comida"
+    },
+    {
+      "word": "panqueque",
+      "theme": "Comida"
+    },
+    {
+      "word": "ensalada",
+      "theme": "Comida"
+    },
+    {
+      "word": "sopa",
+      "theme": "Comida"
+    },
+    {
+      "word": "llave",
+      "theme": "Objeto"
+    },
+    {
+      "word": "paraguas",
+      "theme": "Objeto"
+    },
+    {
+      "word": "billetera",
+      "theme": "Objeto"
+    },
+    {
+      "word": "reloj",
+      "theme": "Objeto"
+    },
+    {
+      "word": "espejo",
+      "theme": "Objeto"
+    },
+    {
+      "word": "vela",
+      "theme": "Objeto"
+    },
+    {
+      "word": "mochila",
+      "theme": "Objeto"
+    },
+    {
+      "word": "maestro",
+      "theme": "Profesión"
+    },
+    {
+      "word": "medico",
+      "theme": "Profesión"
+    },
+    {
+      "word": "ingeniero",
+      "theme": "Profesión"
+    },
+    {
+      "word": "bombero",
+      "theme": "Profesión"
+    },
+    {
+      "word": "dentista",
+      "theme": "Profesión"
+    },
+    {
+      "word": "granjero",
+      "theme": "Profesión"
+    },
+    {
+      "word": "cocinero",
+      "theme": "Profesión"
+    },
+    {
+      "word": "pintor",
+      "theme": "Profesión"
+    },
+    {
+      "word": "cantante",
+      "theme": "Profesión"
+    },
+    {
+      "word": "piloto",
+      "theme": "Profesión"
+    },
+    {
+      "word": "rojo",
+      "theme": "Color"
+    },
+    {
+      "word": "azul",
+      "theme": "Color"
+    },
+    {
+      "word": "verde",
+      "theme": "Color"
+    },
+    {
+      "word": "amarillo",
+      "theme": "Color"
+    },
+    {
+      "word": "negro",
+      "theme": "Color"
+    },
+    {
+      "word": "blanco",
+      "theme": "Color"
+    },
+    {
+      "word": "morado",
+      "theme": "Color"
+    },
+    {
+      "word": "naranja",
+      "theme": "Color"
+    },
+    {
+      "word": "gris",
+      "theme": "Color"
+    },
+    {
+      "word": "marron",
+      "theme": "Color"
+    },
+    {
+      "word": "cabeza",
+      "theme": "Parte del Cuerpo"
+    },
+    {
+      "word": "mano",
+      "theme": "Parte del Cuerpo"
+    },
+    {
+      "word": "pie",
+      "theme": "Parte del Cuerpo"
+    },
+    {
+      "word": "corazon",
+      "theme": "Parte del Cuerpo"
+    },
+    {
+      "word": "cerebro",
+      "theme": "Parte del Cuerpo"
+    },
+    {
+      "word": "estomago",
+      "theme": "Parte del Cuerpo"
+    },
+    {
+      "word": "rodilla",
+      "theme": "Parte del Cuerpo"
+    },
+    {
+      "word": "hombro",
+      "theme": "Parte del Cuerpo"
+    },
+    {
+      "word": "dedo",
+      "theme": "Parte del Cuerpo"
+    },
+    {
+      "word": "lengua",
+      "theme": "Parte del Cuerpo"
+    },
+    {
+      "word": "auto",
+      "theme": "Vehículo"
+    },
+    {
+      "word": "bicicleta",
+      "theme": "Vehículo"
+    },
+    {
+      "word": "avion",
+      "theme": "Vehículo"
+    },
+    {
+      "word": "moto",
+      "theme": "Vehículo"
+    },
+    {
+      "word": "tren",
+      "theme": "Vehículo"
+    },
+    {
+      "word": "barco",
+      "theme": "Vehículo"
+    },
+    {
+      "word": "camion",
+      "theme": "Vehículo"
+    },
+    {
+      "word": "helicoptero",
+      "theme": "Vehículo"
+    },
+    {
+      "word": "submarino",
+      "theme": "Vehículo"
+    },
+    {
+      "word": "patinete",
+      "theme": "Vehículo"
+    },
+    {
+      "word": "mariposa",
+      "theme": "Insecto"
+    },
+    {
+      "word": "hormiga",
+      "theme": "Insecto"
+    },
+    {
+      "word": "abeja",
+      "theme": "Insecto"
+    },
+    {
+      "word": "arana",
+      "theme": "Insecto"
+    },
+    {
+      "word": "mariquita",
+      "theme": "Insecto"
+    },
+    {
+      "word": "mosquito",
+      "theme": "Insecto"
+    },
+    {
+      "word": "saltamontes",
+      "theme": "Insecto"
+    },
+    {
+      "word": "cucaracha",
+      "theme": "Insecto"
+    },
+    {
+      "word": "libelula",
+      "theme": "Insecto"
+    },
+    {
+      "word": "grillo",
+      "theme": "Insecto"
+    },
+    {
+      "word": "camisa",
+      "theme": "Ropa"
+    },
+    {
+      "word": "pantalon",
+      "theme": "Ropa"
+    },
+    {
+      "word": "zapato",
+      "theme": "Ropa"
+    },
+    {
+      "word": "sombrero",
+      "theme": "Ropa"
+    },
+    {
+      "word": "chaqueta",
+      "theme": "Ropa"
+    },
+    {
+      "word": "calcetin",
+      "theme": "Ropa"
+    },
+    {
+      "word": "guante",
+      "theme": "Ropa"
+    },
+    {
+      "word": "bufanda",
+      "theme": "Ropa"
+    },
+    {
+      "word": "vestido",
+      "theme": "Ropa"
+    },
+    {
+      "word": "cinturon",
+      "theme": "Ropa"
+    },
+    {
+      "word": "cuchara",
+      "theme": "Cocina"
+    },
+    {
+      "word": "tenedor",
+      "theme": "Cocina"
+    },
+    {
+      "word": "cuchillo",
+      "theme": "Cocina"
+    },
+    {
+      "word": "plato",
+      "theme": "Cocina"
+    },
+    {
+      "word": "sarten",
+      "theme": "Cocina"
+    },
+    {
+      "word": "horno",
+      "theme": "Cocina"
+    },
+    {
+      "word": "licuadora",
+      "theme": "Cocina"
+    },
+    {
+      "word": "tetera",
+      "theme": "Cocina"
+    },
+    {
+      "word": "taza",
+      "theme": "Cocina"
+    },
+    {
+      "word": "olla",
+      "theme": "Cocina"
+    },
+    {
+      "word": "lluvia",
+      "theme": "Clima"
+    },
+    {
+      "word": "nieve",
+      "theme": "Clima"
+    },
+    {
+      "word": "viento",
+      "theme": "Clima"
+    },
+    {
+      "word": "trueno",
+      "theme": "Clima"
+    },
+    {
+      "word": "niebla",
+      "theme": "Clima"
+    },
+    {
+      "word": "tormenta",
+      "theme": "Clima"
+    },
+    {
+      "word": "huracan",
+      "theme": "Clima"
+    },
+    {
+      "word": "tornado",
+      "theme": "Clima"
+    },
+    {
+      "word": "sequia",
+      "theme": "Clima"
+    },
+    {
+      "word": "arcoiris",
+      "theme": "Clima"
+    },
+    {
+      "word": "ajedrez",
+      "theme": "Juego de Mesa"
+    },
+    {
+      "word": "damas",
+      "theme": "Juego de Mesa"
+    },
+    {
+      "word": "domino",
+      "theme": "Juego de Mesa"
+    },
+    {
+      "word": "cartas",
+      "theme": "Juego de Mesa"
+    }
+  ]
+}
