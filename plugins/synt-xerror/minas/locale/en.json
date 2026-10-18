@@ -1,0 +1,17 @@
+{
+  "jaTemPartida": "⚠️ Já tem uma partida em andamento neste chat!\nUse *!sairminas* para encerrar.",
+  "semPartida": "⚠️ Não há partida ativa. Use *!minas* para começar.",
+  "somenteIniciador": "❌ Só quem iniciou a partida pode encerrá-la.",
+  "encerrada": "🏳️ Partida encerrada.",
+  "iniciada": "💣 *Campo Minado* — Modo *{{modo}}* ({{minas}} minas)\n_Outros modos: !minas facil · !minas medio · !minas dificil_\n\nQualquer um pode jogar! Digite uma coordenada pra revelar (ex: *A1*, *B3*).",
+  "instrucoes": "🚩 Use *!flag A1* pra marcar bandeira | *!sairminas* pra encerrar",
+  "coordInvalida": "❌ Coordenada inválida. Ex: *A1*, *B3*, *J10*",
+  "celulaRevelada": "⚠️ Essa célula já foi revelada.",
+  "celulaFlagged": "🚩 Essa célula está com bandeira. Use *!f {{coord}}* pra remover.",
+  "bandeiras": "🚩 Bandeira marcada! Minas restantes: *{{restantes}}*",
+  "progresso": "✅ {{reveladas}} células reveladas | 💣 {{restantes}} minas restantes",
+  "vitoria": "🎉 *PARABÉNS!* Todas as {{minas}} minas foram encontradas!\n_Equipe campeã!_",
+  "derrota": "💥 *BOOM!* Vocês pisaram numa mina!\n_Tentem novamente com !minas_",
+  "expirada": "⏰ A partida de Campo Minado foi encerrada por inatividade."
+}
+

@@ -4,7 +4,7 @@
  * !baixar-foto (aliases !video/!audio deprecated, !img removed).
  */
 
-import { execFile, spawn } from "child_process";
+import { execFile, execFileSync, spawn } from "child_process";
 import { promisify }       from "util";
 import fs                  from "fs";
 import path                from "path";
@@ -30,6 +30,9 @@ export const api = {
   },
   async downloadImages(url, ctx) {
     return queueImagesDownload(url, ctx);
+  },
+  async resolveInfo(query, ctx, t) {
+    return resolveInfo(query, ctx, t);
   },
 };
 
@@ -71,13 +74,10 @@ async function resolveRedditUrl(url, cookiesPath) {
 
 // Downloaders
 
-function buildYtDlpArgs(url, format, cookiesPath) {
-  const isYouTube = url.includes("youtube.com") || url.includes("youtu.be");
-  const isMp3     = format === "mp3";
+function buildYtDlpArgs(format, { cookiesPath = null, extractorArgs = null, headers = [], denoPath = null } = {}) {
+  const isMp3 = format === "mp3";
   const args = [
     "--print",             "after_move:filepath",
-    "--cookies",            cookiesPath,
-    "--add-header",        "User-Agent:Mozilla/5.0",
     "--retries",           "4",
     "--fragment-retries",  "5",
     "--socket-timeout",    "15",
@@ -86,6 +86,10 @@ function buildYtDlpArgs(url, format, cookiesPath) {
     "--no-playlist",
   ];
 
+  if (cookiesPath) args.push("--cookies", cookiesPath);
+  for (const header of headers) args.push("--add-header", header);
+  if (denoPath) args.push("--js-runtimes", `deno:${denoPath}`);
+
   if (isMp3) {
     args.push(
       "-x",
@@ -93,52 +97,80 @@ function buildYtDlpArgs(url, format, cookiesPath) {
       "--audio-quality", "0", // VBR ~best (~245kbps)
     );
   } else {
-    args.push("-f", "bv+ba/best");
-  }
-
-  if (isYouTube) {
+    // Prefer mp4-native streams (avoids remux); falls back to best+merge.
+    // --merge-output-format forces the final container to mp4 even when
+    // the chosen streams are webm/mkv-native (e.g. VP9+Opus), since
+    // WhatsApp's player rejects those containers as "corrupted".
     args.push(
-      // android alone ignores cookies -> fails on age/login-gated videos
-      // ("Only images are available for download"). web is included so
-      // yt-dlp still gets a usable format list when cookies are needed.
-      "--extractor-args", "youtube:player_client=android,web",
-      "--add-header",     "Referer:https://www.youtube.com/",
+      "-f", "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]/bv+ba/best",
+      "--merge-output-format", "mp4",
     );
   }
+
+  if (extractorArgs) args.push("--extractor-args", extractorArgs);
 
   return args;
 }
 
-async function downloadYtDlp(url, id, format, t, cookiesPath) {
+// Strategies tried in order for YouTube until one succeeds. Rate-limit /
+// "content isn't available" errors are often tied to a specific
+// cookies+player_client+JS-runtime combo, not actual rate limiting, so we
+// vary all of them. Each base combo runs once without deno, once with.
+function youTubeStrategies(cookiesPath) {
+  const base = [
+    { cookiesPath: null,  extractorArgs: null,                           headers: [] },
+    { cookiesPath,        extractorArgs: null,                           headers: [] },
+    { cookiesPath: null,  extractorArgs: "youtube:player_client=android", headers: ["User-Agent:Mozilla/5.0"] },
+    { cookiesPath: null,  extractorArgs: "youtube:player_client=ios",     headers: ["User-Agent:Mozilla/5.0"] },
+    { cookiesPath,        extractorArgs: "youtube:player_client=web",     headers: ["User-Agent:Mozilla/5.0", "Referer:https://www.youtube.com/"] },
+  ];
+
+  return base.flatMap(cfg => [
+    { ...cfg, noDeno: true },
+    { ...cfg, noDeno: false },
+  ]);
+}
+
+// deno is auto-detected by yt-dlp from PATH. To actually test "without deno"
+// we strip its directory from the PATH handed to the child process.
+let cachedDenoDir;
+function denoDir() {
+  if (cachedDenoDir !== undefined) return cachedDenoDir;
+  try {
+    cachedDenoDir = path.dirname(execFileSync("which", ["deno"]).toString().trim());
+  } catch {
+    cachedDenoDir = null;
+  }
+  return cachedDenoDir;
+}
+
+function envWithoutDeno() {
+  const dir = denoDir();
+  if (!dir) return process.env;
+  const PATH = (process.env.PATH ?? "")
+    .split(path.delimiter)
+    .filter(p => p !== dir)
+    .join(path.delimiter);
+  return { ...process.env, PATH };
+}
+
+function runYtDlpAttempt(url, tmpDir, args, env) {
   return new Promise((resolve, reject) => {
-    const tmpDir = path.join(DOWNLOADS_DIR, id);
-    fs.mkdirSync(tmpDir, { recursive: true });
-
-    const args = [
-      ...buildYtDlpArgs(url, format, cookiesPath),
-      "--output", path.join(tmpDir, "%(title).80s.%(ext)s"),
-      url,
-    ];
-
-    const proc = spawn("yt-dlp", args);
+    const fullArgs = [...args, "--output", path.join(tmpDir, "%(title).80s.%(ext)s"), url];
+    const proc = spawn("yt-dlp", fullArgs, { env });
     let stdout = "", stderr = "";
 
-    proc.on("error", err => {
-      const msg = err.code === "EACCES" ? t("error.noPermission")
-        : err.code === "ENOENT"         ? t("error.notFound")
-        :                                 `${t("error.startError")} ${err.message}`;
-      reject(new Error(msg));
-    });
+    proc.on("error", reject);
 
     proc.stdout.on("data", d => { const s = d.toString(); stdout += s; console.log(`[manymedia] ${s.trim()}`); });
     proc.stderr.on("data", d => { const s = d.toString(); stderr += s; logStream.write(s); console.error(`[manymedia] ${s.trim()}`); });
 
-    proc.on("close", async code => {
+    proc.on("close", code => {
       console.log(`[manymedia] yt-dlp exited with code ${code}`);
       if (code !== 0) {
-        fs.rmSync(tmpDir, { recursive: true, force: true });
+        const lastLine = stderr.split("\n").filter(Boolean).at(-1) ?? "";
         console.error(`[manymedia] Last stderr:\n${stderr.split("\n").slice(-5).join("\n")}`);
-        return reject(new Error(`${t("error.downloadFailed")} (exit code ${code})`));
+        return reject(Object.assign(new Error(`exit code ${code}: ${lastLine}`), { exitCode: code }));
       }
 
       let filePath = stdout.trim().split("\n").filter(Boolean).at(-1);
@@ -147,14 +179,43 @@ async function downloadYtDlp(url, id, format, t, cookiesPath) {
         filePath = files.length === 1 ? path.join(tmpDir, files[0]) : null;
       }
 
-      if (!filePath) {
-        fs.rmSync(tmpDir, { recursive: true, force: true });
-        return reject(new Error(t("error.fileNotFound")));
-      }
+      if (!filePath) return reject(new Error("file not found after download"));
 
-      resolve({ filePath, tmpDir });
+      resolve(filePath);
     });
   });
+}
+
+async function downloadYtDlp(url, id, format, t, cookiesPath, denoPath) {
+  const isYouTube = url.includes("youtube.com") || url.includes("youtu.be");
+  const tmpDir = path.join(DOWNLOADS_DIR, id);
+  fs.mkdirSync(tmpDir, { recursive: true });
+
+  const strategies = isYouTube
+    ? youTubeStrategies(cookiesPath)
+    : [{ cookiesPath, extractorArgs: null, headers: ["User-Agent:Mozilla/5.0"], noDeno: false }];
+
+  let lastErr;
+  for (const [i, strategy] of strategies.entries()) {
+    const { noDeno, ...cfg } = strategy;
+    const args = buildYtDlpArgs(format, { ...cfg, denoPath: noDeno ? null : denoPath });
+    const env  = noDeno ? envWithoutDeno() : process.env;
+    try {
+      const filePath = await runYtDlpAttempt(url, tmpDir, args, env);
+      return { filePath, tmpDir };
+    } catch (err) {
+      lastErr = err;
+      console.error(`[manymedia] yt-dlp strategy ${i + 1}/${strategies.length} (${noDeno ? "no-deno" : "deno"}) failed: ${err.message}`);
+      for (const f of fs.readdirSync(tmpDir)) fs.rmSync(path.join(tmpDir, f), { recursive: true, force: true });
+    }
+  }
+
+  fs.rmSync(tmpDir, { recursive: true, force: true });
+  const msg = lastErr?.code === "EACCES" ? t("error.noPermission")
+    : lastErr?.code === "ENOENT"         ? t("error.notFound")
+    : lastErr?.exitCode !== undefined    ? `${t("error.downloadFailed")} (exit code ${lastErr.exitCode})`
+    :                                      `${t("error.startError")} ${lastErr?.message ?? "unknown"}`;
+  throw new Error(msg);
 }
 
 async function downloadRedditWithAudio(videoUrl, audioUrl, id, format) {
@@ -190,14 +251,14 @@ async function downloadRedditWithAudio(videoUrl, audioUrl, id, format) {
   return { filePath, tmpDir };
 }
 
-async function downloadMedia(url, id, format, t, cookiesPath) {
+async function downloadMedia(url, id, format, t, cookiesPath, denoPath) {
   const { url: resolvedUrl, audioUrl } = await resolveRedditUrl(url, cookiesPath);
 
   if (audioUrl) {
     return downloadRedditWithAudio(resolvedUrl, audioUrl, id, format);
   }
 
-  return downloadYtDlp(resolvedUrl, id, format, t, cookiesPath);
+  return downloadYtDlp(resolvedUrl, id, format, t, cookiesPath, denoPath);
 }
 
 // gallery-dl fallback — used when yt-dlp can't handle the link (e.g. image
@@ -280,13 +341,14 @@ function queueImagesDownload(url, ctx) {
 
 function queueDownload(url, format, ctx, t) {
   const cookiesPath = ctx.storage.resolve("cookies.txt");
+  const denoPath     = ctx.config.get("DENO_PATH");
   const id = `${format}-${Date.now()}`;
 
   return new Promise((resolve, reject) => {
     ctx.download.enqueue(
       async () => {
         try {
-          const { filePath, tmpDir } = await downloadMedia(url, id, format, t, cookiesPath);
+          const { filePath, tmpDir } = await downloadMedia(url, id, format, t, cookiesPath, denoPath);
           resolve({
             filePath,
             cleanup: () => fs.rmSync(tmpDir, { recursive: true, force: true }),
@@ -298,6 +360,89 @@ function queueDownload(url, format, ctx, t) {
       async () => reject(new Error(t("error.generic")))
     );
   });
+}
+
+// Info/search resolution (no download) — used by dependents like playit to
+// resolve a query/URL into { title, url, channel, duration, thumbnail }
+// before deciding whether/what to download. Shares the same multi-strategy
+// retry approach as the downloader.
+
+function isUrl(str) {
+  try {
+    new URL(str);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function formatTime(seconds) {
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return `${m}:${s.toString().padStart(2, "0")}`;
+}
+
+function buildYtDlpInfoArgs({ cookiesPath = null, extractorArgs = null, headers = [], denoPath = null } = {}) {
+  const args = [
+    "--skip-download",
+    "--no-warnings",
+    "--restrict-filenames",
+    "--match-filter", "duration < 720",
+    "--ignore-errors",
+  ];
+  if (cookiesPath) args.push("--cookies", cookiesPath);
+  for (const header of headers) args.push("--add-header", header);
+  if (denoPath) args.push("--js-runtimes", `deno:${denoPath}`);
+  if (extractorArgs) args.push("--extractor-args", extractorArgs);
+  args.push("--print", "%(webpage_url)s\t%(title)s\t%(uploader)s\t%(duration)s\t%(thumbnail)s");
+  return args;
+}
+
+async function runYtDlpInfoAttempt(target, args, env) {
+  let stdout;
+  try {
+    ({ stdout } = await execFileAsync("yt-dlp", [target, ...args], { env }));
+  } catch (err) {
+    if (!err.stdout?.trim()) throw err;
+    stdout = err.stdout;
+  }
+  return stdout.trim().split("\n")[0];
+}
+
+async function resolveInfo(query, ctx, t) {
+  const target      = isUrl(query) ? query : `ytsearch10:${query}`;
+  const cookiesPath = ctx.storage.resolve("cookies.txt");
+  const denoPath    = ctx.config.get("DENO_PATH");
+  const isYouTube   = target.includes("youtube.com") || target.includes("youtu.be") || target.startsWith("ytsearch");
+
+  const strategies = isYouTube
+    ? youTubeStrategies(cookiesPath)
+    : [{ cookiesPath, extractorArgs: null, headers: ["User-Agent:Mozilla/5.0"], noDeno: false }];
+
+  let lastErr;
+  for (const [i, strategy] of strategies.entries()) {
+    const { noDeno, ...cfg } = strategy;
+    const args = buildYtDlpInfoArgs({ ...cfg, denoPath: noDeno ? null : denoPath });
+    const env  = noDeno ? envWithoutDeno() : process.env;
+    try {
+      const line = await runYtDlpInfoAttempt(target, args, env);
+      if (!line) throw new Error("empty result");
+
+      const [url, title, uploader, duration, thumbnail] = line.split("\t");
+      return {
+        title,
+        url,
+        channel: uploader,
+        duration: formatTime(Number(duration)),
+        thumbnail: thumbnail && thumbnail !== "NA" ? thumbnail : null,
+      };
+    } catch (err) {
+      lastErr = err;
+      console.error(`[manymedia] yt-dlp info strategy ${i + 1}/${strategies.length} (${noDeno ? "no-deno" : "deno"}) failed: ${err.message}`);
+    }
+  }
+
+  throw new Error(t("noResults"));
 }
 
 // Upload
@@ -423,3 +568,4 @@ export default async function (ctx) {
     return;
   }
 }
+

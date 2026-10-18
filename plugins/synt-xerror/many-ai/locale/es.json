@@ -1,111 +1,16 @@
 {
   "plugin": {
     "name": "many-ai",
-    "description": "Chatea con una IA vía Mistral API, con búsqueda, memoria y herramientas extra"
+    "description": "Transcribe el audio citado usando Whisper (Groq)."
   },
-  "commands": {},
-  "errors": {
-    "generic": "¡Ups! Algo salió mal.",
-    "apiError": "Error en la API de Mistral: {{error}}",
-    "missingApiKey": "Mi clave de la API de Mistral no está configurada. Pídele al admin del bot que configure MISTRAL_API_KEY en ~/.manybot/manybot.toml.",
-    "toolError": "Hubo un error al intentar usar {{tool}}.",
-    "rateLimit": "Se alcanzó el límite de uso, intenta de nuevo en un momento.",
-    "rateLimitWithRetry": "Se alcanzó el límite de uso. Intenta de nuevo en {{retryIn}}.",
-    "allKeysRateLimit": "Ninguna de las claves de API configuradas está funcionando ahora (límite de uso, clave inválida o inestabilidad de Mistral). Intenta de nuevo en un momento.",
-    "emptyReply": "No pude armar una respuesta ahora. ¿Puedes repetir o reformular?"
-  },
-  "memory": {
-    "dbOpened": "Base de datos de memoria abierta",
-    "saved": "Memoria guardada con éxito",
-    "dbOpenError": "Error al abrir la base de datos de memoria: {{error}}",
-    "walError": "Error al activar el modo WAL: {{error}}",
-    "tableCreateError": "Error al crear la tabla de memoria: {{error}}",
-    "insertError": "Fallo al guardar memoria: {{error}}",
-    "selectError": "Fallo al consultar memoria: {{error}}",
-    "noResults": "No se encontraron resultados."
-  },
-  "tools": {
-    "resultLabel": "Resultado",
-    "stickerSent": "Sticker enviado.",
-    "stickerNotFound": "No encontré ningún sticker llamado \"{{name}}\".",
-    "progress": {
-      "search": "Buscando",
-      "fetch": "Accediendo al enlace",
-      "skill": "Leyendo skill",
-      "skillDone": "Skill leída.",
-      "thinkingDone": "Pensé durante {{seconds}}s.",
-      "memwrite": "Guardando memoria",
-      "memwriteDone": "Memoria guardada.",
-      "transcribeaudioDone": "Audio transcrito.",
-      "searchhistory": "Buscando historial",
-      "searchhistoryDone": "Historial consultado.",
-      "groupinfo": "Consultando datos del grupo",
-      "groupinfoDone": "Datos del grupo obtenidos.",
-      "sticker": "Enviando sticker",
-      "stickerDone": "Sticker enviado.",
-      "wikisearch": "Buscando en Wikipedia",
-      "wikisearchDone": "Busqué en Wikipedia.",
-      "wikifetch": "Leyendo artículo de Wikipedia",
-      "wikifetchDone": "Artículo de Wikipedia leído.",
-      "indexsearch": "Buscando en el índice",
-      "indexsearchDone": "Busqué en el índice.",
-      "visionanalyze": "Analizando imagen",
-      "visionanalyzeDone": "Imagen analizada.",
-      "visionanalyzeFailed": "No pude analizar la imagen.",
-      "transcribeaudio": "Transcribiendo audio",
-      "thinking": "Pensando",
-      "searchDone": "Busqué: {{query}}.",
-      "searchDoneSites": "Busqué en: {{sites}}{{more}}.",
-      "fetchDone": "Página leída.",
-      "memread": "Leyendo memoria",
-      "memreadDone": "Lectura de memoria completa.",
-      "calc": "Calculando",
-      "calcDone": "Calculado.",
-      "fileagent": "Trabajando con archivos",
-      "fileagentDone": "Listo.",
-      "filecreate": "Creando archivo",
-      "filecreateDone": "Archivo creado: {{filename}}.",
-      "fileread": "Leyendo archivo",
-      "filereadDone": "Archivo leído: {{filename}}.",
-      "filepackage": "Empaquetando archivos",
-      "filepackageDone": "Paquete listo: {{filename}}.",
-      "filedeliver": "Enviando archivo",
-      "filedeliverDone": "Archivo enviado: {{filename}}.",
-      "failed": "No lo conseguí."
-    }
-  },
-  "settings": {
-    "adminOnly": "Solo los admins del grupo pueden cambiar estas configuraciones.",
-    "disabled": "IA desactivada en este chat. Envía \"!ai-settings on\" para reactivarla.",
-    "enabled": "IA activada en este chat.",
-    "interventionOn": "Intervención pasiva activada — puedo intervenir en preguntas sin respuesta, pedidos de ayuda claros o correcciones, incluso sin ser llamada.",
-    "interventionOff": "Intervención pasiva desactivada — solo respondo cuando me llaman directamente.",
-    "interventionUsage": "Uso: \"!ai-settings intervention on\" o \"!ai-settings intervention off\".",
-    "status": "📋 *Configuración de la IA*\n\n🤖 IA: {{enabled}}\n   Activa/desactiva la IA en este chat. Desactivada, no responde a nada, ni siquiera a un comando o mención.\n   _!{{cmd}} on / off_\n\n👂 Intervención pasiva: {{intervention}}\n   Deja que la IA intervenga sola en la conversación (sin ser llamada) cuando detecta una pregunta sin respuesta o un pedido de ayuda claro. Desactivada, solo responde cuando la llaman directamente.\n   _!{{cmd}} intervention on / off_\n\n🎨 Stickers: {{sticker}}\n   Permite que la IA envíe uno de sus stickers como reacción, solo en momentos livianos y relajados. Desactivada, nunca envía stickers, solo texto.\n   _!{{cmd}} sticker on / off_\n\n🧠 Pensar antes de responder: {{thinking}}\n   Muestra la burbuja \"Pensando...\" mientras la IA prepara la respuesta. Desactivada, responde directo, sin ese paso visible.\n   _!{{cmd}} thinking on / off_\n\n🔧 Mostrar uso de herramientas: {{tools}}\n   Muestra avisos de progreso (\"buscando...\", \"leyendo archivo...\") mientras la IA usa una herramienta. Desactivada, las herramientas corren por detrás, sin aviso.",
-    "saveError": "No pude guardar esa configuración — el almacenamiento de settings puede no estar disponible todavía.",
-    "stickerOn": "Stickers activados — puedo enviar uno cuando tenga sentido.",
-    "stickerOff": "Stickers desactivados — ya no voy a enviar ninguno.",
-    "stickerUsage": "Uso: \"!ai-settings sticker on\" o \"!ai-settings sticker off\".",
-    "thinkingOn": "Pensar antes de responder activado — vuelve a aparecer la burbuja \"Pensando...\" mientras preparo la respuesta.",
-    "thinkingOff": "Pensar antes de responder desactivado — respuestas más directas, sin el paso de razonamiento, y sin la burbuja \"Pensando...\" mientras preparo la respuesta.",
-    "thinkingUsage": "Uso: \"!ai-settings thinking on\" o \"!ai-settings thinking off\".",
-    "toolsOn": "Aviso de uso de herramientas activado — muestro un mensaje (buscando, leyendo archivo, etc.) mientras uso una herramienta.",
-    "toolsOff": "Aviso de uso de herramientas desactivado — las herramientas corren por detrás, sin mensaje de progreso.",
-    "toolsUsage": "Uso: \"!ai-settings tools on\" o \"!ai-settings tools off\".",
-    "yes": "✅ activado",
-    "no": "❌ desactivado"
-  },
-  "logs": {
-    "maxIterationsReached": "resolveReply: se alcanzó el máximo de iteraciones sin respuesta final",
-    "missingApiKeyWarning": "MISTRAL_API_KEY no configurada — Many no va a responder hasta que esto se configure en ~/.manybot/manybot.toml.",
-    "ready": "many-ai lista (modelo: {{model}}, {{count}} clave(s) de API configurada(s)).",
-    "shouldRespond": {
-      "quotedError": "Error al obtener mensaje citado → silencioso ({{error}})"
-    },
-    "noMediaResponse": "Solo entiendo mensajes de texto. Todavía no puedo leer imágenes, stickers, audio o videos."
-  },
-  "warnings": {
-    "hallucinationRisk": "⚠️ Esto tiene que ver con comandos, el propio ManyBot o fuentes externas — vale la pena verificarlo antes de confiar 100% en la respuesta de arriba."
-  }
+  "noReply": "Responde (cita) un audio con !transcrever para que lo transcriba.",
+  "missingKey": "Mi clave de la API de Groq no está configurada. Pídele al admin del bot que configure GROQ_API_KEY en ~/.manybot/manybot.toml.",
+  "failed": "No pude transcribir ese audio.",
+  "trimFailed": "Ese audio es demasiado grande ({{sizeMb}}MB, límite de {{limitMb}}MB) y no pude cortarlo.",
+  "header": "*💬 Transcripción del audio:*",
+  "trimmedNote": "_(audio cortado para caber en el límite de {{limitMb}}MB)_",
+  "groupLimited": "Este grupo ya alcanzó su límite de {{limit}} transcripciones hoy. Intenta de nuevo en {{timeLeft}}.",
+  "senderLimited": "Ya alcanzaste tu límite de {{limit}} transcripciones hoy. Intenta de nuevo en {{timeLeft}}.",
+  "lowConfidenceNote": "_(puede contener errores)_"
 }
 

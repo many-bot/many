@@ -1,0 +1,13 @@
+{
+  "name": "cacafantasma",
+  "key": "synt-xerror/cacafantasma",
+  "version": "1.0.0",
+  "description": "Halloween ghost hunt game — ghosts appear randomly in groups, first to !caçar wins points.",
+  "category": "games",
+  "manybotVersion": ">=5.0.0",
+  "author": {
+    "name": "synt-xerror"
+  },
+  "license": "MIT",
+  "main": "index.js"
+}

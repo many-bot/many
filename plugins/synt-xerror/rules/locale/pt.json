@@ -1,0 +1,44 @@
+{
+  "empty": "Esse grupo ainda não tem nenhuma regra.\n\n*Para adicionar a primeira:*\n`{{cmd}} add Sem spam`\n\n*Outros comandos:*\n`{{cmd}} rm 1`\n`{{cmd}} mv 1 cima`",
+
+  "list": "*Regras do Grupo*\n\n{{list}}\n\n_Dica:_\nPara remover: `{{cmd}} rm 2`\nPara mover: `{{cmd}} mv 2 cima`",
+
+  "addUsage": "Escreva a regra logo depois do comando:\n`{{cmd}} add Sem spam`\n\nQuer incluir uma punição já de cara?\n`{{cmd}} add Sem spam | penalty: advertência`",
+
+  "added": "✅ Regra *#{{num}}* adicionada.\n_{{text}}_",
+
+  "askPenalty": "Quer definir uma punição pra quem quebrar essa regra? Responda com a punição, por exemplo _advertência_, ou diga *não* pra pular.",
+
+  "penaltyAdded": "✅ Regra *#{{num}}* criada: _{{text}}_\nPunição: _{{penalty}}_",
+
+  "penaltySkipped": "✅ Regra *#{{num}}* criada: _{{text}}_\n(sem punição)",
+
+  "rmUsage": "Me diz o número da regra que você quer remover (de 1 a {{max}}):\n`{{cmd}} rm 2`",
+
+  "removed": "🗑️ Regra removida: _{{text}}_",
+
+  "mvUsage": "Me diz o número da regra e pra qual direção mover:\n`{{cmd}} mv 2 cima`",
+
+  "alreadyFirst": "⚠️ Essa regra já está no topo da lista.",
+
+  "alreadyLast": "⚠️ Essa regra já está no fim da lista.",
+
+  "moved": "✅ Pronto! A regra foi movida.",
+
+  "warnUsage": "Responda a mensagem da pessoa que quebrou a regra e diga o número dela:\n`{{cmd}} 2`\n\nTambém funciona mencionar a pessoa ao invés de responder a mensagem.\n\nNão sabe o número? Digite:\n`{{rulesCmd}}`",
+
+  "warnDm": "⚠️ Aviso do grupo *{{groupName}}*\n\nVocê pode estar quebrando a regra *#{{ruleNum}}*:\n\n_{{ruleText}}_{{penalty}}",
+
+  "warnDmCommunity": "⚠️ Aviso da comunidade *{{communityName}}*\n\nVocê pode estar quebrando a regra *#{{ruleNum}}*:\n\n_{{ruleText}}_{{penalty}}",
+
+  "warnSent": "✅ Aviso enviado no privado.",
+
+  "warnFailed": "❌ Não consegui enviar no privado. A pessoa pode ter bloqueado o bot ou nunca ter iniciado uma conversa com ele.",
+
+  "penalty": "Punição",
+
+  "adminOnly": "🔒 Só administradores podem usar esse comando.",
+
+  "groupOnly": "Esse comando funciona só em grupos e comunidades."
+}
+

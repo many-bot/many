@@ -2,5 +2,8 @@
   "type": "module",
   "dependencies": {
     "wa-sticker-formatter": "^4.4.4"
+  },
+  "allowScripts": {
+    "sharp@0.30.7": true
   }
 }

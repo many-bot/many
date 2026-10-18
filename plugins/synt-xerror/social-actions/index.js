@@ -2,19 +2,41 @@ import fs from "node:fs";
 import path from "node:path";
 
 // `category` is the nekos.best v2 category — see /api/v2/endpoints.
-// All of our commands map 1:1 onto real categories, so no workarounds needed.
+const ALIASES = {
+  abracar: "hug",
+  abraçar: "hug",
+  beijar: "kiss",
+  tapa: "slap",
+  cafune: "pat",
+  cafuné: "pat",
+  cutucar: "poke",
+  morder: "bite",
+  chutar: "kick",
+  socar: "punch",
+  cócegas: "tickle",
+  cocegas: "tickle",
+  acenar: "wave",
+  dançar: "dance",
+  dancar: "dance",
+  matar: "kill",
+  cumprimentar: "handshake",
+};
+
+// Most commands map 1:1; `kill` maps to "shoot" (no "kill" category exists).
 const ACTIONS = {
-  hug: { category: "hug", emoji: "🤗" },
-  kiss: { category: "kiss", emoji: "😘" },
-  slap: { category: "slap", emoji: "✋" },
-  pat: { category: "pat", emoji: "🤚" },
-  poke: { category: "poke", emoji: "👉" },
-  bite: { category: "bite", emoji: "😬" },
-  kick: { category: "kick", emoji: "🦵" },
-  punch: { category: "punch", emoji: "👊" },
-  tickle: { category: "tickle", emoji: "🤣" },
-  wave: { category: "wave", emoji: "👋" },
-  dance: { category: "dance", emoji: "💃" },
+  hug:       { category: "hug",       emoji: "🤗" },
+  kiss:      { category: "kiss",      emoji: "😘" },
+  slap:      { category: "slap",      emoji: "✋" },
+  pat:       { category: "pat",       emoji: "🤚" },
+  poke:      { category: "poke",      emoji: "👉" },
+  bite:      { category: "bite",      emoji: "😬" },
+  kick:      { category: "kick",      emoji: "🦵" },
+  punch:     { category: "punch",     emoji: "👊" },
+  tickle:    { category: "tickle",    emoji: "🤣" },
+  wave:      { category: "wave",      emoji: "👋" },
+  dance:     { category: "dance",     emoji: "💃" },
+  kill:      { category: "shoot",     emoji: "💀" },
+  handshake: { category: "handshake", emoji: "🤝" },
 };
 
 const GIF_API = "https://nekos.best/api/v2";
@@ -171,16 +193,17 @@ export default async function (ctx) {
     return;
   }
 
-  const action = ACTIONS[ctx.msg.command];
+  const command = ALIASES[ctx.msg.command] ?? ctx.msg.command;
+  const action = ACTIONS[command];
   if (!action) return;
 
   const { t } = ctx.i18n.createT(import.meta.url);
-  const verb = t(`verbs.${ctx.msg.command}`);
+  const verb = t(`verbs.${command}`);
 
   if (!ctx.msg.hasReply && isEveryoneArg(ctx)) {
     const caption = t("everyoneLine", {
       sender: tag(ctx.msg.sender),
-      action: t(`everyone.${ctx.msg.command}`),
+      action: t(`everyone.${command}`),
       emoji: action.emoji,
     });
     return void await ctx.msg.reply.text(caption, { mentions: [ctx.msg.sender] });
@@ -193,14 +216,14 @@ export default async function (ctx) {
   }
 
   if (isSameUser(target.id, ctx.msg.sender)) {
-    const infinitive = t(`infinitives.${ctx.msg.command}`);
+    const infinitive = t(`infinitives.${command}`);
     return void await ctx.msg.reply.text(t("selfTarget", { infinitive, emoji: action.emoji }));
   }
 
   const toBot = await isBotTarget(ctx, target.id);
 
   const theme = currentTheme(ctx);
-  const localFile = theme !== DEFAULT_THEME ? pickLocalFile(ctx, ctx.msg.command, theme) : null;
+  const localFile = theme !== DEFAULT_THEME ? pickLocalFile(ctx, command, theme) : null;
   let media = localFile;
   let isTemp = false;
 
@@ -217,7 +240,7 @@ export default async function (ctx) {
   const senderTag = tag(ctx.msg.sender);
   const targetTag = tag(target.id);
   const caption = toBot
-    ? t("botLine", { sender: senderTag, action: t(`toBot.${ctx.msg.command}`), emoji: action.emoji })
+    ? t("botLine", { sender: senderTag, action: t(`toBot.${command}`), emoji: action.emoji })
     : t("actionLine", { sender: senderTag, verb, target: targetTag, emoji: action.emoji });
   const mentions = toBot ? [ctx.msg.sender] : [ctx.msg.sender, target.id];
 

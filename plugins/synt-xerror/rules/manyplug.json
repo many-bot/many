@@ -1,0 +1,11 @@
+{
+  "name": "rules",
+  "key": "synt-xerror/rules",
+  "version": "1.0.0",
+  "description": "Group rules management with warnings and penalties.",
+  "category": "moderation",
+  "manybotVersion": ">=5.0.0",
+  "license": "MIT",
+  "main": "index.js"
+}
+

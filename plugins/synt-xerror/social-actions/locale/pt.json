@@ -10,7 +10,9 @@
     "punch": "socou",
     "tickle": "fez cócegas em",
     "wave": "acenou para",
-    "dance": "chamou pra dançar com"
+    "dance": "chamou pra dançar com",
+    "kill": "matou",
+    "handshake": "apertou a mão de"
   },
   "infinitives": {
     "hug": "abraçar",
@@ -23,7 +25,9 @@
     "punch": "socar",
     "tickle": "fazer cócegas em",
     "wave": "acenar para",
-    "dance": "chamar pra dançar com"
+    "dance": "chamar pra dançar com",
+    "kill": "matar",
+    "handshake": "apertar a mão de"
   },
   "everyone": {
     "hug": "abraçou todo mundo",
@@ -36,7 +40,9 @@
     "punch": "socou todo mundo",
     "tickle": "fez cócegas em todo mundo",
     "wave": "acenou para todo mundo",
-    "dance": "chamou todo mundo pra dançar"
+    "dance": "chamou todo mundo pra dançar",
+    "kill": "matou todo mundo",
+    "handshake": "apertou a mão de todo mundo"
   },
   "toBot": {
     "hug": "me abraçou",
@@ -49,7 +55,9 @@
     "punch": "me socou",
     "tickle": "me fez cócegas",
     "wave": "acenou pra mim",
-    "dance": "me chamou pra dançar"
+    "dance": "me chamou pra dançar",
+    "kill": "me matou",
+    "handshake": "apertou minha mão"
   },
   "noTarget": "Marque alguém ou responda a mensagem da pessoa pra usar {{command}}.",
   "selfTarget": "Vai {{infinitive}} a si mesmo? {{emoji}}",

@@ -27,17 +27,6 @@ function isUrl(str) {
   }
 }
 
-function cookiesArgs(ctx) {
-  const cookiesPath = ctx.storage.resolve("cookies.txt");
-  return fs.existsSync(cookiesPath) ? ["--cookies", cookiesPath] : [];
-}
-
-function formatTime(seconds) {
-  const m = Math.floor(seconds / 60);
-  const s = seconds % 60;
-  return `${m}:${s.toString().padStart(2, "0")}`;
-}
-
 /**
  * @param {PluginContext} ctx
  * @param {string|null} rawQuery
@@ -47,38 +36,6 @@ async function resolveQuery(ctx, rawQuery) {
   if (!ctx.msg.hasReply) return null;
   const quoted = await ctx.msg.getReply();
   return quoted.body;
-}
-
-async function getInfo(ctx, query, t, type) {
-  const target = isUrl(query) ? query : `ytsearch10:${query}`;
-
-  let stdout;
-  try {
-    ({ stdout } = await execFileAsync("yt-dlp", [
-      target,
-      "--skip-download",
-      "--no-warnings",
-      "--restrict-filenames",
-      "--match-filter", "duration < 720",
-      "--ignore-errors",
-      ...cookiesArgs(ctx),
-      "--print", "%(webpage_url)s\t%(title)s\t%(uploader)s\t%(duration)s\t%(thumbnail)s",
-    ]));
-  } catch (err) {
-    if (!err.stdout?.trim()) throw err;
-    stdout = err.stdout;
-  }
-  const line = stdout.trim().split("\n")[0];
-  if (!line) throw new Error(t("noResults"));
-
-  const [url, title, uploader, duration, thumbnail] = line.split("\t");
-  return {
-    title,
-    url,
-    channel: uploader,
-    duration: formatTime(Number(duration)),
-    thumbnail: thumbnail && thumbnail !== "NA" ? thumbnail : null,
-  };
 }
 
 // Downloads a track's thumbnail as a Buffer to send inline (no temp file
@@ -250,7 +207,7 @@ async function handlePlay(ctx, t, mm, type, query) {
   let media;
   let info;
   try {
-    info = await getInfo(ctx, query, t, type);
+    info = await mm.resolveInfo(query, ctx, t);
     media = await getCachedMedia(ctx, mm, type, info.url, t);
     ctx.settings.global.set(lastPlayedKey(msg.sender), { type, query, info });
 
@@ -283,7 +240,7 @@ async function handlePlay(ctx, t, mm, type, query) {
 // media as it goes, then lists titles at the end. Playlists are mp3-only.
 async function sendPlaylistItem(ctx, t, mm, query) {
   try {
-    const info = await getInfo(ctx, query, t, "mp3");
+    const info = await mm.resolveInfo(query, ctx, t);
     await sendPlaylistAudio(ctx, mm, info.url, t);
     return `${info.title} - ${info.channel}`;
   } catch (err) {
@@ -429,7 +386,7 @@ async function handlePlaylistZip(ctx, t, mm, playlist) {
   try {
     for (const query of playlist.items) {
       try {
-        const info = await getInfo(ctx, query, t, "mp3");
+        const info = await mm.resolveInfo(query, ctx, t);
         const media = await getCachedMedia(ctx, mm, "mp3", info.url, t);
         cleanups.push(media.cleanup);
         fs.copyFileSync(media.filePath, path.join(dir, path.basename(media.filePath)));
@@ -506,7 +463,7 @@ async function handlePlaylistLoad(ctx, t, mm, args) {
   }
   if (normalizedFlag === "add") {
     const query = await resolveQuery(ctx, [indexArg, ...rest].filter(Boolean).join(" ") || null);
-    return handlePlaylistAddStart(ctx, t, sender, playlist, query);
+    return handlePlaylistAddStart(ctx, t, mm, sender, playlist, query);
   }
 
   if (!playlist.ready) {
@@ -563,7 +520,7 @@ function addPendingKey(sender) {
 
 // Resolves the query via yt-dlp and shows a confirmation prompt ("Confere:")
 // before actually adding anything to the playlist.
-async function handlePlaylistAddStart(ctx, t, sender, playlist, query) {
+async function handlePlaylistAddStart(ctx, t, mm, sender, playlist, query) {
   const { msg } = ctx;
   if (!query) {
     return msg.reply.text(t("playlistAddNeedQuery"));
@@ -574,7 +531,7 @@ async function handlePlaylistAddStart(ctx, t, sender, playlist, query) {
 
   let info;
   try {
-    info = await getInfo(ctx, query, t, "mp3");
+    info = await mm.resolveInfo(query, ctx, t);
   } catch (err) {
     ctx.log.error(`[playit] Playlist add failed (${query}): ${err.message}`);
     return msg.reply.text(t("error"));

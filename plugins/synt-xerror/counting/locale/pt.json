@@ -10,6 +10,8 @@
   "onlyAdmins": "Só administradores do grupo podem ativar/desativar o counting.",
   "enabled": "Counting ativado neste grupo! ✅",
   "disabled": "Counting desativado neste grupo. ❌",
-  "notEnabled": "O counting não está ativado neste chat. Um admin pode ativar com !counting on",
-  "lastCounter": "Último a contar: "
+  "notEnabled": "O counting não está ativado neste chat. Um admin pode ativar com `!counting on`",
+  "lastCounter": "Último a contar: ",
+  "disabledByInactivity": "O counting foi desativado automaticamente por inatividade. Um admin pode reativar com `!counting on`"
 }
+

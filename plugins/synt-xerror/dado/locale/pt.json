@@ -1,0 +1,8 @@
+{
+  "invalid_usage": "🎲  Use: !roll 20 | !roll 2d6\n\nExemplo:\n- `!roll 2d6` - 2 dados de 6 lados\n- `!roll 10` - 1 dado de 10 lados",
+  "invalid_faces": "❌ Número de faces deve ser entre 2 e 10000.",
+  "result_single": "🎲 {{result}}",
+  "result_one": "🎲 Você rolou 1 dado de {{faces}} lados e obteve {{total}}",
+  "result_multi": "🎲 Você rolou {{count}} dados de {{faces}} lados e obteve {{breakdown}}={{total}}"
+}
+

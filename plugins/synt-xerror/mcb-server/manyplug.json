@@ -1,0 +1,16 @@
+{
+  "name": "mcb-server",
+  "key": "synt-xerror/mcb-server",
+  "author": {
+    "name": "synt-xerror",
+    "email": "me@stxerr.dev",
+    "website": "https://www.stxerr.dev"
+  },
+  "license": "MIT",
+  "repo": "https://github.com/synt-xerror/mcb-server.many",
+  "description": "Shows when someone enter in your Minecraft Server",
+  "version": "3.0.0",
+  "category": "utility",
+  "service": false,
+  "dependencies": {}
+}

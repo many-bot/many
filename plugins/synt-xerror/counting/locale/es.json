@@ -10,6 +10,8 @@
   "onlyAdmins": "Solo los administradores de grupo pueden activar/desactivar el conteo.",
   "enabled": "¡Conteo activado en este grupo! ✅",
   "disabled": "Conteo desactivado en este grupo. ❌",
-  "notEnabled": "El conteo no está activado en este chat. Un administrador puede activarlo con !counting on",
-  "lastCounter": "Último conteo: "
+  "notEnabled": "El conteo no está activado en este chat. Un administrador puede activarlo con `!counting on`",
+  "lastCounter": "Último conteo: ",
+  "autoDisabled": "El conteo se desactivó automáticamente tras 24h sin actividad. Un administrador puede reactivarlo con `!counting on`"
 }
+

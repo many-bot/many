@@ -1,0 +1,6 @@
+{
+  "type": "module",
+  "devDependencies": {
+    "@manybot/types": "^2.2.0"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "ship",
+  "key": "synt-xerror/ship",
+  "version": "1.0.0",
+  "description": "Gera uma porcentagem de compatibilidade entre dois membros marcados, com imagem personalizada.",
+  "category": "utility",
+  "author": {
+    "name": "synt-xerror"
+  },
+  "license": "MIT",
+  "repo": "https://github.com/synt-xerror/ship.many",
+  "main": "index.js",
+  "dependencies": {},
+  "externalDependencies": {}
+}

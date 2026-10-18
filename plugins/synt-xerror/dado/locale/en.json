@@ -1,0 +1,8 @@
+{
+  "invalid_usage": "🎲 Usage: !roll 20 | !roll 2d6\n\nExample:\n- `!roll 2d6` - 2 dice with 6 sides\n- `!roll 10` - 1 die with 10 sides",
+  "invalid_faces": "❌ Number of faces must be between 2 and 10000.",
+  "result_single": "🎲 {{result}}",
+  "result_one": "🎲 You rolled 1 die with {{faces}} sides and got {{total}}",
+  "result_multi": "🎲 You rolled {{count}} dice with {{faces}} sides and got {{breakdown}}={{total}}"
+}
+

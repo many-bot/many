@@ -1,0 +1,42 @@
+{
+  "error": {
+    "mentions": "Mention exactly two real members to use this command. E.g.: !ship @member1 @member2",
+    "groupOnly": "This command only works inside groups.",
+    "render": "Something went wrong generating the image. Try again."
+  },
+  "caption": {
+    "tier0": {
+      "0": "{{name1}} and {{name2}}... {{score}}%? Not even Google Translate can save this combo 💀",
+      "1": "{{score}}% between {{name1}} and {{name2}}. Oil and water have more chemistry than that 🧊"
+    },
+    "tier1": {
+      "0": "{{name1}} + {{name2}} = {{score}}%. Worth a shot, bring an umbrella ☔",
+      "1": "{{score}}% match between {{name1}} and {{name2}}... rough, but not impossible 🤔"
+    },
+    "tier2": {
+      "0": "{{name1}} and {{name2}} landed {{score}}%. Fifty-fifty, like pineapple on pizza 🍕",
+      "1": "{{score}}% compatibility between {{name1}} and {{name2}}. Worth a try, no rush 😏"
+    },
+    "tier3": {
+      "0": "Oh! {{name1}} and {{name2}} hit {{score}}%. Start splitting the wifi bill already 📶",
+      "1": "{{score}}% between {{name1}} and {{name2}}! There's chemistry brewing there 👀"
+    },
+    "tier4": {
+      "0": "{{name1}} and {{name2}} smashed {{score}}%! Time to pick a best man 💍",
+      "1": "{{score}}% match! {{name1}} and {{name2}} are basically a couple already 🔥"
+    },
+    "tier5": {
+      "0": "{{score}}%?! {{name1}} and {{name2}} were made for each other 💘",
+      "1": "Almost perfect: {{score}}% between {{name1}} and {{name2}}. Just missing the ring 💎"
+    },
+    "tier6": {
+      "0": "{{score}}%! {{name1}} and {{name2}} are SOULMATES. Even the universe agrees 🌌💖",
+      "1": "PERFECTION: {{score}}% between {{name1}} and {{name2}}. Get married already! 👰🤵"
+    },
+    "bot": {
+      "0": "{{name1}} and me? {{score}}%. I only have eyes for my uptime 🤖💔",
+      "1": "{{score}}% between {{name1}} and me... sorry, I'm made of JavaScript, not feelings 📟"
+    }
+  }
+}
+

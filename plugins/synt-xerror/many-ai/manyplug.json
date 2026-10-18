@@ -6,11 +6,12 @@
     "email": "me@stxerr.dev",
     "website": "https://www.stxerr.dev"
   },
-  "description": "AI agent for ManyBot.",
-  "version": "3.9.0",
+  "description": "Transcribes quoted audio using Groq Whisper (!transcrever).",
+  "version": "4.0.0",
   "license": "MIT",
   "repo": "https://github.com/synt-xerror/many-ai.many",
   "category": "utility",
   "service": false,
   "dependencies": {}
 }
+

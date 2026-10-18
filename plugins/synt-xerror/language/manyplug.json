@@ -1,0 +1,15 @@
+{
+  "name": "language",
+  "key": "synt-xerror/language",
+  "version": "1.0.0",
+  "description": "language plugin for ManyBot",
+  "category": "utility",
+  "author": {
+    "name": "synt-xerror"
+  },
+  "license": "MIT",
+  "repo": "https://github.com/synt-xerror/language.many",
+  "main": "index.js",
+  "dependencies": {},
+  "externalDependencies": {}
+}

@@ -2,9 +2,15 @@ import fs from "node:fs";
 
 // ── Helpers ───────────────────────────────────────────────
 
+const INACTIVITY_LIMIT_MS = 24 * 60 * 60 * 1000;
+
 function loadState(storage) {
   try {
-    return new Map(JSON.parse(fs.readFileSync(storage, "utf8")));
+    const entries = JSON.parse(fs.readFileSync(storage, "utf8"));
+    const now = Date.now();
+    return new Map(
+      entries.filter(([, s]) => !s.updatedAt || now - s.updatedAt < INACTIVITY_LIMIT_MS)
+    );
   } catch {
     return new Map();
   }
@@ -22,6 +28,7 @@ function getState(map, chatId) {
       number: 0,
       lastMention: null,
       lastContactId: null,
+      updatedAt: null,
     });
   }
   return map.get(chatId);
@@ -31,6 +38,44 @@ function resetState(state) {
   state.number        = 0;
   state.lastMention   = null;
   state.lastContactId = null;
+}
+
+function touch(state) {
+  state.updatedAt = Date.now();
+}
+
+// ── Setup (scheduler de inatividade) ────────────────────────
+
+/**
+ * @param {import('@manybot/types/en').SetupContext} ctx
+ */
+export async function setup(ctx) {
+  const { t } = ctx.i18n.createT(import.meta.url);
+  const storage = ctx.storage.resolve("chat_state.json");
+
+  ctx.scheduler.schedule("0 * * * *", async () => {
+    const map = loadState(storage);
+    const now = Date.now();
+    let changed = false;
+
+    for (const [chatId, state] of map) {
+      if (!state.updatedAt) continue;
+      if (now - state.updatedAt < INACTIVITY_LIMIT_MS) continue;
+
+      const settings = ctx.settings.forChat(chatId);
+      if (!settings.get("enabled", false)) continue;
+
+      settings.set("enabled", false);
+      map.delete(chatId);
+      changed = true;
+
+      try {
+        await ctx.send.to(chatId).text(t("disabledByInactivity"));
+      } catch {}
+    }
+
+    if (changed) saveState(storage, map);
+  });
 }
 
 // ── Plugin ────────────────────────────────────────────────
@@ -49,7 +94,6 @@ export default async function (ctx) {
   if (msg.is("counting")) {
     const [sub] = msg.args.map((a) => a.toLowerCase());
 
-    // -- Ativar/desativar (apenas admin, apenas em grupo) --
     if (sub === "on" || sub === "off") {
       if (!chat.isGroup) {
         await msg.reply.text(t("onlyGroups"));
@@ -63,17 +107,22 @@ export default async function (ctx) {
       }
 
       ctx.settings.set("enabled", sub === "on");
+      if (sub === "on") {
+        touch(getState(map, chat.id));
+        saveState(storage, map);
+      }
       await msg.reply.text(sub === "on" ? t("enabled") : t("disabled"));
       return;
     }
 
-    // -- Info/status --
     if (!ctx.settings.get("enabled", false)) {
       await ctx.send.text(t("notEnabled"));
       return;
     }
 
     const state = getState(map, chat.id);
+    touch(state);
+    saveState(storage, map);
 
     const infoText =
       `*${t("title")}*\n\n` +
@@ -100,7 +149,8 @@ export default async function (ctx) {
   const contact = await msg.getContact();
   if (!contact) return;
 
-  // regra 1: não pode continuar sozinho (mas pode recomeçar do 1)
+  touch(state);
+
   if (contact.id === state.lastContactId && n !== 1) {
     resetState(state);
     saveState(storage, map);
@@ -108,7 +158,6 @@ export default async function (ctx) {
     return;
   }
 
-  // regra 2: sequência numérica
   if (n === state.number + 1) {
     state.number        = n;
     state.lastMention   = contact.mention;

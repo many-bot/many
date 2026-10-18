@@ -1,0 +1,19 @@
+{
+  "only_group": "Isso só funciona em grupos.",
+  "admin_only": "🔒 Só admins podem gerenciar cargos.",
+  "usage_create": "Escreva um nome (sem espaço) e um emoji depois do comando:\n`{{cmd}} criar equipe 🟢`",
+  "usage_emoji": "Escreva o nome do cargo e o novo emoji:\n`{{cmd}} emoji equipe 🔵`",
+  "role_name_required": "Diga o nome do cargo logo depois do comando.",
+  "role_exists": "⚠️ Esse cargo já existe.",
+  "role_created": "✅ Cargo {{emoji}} *{{name}}* criado.\nPara marcar todo mundo do cargo em uma mensagem, digite:\n`@{{slug}}`",
+  "role_not_found": "⚠️ Cargo não encontrado.",
+  "role_deleted": "🗑️ Cargo apagado.",
+  "role_emoji_updated": "✅ Emoji do cargo *{{name}}* atualizado para {{emoji}}.",
+  "no_target": "⚠️ Marque (@) ou responda a mensagem de quem você quer gerenciar.",
+  "member_count": "✅ {{emoji}} *{{name}}* agora tem {{count}} membro(s).",
+  "no_roles": "Nenhum cargo criado ainda.",
+  "role_line": "{{emoji}} *{{name}}* — {{count}} membro(s)",
+  "role_empty": "{{emoji}} *{{name}}* não tem membros.",
+  "usage_root": "*Cargos*\n\nCriar um cargo:\n`{{cmd}} criar equipe 🟢`\n\nApagar um cargo:\n`{{cmd}} apagar equipe`\n\nTrocar o emoji:\n`{{cmd}} emoji equipe 🔵`\n\nAdicionar alguém (marque a pessoa ou responda a mensagem dela):\n`{{cmd}} add equipe`\n\nRemover alguém (marque a pessoa ou responda a mensagem dela):\n`{{cmd}} remover equipe`\n\nVer quem está no cargo:\n`{{cmd}} membros equipe`\n\nVer todos os cargos:\n`{{cmd}} status`\n\nMarcar o cargo direto numa mensagem (sem o comando):\n`@equipe`\n\nO nome do cargo é sempre uma palavra só, sem espaço."
+}
+

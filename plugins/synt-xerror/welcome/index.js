@@ -429,6 +429,8 @@ function promptVars(t, step) {
       return { themes: Object.keys(THEME_PRESETS).join(", ") };
     case "cardFrame":
       return { frames: FRAME_STYLES.filter((f) => f !== DEFAULT_FRAME).join(", ") };
+    case "cardFont":
+      return { fonts: Object.keys(FONT_STACKS).filter((f) => f !== DEFAULT_FONT).join(", ") };
     case "cardMessage":
       return { defaultMessage: t("defaults.cardMessage") };
     case "dmMessage":
@@ -644,7 +646,7 @@ function formatStatus(ctx, config) {
   return [
     t("status.header", { watchGroup: watchGroupLabel(ctx, config) }),
     t("status.summaryLine", { summary, dm }),
-    t("status.fieldsList", { fields: SET_FIELDS.map((f) => `• ${f} — ${t(`status.fieldDesc.${f}`)}`).join("\n") }),
+    t("status.fieldsList", { fields: SET_FIELDS.map((f) => `\`${f}\`\n↳ ${t(`status.fieldDesc.${f}`)}`).join("\n") }),
     t("status.example"),
   ].join("\n\n");
 }
@@ -695,36 +697,25 @@ async function handleResetCommand(ctx) {
 
 /** Passo do wizard que corresponde a cada campo de "!welcome set", pra reusar o mesmo texto de prompt. */
 const FIELD_TO_STEP = {
+  grupo: "watchGroup",
   destino: "cardTarget",
   card: "useCard",
   fundo: "cardBackground",
   moldura: "cardFrame",
+  fonte: "cardFont",
+  avatar: "cardAvatar",
   nomegrupo: "groupName",
   mensagem: "cardMessage",
   simples: "smallWelcomeMessage",
   pv: "dmMessage",
+  simplesgrupo: "smallWelcomeGroups",
 };
 
 /**
- * "fonte" e "avatar" não são etapas do wizard (só existem via "!welcome set"),
- * então não têm prompts.<step>.body — reusa os textos de validação que já
- * existem em applySetField em vez de depender de uma chave de locale nova.
  * @param {(key: string, vars?: object) => string} t
+ * @param {string} field
  */
 function quickEditPrompt(t, field) {
-  if (field === "grupo") {
-    return t("quickEdit.title", { field, prompt: t("prompts.watchGroup.body") });
-  }
-  if (field === "fonte") {
-    const prompt = t("applySet.fontInvalid", { fonts: Object.keys(FONT_STACKS).join(", ") });
-    return t("quickEdit.title", { field, prompt });
-  }
-  if (field === "avatar") {
-    return t("quickEdit.title", { field, prompt: t("applySet.avatarNeedsImage") });
-  }
-  if (field === "simplesgrupo") {
-    return t("quickEdit.title", { field, prompt: t("quickEdit.simplesGroupPrompt") });
-  }
   const step = FIELD_TO_STEP[field];
   return t("quickEdit.title", { field, prompt: t(`prompts.${step}.body`, promptVars(t, step)) });
 }
@@ -859,7 +850,8 @@ async function applySetField(ctx, config, field, value, reply) {
     }
     case "simplesgrupo": {
       const word = normWord(value);
-      if (WORDS_NONE.includes(word) || WORDS_DONE.includes(word)) {
+      if (WORDS_DONE.includes(word)) return true;
+      if (WORDS_NONE.includes(word)) {
         config.smallWelcomeGroupIds = [];
         return true;
       }

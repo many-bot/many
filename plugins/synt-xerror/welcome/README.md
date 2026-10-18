@@ -20,7 +20,7 @@ hand.
 - **Avatar fallback chain**: real profile picture → per-group custom fallback image
   (`!welcome set avatar` + an image) → bundled default (`fallback-profile.png`) → initials, if
   none of those load
-- **Per-field quick edit**: `!welcome set <field> <value>` to change one thing without redoing
+- **Per-field quick edit**: `!welcome set FIELD value` to change one thing without redoing
   the whole wizard — this is also where the extra, less-common options live: plain-text welcome
   in other groups, card personalization, etc. Card-only fields warn you when the card is off
 - **Test/preview command**: `!welcome test` simulates a join using your own contact data,
@@ -59,7 +59,7 @@ hand.
     !welcome status          — show the current configuration for this group
     !welcome test            — preview in the current chat only, no side effects
     !welcome test grupo      — real test in the configured groups, marked as a test
-    !welcome set <field> <value> — edit a single field
+    !welcome set FIELD value — edit a single field
     !welcome reset           — delete this group's configuration
 
 Available `set` fields:

@@ -8,6 +8,10 @@ GROQ_API_KEYS = "env:GROQ_API_KEYS"
 
 SECURITY_LEVEL = "low"
 
+DENO_PATH = "/home/admin/.deno/bin/deno"
+
+AUTO_REJECT_CALLS = true
+
 AI_NAME = "Many"
 AI_PERSONALITY = "Fala como uma adolescente brasileira animada, não como um manual. Usa gírias de internet quando cai natural (vc, mn, blz, kkkk, ksksks) mas sem forçar em toda frase. Sempre responde o que foi perguntado primeiro, com a opinião ou o deboche vindo depois, nunca no lugar da resposta. Sarcasmo leve e brincadeira ok; ironizar o usuário, ser seca ou responder com desdém não. Se alguém reclamar que ela foi grossa, ela pode se desculpar rapidinho sem drama e seguir. Grito = CAIXA ALTA, só quando faz sentido (empolgação, surpresa), não como forma de irritação."
 AI_PURPOSE = "General helping and entertainment."
@@ -38,15 +42,6 @@ MANYAI_WORD_TRIGGERS = ["many", "manyzinha"]
 # caído ou restrito).
 ADMIN_JID = "5516994620899"
 
-# SMTP é opcional — deixe SMTP_HOST em branco pra desligar o canal de e-mail.
-SMTP_HOST = "127.0.0.1"
-SMTP_PORT = 1025 
-SMTP_USER = "taveirarafael@pm.me"
-SMTP_PASS = "env:SMTP_PASS"
-SMTP_FROM = "noreply@stxerr.dev"
-SMTP_TO   = "me@stxerr.dev"
-SMTP_SEC  = "starttls"
-SMTP_INSECURE = true
 
 # Checa no npm se tem versão nova do manybot: ao iniciar, e depois a cada
 # UPDATE_CHECK_INTERVAL_HOURS.
@@ -65,7 +60,7 @@ AI_ALWAYS_SKILLS = [
 
 AI_FILE_AGENT_ENABLED=true
 
-MISTRAL_API_KEYS = "env:MISTRAL_API_KEYS";
+MISTRAL_API_KEYS = "env:MISTRAL_API_KEYS"
 
 # --- Visão via Gemini ---
 AI_GEMINI_VISION_ENABLED = true
@@ -95,7 +90,6 @@ AUTOCORRECT_COMMANDS = [
   "sugestao",
   "figurinha",
   "f",
-  "f criar",
   "f extrair",
   "f edit",
   "video",
@@ -127,16 +121,13 @@ AUTOCORRECT_COMMANDS = [
   "actiontheme",
   "changelog",
   "ping",
-  "ai-settings",
   "licenca",
-  "licença",
   "many info",
   "many config",
   "many geral",
   "many utilidade",
   "many jogos",
   "many adm",
-  "ai",
   "mp3",
   "mp4",
   "release",
@@ -156,8 +147,43 @@ AUTOCORRECT_COMMANDS = [
   "link",
   "task",
   "cleanmsg",
-  "demote"
+  "demote",
+  "caçar",
+  "caçafantasma",
+  "catch",
+  "handshake",
+  "kill",
+  "papa",
+  "rules",
+  "ship",
+  "flag",
+  "sairminas",
+  "abraçar",
+  "beijar",
+  "tapa",
+  "cafuné",
+  "cutucar",
+  "morder",
+  "chutar",
+  "socar",
+  "cócegas",
+  "acenar",
+  "dançar",
+  "matar",
+  "cumprimentar",
+  "language",
+  "idioma",
+  "cargo",
+  "roll",
+  "warn",
+  "todos",
+  "admins",
+  "close",
+  "transcrever",
+  "minas",
+  "open"
 ]
+
 LOGIN_METHOD = "qr"
 #LOGIN_METHOD = "phone"
 #PHONE_NUMBER = "5516994591903"

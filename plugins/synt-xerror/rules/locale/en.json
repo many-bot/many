@@ -1,0 +1,44 @@
+{
+  "empty": "No rules set for this group yet.\n\n*To add the first one:*\n`{{cmd}} add No spam`\n\n*Other commands:*\n`{{cmd}} rm 1`\n`{{cmd}} mv 1 up`",
+
+  "list": "*Group Rules*\n\n{{list}}\n\n_Tip:_\nTo remove: `{{cmd}} rm 2`\nTo move: `{{cmd}} mv 2 up`",
+
+  "addUsage": "Type the rule right after the command:\n`{{cmd}} add No spam`\n\nWant to include a penalty right away?\n`{{cmd}} add No spam | penalty: warning`",
+
+  "added": "✅ Rule *#{{num}}* added.\n_{{text}}_",
+
+  "askPenalty": "Want to add a penalty for breaking this rule? Reply with it, for example _warning_, or say *no* to skip.",
+
+  "penaltyAdded": "✅ Rule *#{{num}}* created: _{{text}}_\nPenalty: _{{penalty}}_",
+
+  "penaltySkipped": "✅ Rule *#{{num}}* created: _{{text}}_\n(no penalty)",
+
+  "rmUsage": "Reply with the number of the rule you want to remove (1 to {{max}}):\n`{{cmd}} rm 2`",
+
+  "removed": "🗑️ Rule removed: _{{text}}_",
+
+  "mvUsage": "Reply with the rule number and which direction to move it:\n`{{cmd}} mv 2 up`",
+
+  "alreadyFirst": "⚠️ That rule is already at the top of the list.",
+
+  "alreadyLast": "⚠️ That rule is already at the bottom of the list.",
+
+  "moved": "✅ Done! The rule was moved.",
+
+  "warnUsage": "Reply to the message from the person who broke the rule and give the rule number:\n`{{cmd}} 2`\n\nMentioning the person also works instead of replying.\n\nNot sure of the number? Type:\n`{{rulesCmd}}`",
+
+  "warnDm": "⚠️ Heads up from *{{groupName}}*\n\nYou may be breaking rule *#{{ruleNum}}*:\n\n_{{ruleText}}_{{penalty}}",
+
+  "warnDmCommunity": "⚠️ Heads up from the *{{communityName}}* community\n\nYou may be breaking rule *#{{ruleNum}}*:\n\n_{{ruleText}}_{{penalty}}",
+
+  "warnSent": "✅ Warning sent privately.",
+
+  "warnFailed": "❌ Couldn't send the private message. They may have blocked the bot or never started a conversation with it.",
+
+  "penalty": "Penalty",
+
+  "adminOnly": "🔒 Only admins can use this command.",
+
+  "groupOnly": "This command only works in groups and communities."
+}
+

@@ -1,0 +1,42 @@
+{
+  "error": {
+    "mentions": "Marque exatamente dois membros reais para usar este comando. Ex: !ship @membro1 @membro2",
+    "groupOnly": "Esse comando só funciona dentro de grupos.",
+    "render": "Algo deu errado ao gerar a imagem. Tente novamente."
+  },
+  "caption": {
+    "tier0": {
+      "0": "{{name1}} e {{name2}}... {{score}}%? Nem o Google Tradutor salva essa combinação 💀",
+      "1": "{{score}}% entre {{name1}} e {{name2}}. Até água e óleo têm mais química que vocês 🧊"
+    },
+    "tier1": {
+      "0": "{{name1}} + {{name2}} = {{score}}%. Dá pra tentar, mas leva um guarda-chuva ☔",
+      "1": "{{score}}% de match entre {{name1}} e {{name2}}... complicado, mas não impossível 🤔"
+    },
+    "tier2": {
+      "0": "{{name1}} e {{name2}} cravaram {{score}}%. Meio a meio, tipo pizza de calabresa com chocolate 🍕",
+      "1": "{{score}}% de compatibilidade entre {{name1}} e {{name2}}. Dá pro jogo, sem pressa 😏"
+    },
+    "tier3": {
+      "0": "Opa! {{name1}} e {{name2}} bateram {{score}}%. Já pode ir separando o wifi do casal 📶",
+      "1": "{{score}}% entre {{name1}} e {{name2}}! Tá rolando uma química aí, hein 👀"
+    },
+    "tier4": {
+      "0": "{{name1}} e {{name2}} explodiram {{score}}%! Já pode escolher o padrinho 💍",
+      "1": "{{score}}% de match! {{name1}} e {{name2}} tão quase um casal oficial 🔥"
+    },
+    "tier5": {
+      "0": "{{score}}%?! {{name1}} e {{name2}} foram feitos um pro outro 💘",
+      "1": "Quase perfeito: {{score}}% entre {{name1}} e {{name2}}. Só falta o anel 💎"
+    },
+    "tier6": {
+      "0": "{{score}}%! {{name1}} e {{name2}} são ALMAS GÊMEAS. Nem o universo discorda 🌌💖",
+      "1": "PERFEIÇÃO: {{score}}% entre {{name1}} e {{name2}}. Casem logo! 👰🤵"
+    },
+    "bot": {
+      "0": "{{name1}} e eu?? {{score}}%. Eu só tenho olhos pro meu uptime 🤖💔",
+      "1": "{{score}}%. desculpa, mas eu sou feito de JavaScript, não de sentimentos 📟"
+    }
+  }
+}
+

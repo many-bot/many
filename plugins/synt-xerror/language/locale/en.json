@@ -1,0 +1,7 @@
+{
+  "status": "🌐 Current language: *{{lang}}*\n\nAvailable:\n🇧🇷 pt (Portuguese)\n🇺🇸 en (English)\n\nUsage: `!language pt` or `!language en`",
+  "changed": "✅ Language changed to *{{lang}}*.",
+  "invalid": "❌ Unknown language: \"{{lang}}\"\nAvailable: 🇧🇷 pt · 🇺🇸 en",
+  "blocked": "⚠️ \"{{lang}}\" is not fully supported yet and has been disabled."
+}
+

@@ -1,0 +1,15 @@
+{
+  "name": "dado",
+  "key": "synt-xerror/dado",
+  "version": "1.0.0",
+    "description": "choose a random number from 1 to 6",
+  "category": "fun",
+  "author": {
+    "name": "synt-xerror"
+  },
+  "license": "MIT",
+  "repo": "https://github.com/synt-xerror/dado.many",
+  "main": "index.js",
+  "dependencies": {},
+  "externalDependencies": {}
+}

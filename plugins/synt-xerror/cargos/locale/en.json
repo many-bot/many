@@ -1,0 +1,19 @@
+{
+  "only_group": "This only works in groups.",
+  "admin_only": "🔒 Only admins can manage roles.",
+  "usage_create": "Type a name (no spaces) and an emoji after the command:\n`{{cmd}} create team 🟢`",
+  "usage_emoji": "Type the role name and the new emoji:\n`{{cmd}} emoji team 🔵`",
+  "role_name_required": "Tell me the role name right after the command.",
+  "role_exists": "⚠️ That role already exists.",
+  "role_created": "✅ Role {{emoji}} *{{name}}* created.\nTo mention everyone in this role in a message, type:\n`@{{slug}}`",
+  "role_not_found": "⚠️ Role not found.",
+  "role_deleted": "🗑️ Role deleted.",
+  "role_emoji_updated": "✅ Role *{{name}}* emoji updated to {{emoji}}.",
+  "no_target": "⚠️ Mention (@) or reply to the message of who you want to manage.",
+  "member_count": "✅ {{emoji}} *{{name}}* now has {{count}} member(s).",
+  "no_roles": "No roles created yet.",
+  "role_line": "{{emoji}} *{{name}}* — {{count}} member(s)",
+  "role_empty": "{{emoji}} *{{name}}* has no members.",
+  "usage_root": "*Roles*\n\nCreate a role:\n`{{cmd}} create team 🟢`\n\nDelete a role:\n`{{cmd}} delete team`\n\nChange the emoji:\n`{{cmd}} emoji team 🔵`\n\nAdd someone (mention them or reply to their message):\n`{{cmd}} add team`\n\nRemove someone (mention them or reply to their message):\n`{{cmd}} remove team`\n\nSee who's in a role:\n`{{cmd}} members team`\n\nSee all roles:\n`{{cmd}} status`\n\nMention the role directly in a message (no command):\n`@team`\n\nRole names are always a single word, no spaces."
+}
+

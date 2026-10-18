@@ -6,7 +6,7 @@
     "invalidFormat": "Este arquivo parece corrompido ou o formato não é aceito.",
     "conversionFailed": "Não foi possível transformar este arquivo em figurinha. Tente outro.",
     "cmdDeprecated": "O comando `{{old}}` foi removido.\nUse `{{new}}` em vez disso.",
-    "sendMedia": "Responda ou mande junto do comando uma imagem, gif, vídeo ou outra figurinha.\n\nObs: o modo de lote (sessão) teve uma atualização, para abrir ele agora você usa `{{lote}}`, e para criar você usa `{{batch}}`."
+    "sendMedia": "Responda ou mande junto do comando uma imagem, gif, vídeo ou outra figurinha."
   },
   "session": {
     "noneActive": "Nenhum lote está ativo. Digite {{command}} para começar.",

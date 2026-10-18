@@ -1,0 +1,15 @@
+{
+  "name": "cargos",
+  "key": "synt-xerror/cargos",
+  "version": "1.0.0",
+  "description": "Sistema de cargos por grupo/comunidade, com cor (emoji) e menção em massa via @cargo.",
+  "category": "utility",
+  "author": {
+    "name": "synt-xerror"
+  },
+  "license": "MIT",
+  "repo": "https://github.com/synt-xerror/cargos.many",
+  "main": "index.js",
+  "dependencies": {},
+  "externalDependencies": {}
+}

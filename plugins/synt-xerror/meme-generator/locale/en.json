@@ -23,8 +23,10 @@
   },
   "papa": {
     "needTarget": "Mention someone or reply to a message (or send the command with an image).",
-    "noTemplate": "Pope template not found. Place pope-top.png and pope-bottom.png in the plugin data folder."
+    "noTemplate": "Pope template not found. Place pope-top.png and pope-bottom.png in the plugin data folder.",
+    "noPfp": "This person's profile photo is private. Ask them to allow it in WhatsApp privacy settings."
   },
   "downloadFailed": "Couldn't download the media.",
   "error": "Something went wrong. Try again."
 }
+

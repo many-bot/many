@@ -6,7 +6,7 @@
     "invalidFormat": "This file seems corrupted or the format is not supported.",
     "conversionFailed": "Could not convert this file into a sticker. Try another one.",
     "cmdDeprecated": "The `{{old}}` command has been removed.\nUse `{{new}}` instead.",
-    "sendMedia": "Reply to a photo, gif, video or another sticker, or send one along with the command.\n\nNote: batch mode (session) has been updated. To open it, now use `{{lote}}`, and to create use `{{batch}}`."
+    "sendMedia": "Reply to a photo, gif, video or another sticker, or send one along with the command."
   },
   "session": {
     "noneActive": "No batch is active. Type {{command}} to start.",

@@ -10,7 +10,9 @@
     "punch": "punched",
     "tickle": "tickled",
     "wave": "waved at",
-    "dance": "asked to dance with"
+    "dance": "asked to dance with",
+    "kill": "killed",
+    "handshake": "shook hands with"
   },
   "infinitives": {
     "hug": "hug",
@@ -23,7 +25,9 @@
     "punch": "punch",
     "tickle": "tickle",
     "wave": "wave at",
-    "dance": "ask to dance with"
+    "dance": "ask to dance with",
+    "kill": "kill",
+    "handshake": "shake hands with"
   },
   "everyone": {
     "hug": "hugged everyone",
@@ -36,7 +40,9 @@
     "punch": "punched everyone",
     "tickle": "tickled everyone",
     "wave": "waved at everyone",
-    "dance": "asked everyone to dance"
+    "dance": "asked everyone to dance",
+    "kill": "killed everyone",
+    "handshake": "shook hands with everyone"
   },
   "toBot": {
     "hug": "hugged me",
@@ -49,7 +55,9 @@
     "punch": "punched me",
     "tickle": "tickled me",
     "wave": "waved at me",
-    "dance": "asked me to dance"
+    "dance": "asked me to dance",
+    "kill": "killed me",
+    "handshake": "shook hands with me"
   },
   "noTarget": "Mention someone or reply to their message to use {{command}}.",
   "selfTarget": "Going to {{infinitive}} yourself? {{emoji}}",

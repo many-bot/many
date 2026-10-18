@@ -1,14 +1,14 @@
 {
-  "name": "release",
-  "key": "synt-xerror/release",
+  "name": "user-info",
+  "key": "synt-xerror/user-info",
   "version": "1.0.0",
-  "description": "release plugin for ManyBot",
+  "description": "user-info plugin for ManyBot",
   "category": "utility",
   "author": {
     "name": "synt-xerror"
   },
   "license": "MIT",
-  "repo": "https://github.com/synt-xerror/release.many",
+  "repo": "https://github.com/synt-xerror/user-info.many",
   "main": "index.js",
   "dependencies": {},
   "externalDependencies": {}

@@ -10,39 +10,51 @@
   "prompts": {
     "watchGroup": {
       "label": "Watched group",
-      "body": "👋 Let's set up the welcome message! It's quick — I'll guide you through every step, no prior knowledge needed.\n\nTo start, send *any message* inside the group you want me to watch (I'll announce it when someone joins). For communities, use the announcements group."
+      "body": "Group I watch to welcome new members.\nHow to answer:\n`message in the new group`\n↳ starts watching that group\n📌 For communities, use the announcements group."
     },
     "useCard": {
       "label": "Welcome card",
-      "body": "Should the welcome come with a *card* (an image with the person's photo)?\n\n➜ \"sim\" → with card\n➜ \"não\" → plain message, no card\n\n_(you can customize the card's look — background, frame, font, default photo — afterward, with \"{{prefix}}welcome set\")_"
+      "body": "Image with the person's photo, sent along with the message.\nHow to answer:\n`sim`\n↳ with card\n`não`\n↳ message only, no card"
     },
     "cardTarget": {
       "label": "Target group",
-      "body": "Which group should I send the welcome to?\n\n➜ Send a message there\n➜ or type \"pular\" to use the same group as before"
+      "body": "Group where the welcome is sent.\nHow to answer:\n`message in the group`\n↳ sends the welcome there\n`padrão`\n↳ uses the watched group"
     },
     "groupName": {
       "label": "Group name",
-      "body": "What name should show up in the welcome messages (on the card and in the texts)?\n\n➜ Type the name\n➜ or \"pular\" to use the group's own name"
+      "body": "Name shown in the welcome and on the card.\nHow to answer:\n`a name`\n↳ uses that name\n`padrão`\n↳ uses the group's own name"
     },
     "cardMessage": {
       "label": "Welcome message",
-      "body": "What message should I send when someone joins? (If the card is on, it goes along with it.)\n\nUse \"{nome}\" and \"{grupo}\" wherever you like.\nType \"padrão\" to use this one:\n\n{{defaultMessage}}"
+      "body": "Text sent when someone joins.\nHow to answer:\n`a text`\n↳ uses your text\n`padrão`\n↳ uses the default message\n📌 Variables: {nome}, {grupo}\n📌 Default:\n{{defaultMessage}}"
     },
     "smallWelcomeMessage": {
       "label": "Plain-text welcome message",
-      "body": "What message should I send in those extra groups (text only, no card)?\n\nUse \"{nome}\" and \"{grupo}\" wherever you like, or type \"padrão\" to reuse the main message."
+      "body": "Text sent in the extra groups (no card).\nHow to answer:\n`a text`\n↳ uses your text\n`padrão`\n↳ reuses the main message\n📌 Variables: {nome}, {grupo}"
     },
     "dmMessage": {
       "label": "DM message (optional)",
-      "body": "Message I'd send in the person's DM, welcoming them — it's just a suggestion, same as the card message: use it, tweak it, or skip it, whatever you prefer.\n\nUse \"{nome}\" wherever you want their name.\nType \"padrão\" to use the suggestion below, or \"nenhuma\" to skip the DM entirely:\n\n{{defaultMessage}}"
+      "body": "Message sent in the DM of whoever joins.\nHow to answer:\n`a text`\n↳ uses your text\n`padrão`\n↳ uses the suggested message\n`nenhuma`\n↳ sends nothing in DM\n📌 Variables: {nome}\n📌 Suggestion:\n{{defaultMessage}}"
     },
     "cardBackground": {
       "label": "Card background",
-      "body": "Pick the card's look:\n\n🎨 \"pular\" → purple theme (default)\n🎨 a ready-made theme: {{themes}}\n🎨 a color with automatic gradient: a #hex code, e.g. #1f1147\n🎨 a solid color (no gradient): \"sólido #hex\"\n🎨 a gradient with 2 colors of your choice: \"gradiente #hex1 #hex2\"\n🎨 or send a photo/image to use as background"
+      "body": "Card background.\nHow to answer:\n`theme`\n↳ ready-made theme\n`#hex`\n↳ color with automatic gradient\n`sólido #hex`\n↳ solid color\n`gradiente #hex1 #hex2`\n↳ 2-color gradient\n`image`\n↳ send a photo as background\n`escurecer 0-100`\n↳ darkens an image background (%)\n`padrão`\n↳ purple theme\n📌 Themes: {{themes}}\n📌 Example: #1f1147"
     },
     "cardFrame": {
       "label": "Avatar frame",
-      "body": "Now the avatar frame style:\n\n🔲 \"pular\" → circle (default)\n🔲 or one of these: {{frames}}"
+      "body": "Frame around the profile photo on the card.\nHow to answer:\n`frame`\n↳ uses the chosen frame\n`padrão`\n↳ circle\n📌 Frames: {{frames}}"
+    },
+    "cardFont": {
+      "label": "Card font",
+      "body": "Font of the card text.\nHow to answer:\n`font`\n↳ uses the chosen font\n`padrão`\n↳ default font\n📌 Fonts: {{fonts}}"
+    },
+    "cardAvatar": {
+      "label": "Default card photo",
+      "body": "Card photo for people without a profile picture.\nHow to answer:\n`image`\n↳ send the photo to use\n`padrão`\n↳ back to the plugin's default photo"
+    },
+    "smallWelcomeGroups": {
+      "label": "Plain-text groups",
+      "body": "Extra groups that get the plain-text welcome.\nHow to answer:\n`message in the group`\n↳ adds the group (again, removes it)\n`pronto`\n↳ finish\n`nenhuma`\n↳ turns them all off"
     }
   },
   "wizard": {
@@ -56,19 +68,19 @@
     "alreadyInProgress": "⚠️ You already have a setup or edit in progress.\n\nType \"cancelar\" in that chat, or wait for it to expire.",
     "startConfigNeedGroup": "⚠️ Run this command inside the group that will start the configuration.",
     "confirmConfig": "👋 Are you sure you want to set up welcome messages for new members in this group?\n\nType *sim* (yes) or *não* (no).",
-    "chooseCard": "🖼️ Should the welcome come with a *card* (an image with the person's photo)?\n\n➜ Send *sim* (yes) → with card\n➜ Anything else → I take it as *não* (no): plain message, no card\n\nYou can change this later with \"{{prefix}}welcome set card\".",
+    "chooseCard": "🖼️ Welcome with a card?\nThe card is an image with the person's photo.\nHow to answer:\n`sim`\n↳ with card\n`não`\n↳ message only (any other answer too)\n📌 Change it later: {{prefix}}welcome set card",
     "alreadyConfigured": "This group already has welcome messages configured.\n\nType \"{{prefix}}welcome status\" to see it, or \"{{prefix}}welcome reset\" to delete it and start over."
   },
   "status": {
     "needGroup": "⚠️ Run this command inside the group you want to check.",
     "notConfigured": "This group doesn't have welcome messages configured yet.\n\nRun \"{{prefix}}welcome config\" to turn it on.",
-    "header": "📋 *This group's configuration*\n\n👀 Watching: {{watchGroup}}",
-    "summaryCardOn": "🖼️ Welcome *with card*, sent to: {{target}}",
-    "summaryCardOff": "💬 *Plain* welcome (text only), sent to: {{target}}",
-    "enabled": "on",
-    "disabled": "off",
+    "header": "📋 *Welcome - This group's configuration*\n\n👀 Watched group:\n- `{{watchGroup}}`",
+    "summaryCardOn": "🖼️ Welcome *with card*, sent to:\n- `{{target}}`",
+    "summaryCardOff": "💬 *Plain* welcome (text only), sent to:\n- `{{target}}`",
+    "enabled": "✅ on",
+    "disabled": "❌ off",
     "summaryLine": "{{summary}}\n✉️ DM message: {{dm}}",
-    "fieldsList": "*Fields you can adjust* (`{{prefix}}welcome set <field> <value>`):\n{{fields}}",
+    "fieldsList": "*Fields you can adjust* (`{{prefix}}welcome set FIELD value`):\n\n{{fields}}",
     "example": "Example: `{{prefix}}welcome set nomegrupo Volleyball Crew`",
     "fieldDesc": {
       "mensagem": "welcome text (goes with the card, if on)",
@@ -100,9 +112,8 @@
     "cardOffNote": "💡 The card is off, so this won't show up yet. To turn it on: \"{{prefix}}welcome set card\" and answer \"sim\"."
   },
   "quickEdit": {
-    "title": "🔧 *Editing \"{{field}}\"*\n\n{{prompt}}\n\n_Type \"cancelar\" to exit without changing anything._",
-    "configGone": "⚠️ That configuration no longer exists.",
-    "simplesGroupPrompt": "Send a message inside each group that should get the plain-text welcome (sending it again *removes* that group from the list).\n\n➜ Type \"pronto\" when done\n➜ or \"nenhuma\" to turn it all off"
+    "title": "🔧 *Editing: {{field}}*\n{{prompt}}\nSend \"cancelar\" to exit without saving",
+    "configGone": "⚠️ That configuration no longer exists."
   },
   "applySet": {
     "imageDownloadFail": "⚠️ Couldn't download that image, try again.",
@@ -142,4 +153,3 @@
     "fallbackName": "new member"
   }
 }
-

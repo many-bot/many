@@ -1,111 +1,16 @@
 {
   "plugin": {
     "name": "many-ai",
-    "description": "Chat with an AI model through the Mistral API, with search, memory, and extra tools"
+    "description": "Transcribes the quoted audio using Whisper (Groq)."
   },
-  "commands": {},
-  "errors": {
-    "generic": "Oops! Something went wrong.",
-    "apiError": "Mistral API error: {{error}}",
-    "missingApiKey": "My Mistral API key isn't configured. Ask the bot admin to set MISTRAL_API_KEY in ~/.manybot/manybot.toml.",
-    "toolError": "Something went wrong trying to use {{tool}}.",
-    "rateLimit": "Rate limit reached, try again in a bit.",
-    "rateLimitWithRetry": "Rate limit reached. Try again in {{retryIn}}.",
-    "allKeysRateLimit": "None of the configured API keys are working right now (rate limit, invalid key, or a Mistral hiccup). Try again in a moment.",
-    "emptyReply": "Couldn't put together a reply just now. Mind repeating or rephrasing that?"
-  },
-  "memory": {
-    "dbOpened": "Memory database opened",
-    "saved": "Memory saved successfully",
-    "dbOpenError": "Error opening memory database: {{error}}",
-    "walError": "Error enabling WAL mode: {{error}}",
-    "tableCreateError": "Error creating memory table: {{error}}",
-    "insertError": "Failed to save memory: {{error}}",
-    "selectError": "Failed to query memory: {{error}}",
-    "noResults": "No results found."
-  },
-  "tools": {
-    "resultLabel": "Result",
-    "stickerSent": "Sticker sent.",
-    "stickerNotFound": "I couldn't find a sticker called \"{{name}}\".",
-    "progress": {
-      "search": "Searching",
-      "fetch": "Fetching the link",
-      "skill": "Reading skill",
-      "skillDone": "Skill read.",
-      "thinkingDone": "Thought for {{seconds}}s.",
-      "memwrite": "Saving memory",
-      "memwriteDone": "Memory saved.",
-      "transcribeaudioDone": "Audio transcribed.",
-      "searchhistory": "Searching history",
-      "searchhistoryDone": "Searched chat history.",
-      "groupinfo": "Checking group info",
-      "groupinfoDone": "Group info retrieved.",
-      "sticker": "Sending sticker",
-      "stickerDone": "Sticker sent.",
-      "wikisearch": "Searching Wikipedia",
-      "wikisearchDone": "Searched Wikipedia.",
-      "wikifetch": "Reading Wikipedia article",
-      "wikifetchDone": "Wikipedia article read.",
-      "indexsearch": "Searching index",
-      "indexsearchDone": "Searched the index.",
-      "visionanalyze": "Analyzing image",
-      "visionanalyzeDone": "Image analyzed.",
-      "visionanalyzeFailed": "Couldn't analyze the image.",
-      "transcribeaudio": "Transcribing audio",
-      "thinking": "Thinking",
-      "searchDone": "Searched: {{query}}.",
-      "searchDoneSites": "Searched: {{sites}}{{more}}.",
-      "fetchDone": "Page read.",
-      "memread": "Reading memory",
-      "memreadDone": "Memory read complete.",
-      "calc": "Calculating",
-      "calcDone": "Calculated.",
-      "fileagent": "Working with files",
-      "fileagentDone": "Done.",
-      "filecreate": "Creating file",
-      "filecreateDone": "File created: {{filename}}.",
-      "fileread": "Reading file",
-      "filereadDone": "File read: {{filename}}.",
-      "filepackage": "Packaging files",
-      "filepackageDone": "Package ready: {{filename}}.",
-      "filedeliver": "Sending file",
-      "filedeliverDone": "File sent: {{filename}}.",
-      "failed": "Couldn't do it."
-    }
-  },
-  "settings": {
-    "adminOnly": "Only group admins can change these settings.",
-    "disabled": "AI disabled for this chat. Send \"!ai-settings on\" to re-enable.",
-    "enabled": "AI enabled for this chat.",
-    "interventionOn": "Passive intervention enabled — I may jump in on unanswered questions, clear help requests, or corrections, even without being called.",
-    "interventionOff": "Passive intervention disabled — I'll only respond when directly triggered.",
-    "interventionUsage": "Usage: \"!ai-settings intervention on\" or \"!ai-settings intervention off\".",
-    "status": "📋 *AI Settings*\n\n🤖 AI: {{enabled}}\n   Turns the AI on/off for this chat. When off, it won't respond to anything — not even a command or mention.\n   _!{{cmd}} on / off_\n\n👂 Passive intervention: {{intervention}}\n   Lets the AI jump into the conversation on its own (without being called) when it notices an unanswered question or a clear help request. When off, it only replies when directly triggered.\n   _!{{cmd}} intervention on / off_\n\n🎨 Stickers: {{sticker}}\n   Allows the AI to send one of its own stickers as a reaction, only in light, casual moments. When off, it never sends stickers, only text.\n   _!{{cmd}} sticker on / off_\n\n🧠 Thinking before answering: {{thinking}}\n   Shows the \"Thinking...\" bubble while the AI works out its reply. When off, it answers directly, without that visible step.\n   _!{{cmd}} thinking on / off_\n\n🔧 Show tool usage: {{tools}}\n   Shows progress notices (\"searching...\", \"reading file...\") while the AI uses a tool. When off, tools run in the background, no notice.",
-    "saveError": "Couldn't save that setting — settings storage might not be available yet.",
-    "yes": "✅ on",
-    "no": "❌ off",
-    "stickerOn": "Stickers enabled - I may send one when it fits.",
-    "stickerOff": "Stickers disabled - I won't send any anymore.",
-    "stickerUsage": "Usage: \"!ai-settings sticker on\" or \"!ai-settings sticker off\".",
-    "thinkingOn": "Thinking before answering enabled — the \"Thinking...\" bubble is back while I work on a reply.",
-    "thinkingOff": "Thinking before answering disabled — more direct replies, no reasoning step, and no \"Thinking...\" bubble while I work on a reply.",
-    "thinkingUsage": "Usage: \"!ai-settings thinking on\" or \"!ai-settings thinking off\".",
-    "toolsOn": "Tool-usage notices enabled — I'll show a message (searching, reading a file, etc.) while a tool runs.",
-    "toolsOff": "Tool-usage notices disabled — tools run in the background, no progress message.",
-    "toolsUsage": "Usage: \"!ai-settings tools on\" or \"!ai-settings tools off\"."
-  },
-  "logs": {
-    "maxIterationsReached": "resolveReply: max iterations reached without a final reply",
-    "missingApiKeyWarning": "MISTRAL_API_KEY not configured — Many won't respond until this is set in ~/.manybot/manybot.toml.",
-    "ready": "many-ai ready (model: {{model}}, {{count}} API key(s) configured).",
-    "shouldRespond": {
-      "quotedError": "Error fetching quoted message → staying silent ({{error}})"
-    },
-    "noMediaResponse": "I only understand text messages. I still can't read images, stickers, audio, or video."
-  },
-  "warnings": {
-    "hallucinationRisk": "⚠️ This touches on commands, ManyBot itself, or external sources — worth double-checking before fully trusting the answer above."
-  }
+  "noReply": "Reply to an audio with !transcrever for me to transcribe it.",
+  "missingKey": "My Groq API key isn't configured. Ask the bot admin to set GROQ_API_KEY in ~/.manybot/manybot.toml.",
+  "failed": "Couldn't transcribe that audio.",
+  "trimFailed": "That audio is too large ({{sizeMb}}MB, {{limitMb}}MB limit) and I couldn't trim it.",
+  "header": "*💬 Audio transcription:*",
+  "trimmedNote": "_(audio trimmed to fit the {{limitMb}}MB limit)_",
+  "groupLimited": "This group already hit its limit of {{limit}} transcriptions today. Try again in {{timeLeft}}.",
+  "senderLimited": "You already hit your limit of {{limit}} transcriptions today. Try again in {{timeLeft}}.",
+  "lowConfidenceNote": "_(may contain errors)_"
 }
 

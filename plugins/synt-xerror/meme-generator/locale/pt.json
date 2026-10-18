@@ -23,8 +23,10 @@
   },
   "papa": {
     "needTarget": "Mencione alguém ou responda a uma mensagem (ou envie o comando com uma imagem).",
-    "noTemplate": "Template do papa não encontrado. Coloque pope-top.png e pope-bottom.png na pasta de dados do plugin."
+    "noTemplate": "Template do papa não encontrado. Coloque pope-top.png e pope-bottom.png na pasta de dados do plugin.",
+    "noPfp": "A foto de perfil dessa pessoa é privada. Peça pra ela liberar nas configurações de privacidade do WhatsApp."
   },
   "downloadFailed": "Não consegui baixar a mídia.",
   "error": "Algo deu errado. Tente novamente."
 }
+

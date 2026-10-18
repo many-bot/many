@@ -1,7 +1,0 @@
-{
-  "plugin": {
-    "name": "release",
-    "description": "release plugin for ManyBot"
-  },
-  "commands": {}
-}

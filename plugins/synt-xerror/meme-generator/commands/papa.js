@@ -1,80 +1,128 @@
 import { createCanvas, loadImage } from "@napi-rs/canvas";
+import { readFileSync, existsSync } from "fs";
 import { writeFile, unlink } from "fs/promises";
 import { randomUUID } from "crypto";
-import { join } from "path";
-import { existsSync } from "fs";
-import { PLUGIN_ROOT } from "../lib/paths.js";
-import { getMediaMessage, downloadMedia } from "../lib/media.js";
+import { fileURLToPath } from "url";
+import path from "path";
 
-// --- CONFIG ---
-const custom = {
-  x: 245,       // position
-  y: 60,
-  width: 130,   // size (set null to use original)
-  height: 130, // null = auto from width keeping aspect ratio
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const DEFAULTS = {
+  x: 320,
+  y: 110,
+  width: 240,
+  height: 240,
 };
-// --- END CONFIG ---
 
-async function compose(customImagePath, outputPath) {
+/**
+ * @param {string} customImagePath
+ * @param {string} outputPath
+ * @param {typeof DEFAULTS} [options]
+ * @returns {Promise<string>} outputPath
+ */
+export async function composePope(customImagePath, outputPath, options = {}, circular = false) {
+  const config = { ...DEFAULTS, ...options };
+
   const [bottom, top, img] = await Promise.all([
-    loadImage(join(PLUGIN_ROOT, "pope-bottom.png")),
-    loadImage(join(PLUGIN_ROOT, "pope-top.png")),
-    loadImage(customImagePath),
+    loadImage(readFileSync(path.join(__dirname, "../pope-bottom.png"))),
+    loadImage(readFileSync(path.join(__dirname, "../pope-top.png"))),
+    loadImage(readFileSync(customImagePath)),
   ]);
 
   const canvas = createCanvas(bottom.width, bottom.height);
   const ctx = canvas.getContext("2d");
 
-  // Layer 1: bottom
   ctx.drawImage(bottom, 0, 0);
 
-  // Layer 2: custom image
-  const w = custom.width ?? img.width;
-  const h = custom.height ?? (custom.width ? img.height * (custom.width / img.width) : img.height);
-  ctx.drawImage(img, custom.x, custom.y, w, h);
+  const w = config.width;
+  const h = config.height;
 
-  // Layer 3: top (resized to match bottom's size)
-  ctx.drawImage(top, 0, 0, bottom.width, bottom.height);
+  if (circular) {
+    const cx = config.x + w / 2;
+    const cy = config.y + h / 2;
+    const r = Math.min(w, h) / 2;
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.clip();
+    ctx.drawImage(img, config.x, config.y, w, h);
+    ctx.restore();
+  } else {
+    ctx.drawImage(img, config.x, config.y, w, h);
+  }
 
-  const buffer = canvas.toBuffer("image/png");
-  await writeFile(outputPath, buffer);
+  ctx.drawImage(top, 0, 0);
+
+  await writeFile(outputPath, canvas.toBuffer("image/png"));
+  return outputPath;
 }
 
+function hasTemplates() {
+  return (
+    existsSync(path.join(__dirname, "../pope-bottom.png")) &&
+    existsSync(path.join(__dirname, "../pope-top.png"))
+  );
+}
+
+/**
+ * @param {import('@manybot/types/en').PluginContext} ctx
+ */
 export default async function papa(ctx, t) {
   const { msg } = ctx;
   if (!msg.is("papa")) return;
 
-  if (!existsSync(join(PLUGIN_ROOT, "pope-bottom.png")) || !existsSync(join(PLUGIN_ROOT, "pope-top.png"))) {
-    return void await msg.reply.text(t("papa.noTemplate"));
+  if (!hasTemplates()) {
+    return void (await msg.reply.text(t("papa.noTemplate")));
   }
 
-  const mediaTarget = await getMediaMessage(ctx);
-  const replyTarget = !mediaTarget && msg.hasReply ? await msg.getReply() : null;
-  const pfpSender = replyTarget?.sender ?? null;
+  let imagePath = null;
+  let isTemp = false;
 
-  if (!mediaTarget && !pfpSender) return void await msg.reply.text(t("papa.needTarget"));
+  let circular = false;
+
+  if (msg.hasMedia) {
+    const media = await msg.downloadMedia();
+    if (!media) return void (await msg.reply.text(t("downloadFailed")));
+    imagePath = ctx.storage.resolve(`papa_input_${randomUUID()}.png`);
+    await writeFile(imagePath, Buffer.from(media.data, "base64"));
+    isTemp = true;
+  } else if (msg.hasReply) {
+    const reply = await msg.getReply();
+    if (reply?.hasMedia) {
+      const media = await reply.downloadMedia();
+      if (!media) return void (await msg.reply.text(t("downloadFailed")));
+      imagePath = ctx.storage.resolve(`papa_input_${randomUUID()}.png`);
+      await writeFile(imagePath, Buffer.from(media.data, "base64"));
+      isTemp = true;
+    } else {
+      const contact = await reply.getContact();
+      const pfpPath = ctx.storage.resolve(`papa_pfp_${randomUUID()}.png`);
+      imagePath = await ctx.contacts.getPfpPath(contact.id, pfpPath);
+      if (!imagePath) return void (await msg.reply.text(t("papa.noPfp")));
+      circular = true;
+    }
+  } else if (msg.hasMention) {
+    const mentionId = msg.mentionedJid?.[0];
+    const pfpPath = ctx.storage.resolve(`papa_pfp_${randomUUID()}.png`);
+    imagePath = await ctx.contacts.getPfpPath(mentionId, pfpPath);
+    if (!imagePath) return void (await msg.reply.text(t("papa.noPfp")));
+    circular = true;
+  }
+
+  if (!imagePath) {
+    return void (await msg.reply.text(t("papa.needTarget")));
+  }
 
   ctx.download.enqueue(
     async () => {
-      const id = randomUUID();
-      const customPath = ctx.storage.resolve(`papa_in_${id}.png`);
-      const outputPath = ctx.storage.resolve(`papa_out_${id}.png`);
-
+      const outputPath = ctx.storage.resolve(`papa_out_${randomUUID()}.png`);
       try {
-        if (mediaTarget) {
-          const media = await downloadMedia(mediaTarget);
-          if (!media) return void await msg.reply.text(t("downloadFailed"));
-          await writeFile(customPath, media.buffer);
-        } else {
-          const pfp = await ctx.contacts.getPfpPath(pfpSender, customPath).catch(() => null);
-          if (!pfp) return void await msg.reply.text(t("papa.needTarget"));
-        }
-
-        await compose(customPath, outputPath);
+        await composePope(imagePath, outputPath, {}, circular);
         await msg.reply.image(outputPath);
       } finally {
-        unlink(customPath).catch(() => {});
         unlink(outputPath).catch(() => {});
+        if (isTemp) unlink(imagePath).catch(() => {});
       }
     },
     async (err) => {
@@ -83,3 +131,4 @@ export default async function papa(ctx, t) {
     }
   );
 }
+

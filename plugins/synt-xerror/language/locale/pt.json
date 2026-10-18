@@ -1,0 +1,7 @@
+{
+  "status": "🌐 Idioma atual: *{{lang}}*\n\nDisponíveis:\n🇧🇷 pt (Português)\n🇺🇸 en (Inglês)\n\nUso: `!idioma pt` ou `!idioma en`",
+  "changed": "✅ Idioma alterado para *{{lang}}*.",
+  "invalid": "❌ Idioma desconhecido: \"{{lang}}\"\nDisponíveis: 🇧🇷 pt · 🇺🇸 en",
+  "blocked": "⚠️ \"{{lang}}\" ainda não está completo e foi desativado."
+}
+

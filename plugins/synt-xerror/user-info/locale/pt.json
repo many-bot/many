@@ -1,0 +1,10 @@
+{
+  "plugin": {
+    "name": "user-info",
+    "description": "Plugin user-info para ManyBot"
+  },
+  "noTarget": "Marque alguém ou responda a mensagem da pessoa.",
+  "noPfp": "Esse contato não tem foto de perfil.",
+  "noBio": "Esse contato não tem recado.",
+  "commands": {}
+}

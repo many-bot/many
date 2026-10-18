@@ -10,39 +10,51 @@
   "prompts": {
     "watchGroup": {
       "label": "Grupo monitorado",
-      "body": "👋 Vamos configurar as boas-vindas! É rápido — eu guio você em cada passo, sem precisar saber nada antes.\n\nPara começar, mande *qualquer mensagem* dentro do grupo que você quer que eu vigie (quando alguém entrar nele, eu aviso). Em comunidades, use o grupo de anúncios."
+      "body": "Grupo que eu vigio para dar boas-vindas.\nComo responder:\n`mensagem no grupo novo`\n↳ passa a vigiar esse grupo\n📌 Em comunidade, use o grupo de anúncios."
     },
     "useCard": {
       "label": "Card de boas-vindas",
-      "body": "Quer que as boas-vindas venham com *card* (uma imagem com a foto da pessoa)?\n\n➜ \"sim\" → com card\n➜ \"não\" → só mensagem simples, sem card\n\n_(dá pra personalizar o visual do card — fundo, moldura, fonte, foto padrão — depois, com \"{{prefix}}welcome set\")_"
+      "body": "Imagem com a foto da pessoa, enviada junto da mensagem.\nComo responder:\n`sim`\n↳ com card\n`não`\n↳ só mensagem, sem card"
     },
     "cardTarget": {
       "label": "Grupo de destino",
-      "body": "Em qual grupo devo enviar as boas-vindas?\n\n➜ Mande uma mensagem lá dentro\n➜ ou digite \"pular\" para usar o mesmo grupo de antes"
+      "body": "Grupo onde as boas-vindas são enviadas.\nComo responder:\n`mensagem no grupo`\n↳ envia as boas-vindas lá\n`padrão`\n↳ usa o grupo monitorado"
     },
     "groupName": {
       "label": "Nome do grupo",
-      "body": "Qual o nome que deve aparecer nas mensagens de boas-vindas (no card e nos textos)?\n\n➜ Digite o nome\n➜ ou \"pular\" para usar o nome do próprio grupo"
+      "body": "Nome que aparece nas boas-vindas e no card.\nComo responder:\n`um nome`\n↳ usa esse nome\n`padrão`\n↳ usa o nome do próprio grupo"
     },
     "cardMessage": {
       "label": "Mensagem de boas-vindas",
-      "body": "Qual mensagem devo enviar quando alguém entrar? (Se o card estiver ligado, ela vai junto com ele.)\n\nUse \"{nome}\" e \"{grupo}\" onde quiser.\nDigite \"padrão\" para usar esta:\n\n{{defaultMessage}}"
+      "body": "Texto enviado quando alguém entra.\nComo responder:\n`um texto`\n↳ usa o seu texto\n`padrão`\n↳ usa a mensagem padrão\n📌 Variáveis: {nome}, {grupo}\n📌 Padrão:\n{{defaultMessage}}"
     },
     "smallWelcomeMessage": {
       "label": "Texto das boas-vindas simples",
-      "body": "Qual mensagem devo enviar nesses grupos extras (só texto, sem card)?\n\nUse \"{nome}\" e \"{grupo}\" onde quiser, ou digite \"padrão\" para reaproveitar a mensagem principal."
+      "body": "Texto enviado nos grupos extras (sem card).\nComo responder:\n`um texto`\n↳ usa o seu texto\n`padrão`\n↳ reaproveita a mensagem principal\n📌 Variáveis: {nome}, {grupo}"
     },
     "dmMessage": {
       "label": "Mensagem no PV (opcional)",
-      "body": "Mensagem que eu enviaria no privado da pessoa, dando boas-vindas — isso é só uma sugestão, assim como a mensagem do card: use, ajuste ou pule, como preferir.\n\nUse \"{nome}\" onde quiser o nome dela.\nDigite \"padrão\" para usar a sugestão abaixo, ou \"nenhuma\" para não enviar PV nenhum:\n\n{{defaultMessage}}"
+      "body": "Mensagem enviada no privado de quem entra.\nComo responder:\n`um texto`\n↳ usa o seu texto\n`padrão`\n↳ usa a mensagem sugerida\n`nenhuma`\n↳ não envia nada no privado\n📌 Variáveis: {nome}\n📌 Sugestão:\n{{defaultMessage}}"
     },
     "cardBackground": {
       "label": "Fundo do card",
-      "body": "Escolha o visual do card:\n\n🎨 \"pular\" → tema roxo (padrão)\n🎨 um tema pronto: {{themes}}\n🎨 uma cor com gradiente automático: um #hex, ex. #1f1147\n🎨 uma cor sólida (sem gradiente): \"sólido #hex\"\n🎨 um gradiente com 2 cores à sua escolha: \"gradiente #hex1 #hex2\"\n🎨 ou envie uma foto/imagem para usar como fundo"
+      "body": "Fundo do card.\nComo responder:\n`tema`\n↳ tema pronto\n`#hex`\n↳ cor com gradiente automático\n`sólido #hex`\n↳ cor sólida\n`gradiente #hex1 #hex2`\n↳ gradiente de 2 cores\n`imagem`\n↳ envie uma foto como fundo\n`escurecer 0-100`\n↳ escurece o fundo de imagem (%)\n`padrão`\n↳ tema roxo\n📌 Temas: {{themes}}\n📌 Exemplo: #1f1147"
     },
     "cardFrame": {
       "label": "Moldura",
-      "body": "Agora a moldura da foto de perfil:\n\n🔲 \"pular\" → círculo (padrão)\n🔲 ou uma dessas: {{frames}}"
+      "body": "Moldura da foto de perfil no card.\nComo responder:\n`moldura`\n↳ usa a moldura escolhida\n`padrão`\n↳ círculo\n📌 Molduras: {{frames}}"
+    },
+    "cardFont": {
+      "label": "Fonte do card",
+      "body": "Fonte do texto no card.\nComo responder:\n`fonte`\n↳ usa a fonte escolhida\n`padrão`\n↳ fonte padrão\n📌 Fontes: {{fonts}}"
+    },
+    "cardAvatar": {
+      "label": "Foto padrão do card",
+      "body": "Foto do card para quem não tem foto de perfil.\nComo responder:\n`imagem`\n↳ envie a foto que será usada\n`padrão`\n↳ volta à foto padrão do plugin"
+    },
+    "smallWelcomeGroups": {
+      "label": "Grupos do texto simples",
+      "body": "Grupos extras que recebem as boas-vindas simples (só texto).\nComo responder:\n`mensagem no grupo`\n↳ adiciona o grupo (de novo, remove)\n`pronto`\n↳ termina\n`nenhuma`\n↳ desativa todos"
     }
   },
   "wizard": {
@@ -56,30 +68,30 @@
     "alreadyInProgress": "⚠️ Você já tem uma configuração ou edição em andamento.\n\nDigite \"cancelar\" nesse chat, ou espere expirar.",
     "startConfigNeedGroup": "⚠️ Rode esse comando dentro do grupo que vai iniciar a configuração.",
     "confirmConfig": "👋 Tem certeza que quer configurar boas-vindas a novos membros nesse grupo?\n\nDigite *sim* ou *não*.",
-    "chooseCard": "🖼️ Quer que as boas-vindas venham com *card* (uma imagem com a foto da pessoa)?\n\n➜ Mande *sim* → com card\n➜ Qualquer outra coisa → entendo como *não* (só mensagem simples, sem card)\n\nDá pra mudar depois com \"{{prefix}}welcome set card\".",
+    "chooseCard": "🖼️ Boas-vindas com card?\nO card é uma imagem com a foto da pessoa.\nComo responder:\n`sim`\n↳ com card\n`não`\n↳ só mensagem (qualquer outra resposta também)\n📌 Dá pra mudar depois: {{prefix}}welcome set card",
     "alreadyConfigured": "Esse grupo já tem boas-vindas configuradas.\n\nDigite \"{{prefix}}welcome status\" pra ver, ou \"{{prefix}}welcome reset\" pra apagar e começar de novo."
   },
   "status": {
     "needGroup": "⚠️ Rode esse comando dentro do grupo que você quer consultar.",
     "notConfigured": "Este grupo ainda não tem boas-vindas configuradas.\n\nRode \"{{prefix}}welcome config\" pra ativar.",
-    "header": "📋 *Configuração deste grupo*\n\n👀 Grupo monitorado: {{watchGroup}}",
-    "summaryCardOn": "🖼️ Boas-vindas *com card*, enviadas em: {{target}}",
-    "summaryCardOff": "💬 Boas-vindas *simples* (só texto), enviadas em: {{target}}",
-    "enabled": "ativada",
-    "disabled": "desativada",
+    "header": "📋 *Welcome - Configuração deste grupo*\n\n👀 Grupo monitorado:\n- `{{watchGroup}}`",
+    "summaryCardOn": "🖼️ Boas-vindas *com card*, enviadas em:\n- `{{target}}`",
+    "summaryCardOff": "💬 Boas-vindas *simples* (só texto), enviadas em:\n- `{{target}}`",
+    "enabled": "✅ ativada",
+    "disabled": "❌ desativada",
     "summaryLine": "{{summary}}\n✉️ Mensagem no privado: {{dm}}",
-    "fieldsList": "*Campos que você pode ajustar* (`{{prefix}}welcome set <campo> <valor>`):\n{{fields}}",
-    "example": "Exemplo: `{{prefix}}welcome set nomegrupo Galera do Vôlei`",
+    "fieldsList": "*Campos que você pode ajustar* (`{{prefix}}welcome set CAMPO valor`):\n\n{{fields}}",
+    "example": "Exemplo: `{{prefix}}welcome set nomegrupo Galera do Cáuboi`",
     "fieldDesc": {
-      "mensagem": "texto das boas-vindas (vai junto com o card, se ligado)",
-      "card": "liga/desliga o card com a foto da pessoa (sim/não)",
+      "mensagem": "texto das boas-vindas",
+      "card": "liga/desliga o card",
       "destino": "grupo onde as boas-vindas são enviadas",
-      "nomegrupo": "nome mostrado nas mensagens de boas-vindas",
-      "pv": "mensagem enviada no privado da pessoa",
-      "fundo": "fundo do card: cor, gradiente ou imagem",
-      "moldura": "moldura da foto no card: circulo, neon, quadrado",
-      "fonte": "fonte do card: padrao, serifa, monoespacada",
-      "avatar": "foto usada no card por quem não tem foto de perfil",
+      "nomegrupo": "nome do grupo/comunidade",
+      "pv": "mensagem enviada no pv da pessoa",
+      "fundo": "fundo do card",
+      "moldura": "moldura da foto no card",
+      "fonte": "fonte do card",
+      "avatar": "foto usada no card por quem não tem pfp",
       "simples": "texto das boas-vindas nos grupos extras (só texto)",
       "simplesgrupo": "grupos extras que recebem o texto simples (avançado)",
       "grupo": "troca o grupo monitorado (avançado)"
@@ -100,9 +112,8 @@
     "cardOffNote": "💡 O card está desligado, então isso ainda não aparece. Pra ligar: \"{{prefix}}welcome set card\" e responda \"sim\"."
   },
   "quickEdit": {
-    "title": "🔧 *Editando \"{{field}}\"*\n\n{{prompt}}\n\n_Digite \"cancelar\" para sair sem mudar nada._",
-    "configGone": "⚠️ Essa configuração não existe mais.",
-    "simplesGroupPrompt": "Mande uma mensagem dentro de cada grupo que deve receber a boas-vindas simples (mandar de novo *remove* o grupo da lista).\n\n➜ Digite \"pronto\" quando terminar\n➜ ou \"nenhuma\" para desativar tudo"
+    "title": "🔧 *Editando: {{field}}*\n{{prompt}}\nMande \"cancelar\" para sair sem salvar",
+    "configGone": "⚠️ Essa configuração não existe mais."
   },
   "applySet": {
     "imageDownloadFail": "⚠️ Não consegui baixar essa imagem, tente novamente.",
@@ -142,4 +153,3 @@
     "fallbackName": "novo membro"
   }
 }
-
