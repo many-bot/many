@@ -1,0 +1,771 @@
+{
+  "suggestion": "💡 \"!{{cmd}}\" não existe, talvez você quis dizer \"!{{best}}\". Tente assim!\n\n_Use !{{menuCmd}} para ver todos os comandos._",
+  "suggestionSpaced": "💡 \"!{{cmd}}\" não existe. Tente \"!{{best}}\" sem espaço depois do \"!\".\n\n_Use !{{menuCmd}} para ver todos os comandos._",
+  "spaceAfterPrefix": "💡 Não coloque espaço depois do \"!\" — o certo é \"!{{cmd}}\".",
+  "punctuationComma": "💡 Não coloque vírgula junto do comando — o certo é \"!{{cmd}}\".",
+  "punctuationPeriod": "💡 Não coloque ponto junto do comando — o certo é \"!{{cmd}}\".",
+  "punctuationSemicolon": "💡 Não coloque ponto e vírgula junto do comando — o certo é \"!{{cmd}}\".",
+  "punctuationColon": "💡 Não coloque dois pontos junto do comando — o certo é \"!{{cmd}}\".",
+  "punctuationExclamation": "💡 Não coloque exclamação junto do comando — o certo é \"!{{cmd}}\".",
+  "punctuationQuestion": "💡 Não coloque interrogação junto do comando — o certo é \"!{{cmd}}\".",
+  "unknownCommand": "💡 \"{{cmd}}\" não é um comando. Use !{{helpCmd}} ou !{{menuCmd}} para ver os disponíveis.",
+  "overviewHeader": "🤖 *Many {{version}}*\n_por *SyntaxError!* <16 99462-0899>_\n\nEscolha uma categoria:\n​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​",
+  "overviewInfo": "*Informações:*\n- {{many info}}",
+  "overviewTip": "💡 Para detalhes, mande:\n- {{help COMANDO}}\n_Substitua `COMANDO` pelo comando que queira saber mais_",
+  "categorySectionTip": "💡 Para detalhes, mande:\n- {{help COMANDO}}\n_Substitua `COMANDO` pelo comando que queira saber mais_",
+  "pluginNotFound": "Não encontrei o comando *{{name}}*. {{many}} pra ver as categorias.",
+  "infoTitle": "ℹ️ *Informações*\n",
+  "infoManyBotVersion": "⚙️ Versão do ManyBot: `{{version}}`",
+  "infoManyVersion": "🤖 Versão da Many: `{{version}}`",
+  "infoChangelog": "📋 Changelog: {{changelog}}",
+  "infoLicense": "📜 Licença: {{licenca}}",
+  "infoGroup": "💬 Grupo do zap: https://wa.manybot.org",
+  "infoSite": "🌐 Nosso site: https://manybot.org",
+  "infoChannel": "📢 Canal de avisos: https://whatsapp.com/channel/0029Vb81rD2BvvslyeHtgp24",
+  "licenseTitle": "📜 *Licença de Uso*",
+  "license1": "1. Esse software é fornecido \"como está\". Os autores não garantem seu funcionamento e não se responsabilizam por uso indevido e problemas ou danos causados pelo seu uso.",
+  "license2": "2. Isso é um software GRATUITO. Caso tenha pagado de qualquer forma, peça seu dinheiro de volta e denuncie!",
+  "license3": "3. Seus dados pessoais, conversas e telefone não são vendidos nem compartilhados com terceiros. Apenas as mensagens da Many são armazenadas para fins de diagnóstico.",
+  "licenseShort": "📜 Ao usar esse bot você concorda com nossa licença de uso (mande {{licenca}} pra ler).",
+  "addRemoved": "O comando add foi removido por problemas técnicos. Se quer que eu entre em um grupo, apenas me mande o convite e eu vou entrar.",
+  "inviteConfirmPrompt": "Isso parece ser um convite para um grupo, gostaria que eu entrasse? Responda com \"sim\" ou \"não\".",
+  "inviteJoined": "Prontinho!",
+  "inviteJoinedPending": "Prontinho, mas um admin precisa aprovar minha entrada primeiro.",
+  "inviteError401": "O WhatsApp não me deixou entrar nesse grupo. Isso costuma acontecer quando já fui removida dele antes.\n\nA única forma para me adicionar agora é me adicionando no grupo manualmente:\n- Adicione meu contato\n- Aperte no nome do seu grupo\n- Vá em 'Adicionar membro'\n- Me encontre na sua lista de contatos e me adicione no grupo.\n\nCaso queira um melhor suporte, você pode mandar uma mensagem para o meu dono: +55 (16) 99462-0899. _Ele não morde, fica tranquilo_.",
+  "inviteErrorGeneric": "Houve um erro ao tentar entrar no grupo. Você pode reportar o problema com {{bug}} ou entrando em contato com o desenvolvedor.",
+  "backtickTip": "💡 Dica: NÃO coloque ` nos comandos. _Eu uso isso apenas para exemplos!_",
+  "chatterTip": "🤖 Parece que você está tentando conversar comigo! Eu funciono por comandos, então mensagens normais eu não respondo.\n\nMande {{many}} pra ver tudo que eu sei fazer.",
+  "supportTip": "💡 Precisa de ajuda? Contate o suporte:\n- Número: 5516994620899\n- E-mail: manybot@pm.me\n- Nosso grupo: wa.manybot.org",
+  "greetingText": "Oi, eu sou a Many! 👋 A bot oficial do projeto ManyBot.\n\n{{licenseShort}}\n\nPara ver tudo que eu faço:\n- {{many}}\n\nPara me adicionar a um grupo:\n- {{add}}\n\nPara trocar o idioma:\n- {{language}}\n\nEntre no nosso grupo se tiver dúvidas: https://wa.manybot.org",
+  "changelogTitle": "*Changelog — Many {{version}}*",
+  "changelogAdmin": "⚙️ *Administração*\n- Novo: {{mute}}/{{unmute}} — silenciar membros nativamente (nível ManyBot, ignora todos os comandos)\n- Novo: {{todos}}/{{admins}} — mencionar todos os membros ou só admins; {{mute all}} abrange a comunidade inteira\n- Novo: {{close}}/{{open}} — fechar ou abrir grupos, com suporte a agendamento\n- Novo: {{warn}} — enviar aviso privado com o texto da regra no PV da pessoa\n- Novo: {{get-pfp}}/{{get-name}} — pegar foto de perfil ou nome de exibição de qualquer membro\n- Novo: {{transcrever}} — transcrever áudios com IA (Whisper via Groq)\n- Novo: @cargos — mencione grupos de membros como cargos, estilo Discord",
+  "changelogConverter": "🔄 *Mídias & Utilidades*\n- Comandos de mídia movidos para categoria própria (separado das utilidades)\n- Novo: {{rules}} — regras da comunidade, compatível com {{welcome}} e {{warn}}",
+  "changelogMusic": "🌐 *Suporte a idiomas*\n- Novo: {{language}} — trocar o idioma da Many por usuário (pt e en disponíveis)\n- Maioria dos comandos traduzidos para pt-BR e en-US",
+  "changelogMenu": "📋 *Menu & UX*\n- Dev Utils agora aparece no menu\n- UX do autocorretor melhorada: não parece mais uma pergunta; também corrige comandos com pontuação\n- Autocorretor agora só dispara quando a mensagem começa com o padrão do comando",
+  "changelogCommunity": "👻 *Halloween*\n- Novo: {{caçafantasma}} — jogo exclusivo de Halloween, ranking por comunidade",
+  "changelogSupport": "🎲 *Comandos novos*\n- {{roll}} — sorteio de dados (ex: !roll d20, !roll 2d6)\n- {{papa}} — meme do Papa Francisco segurando uma foto\n- {{brat}}, {{brat2}} — imagens no estilo brat\n- {{handshake}}, {{kill}} — novas ações sociais\n- {{ship}} — compatibilidade entre dois membros\n- {{minas}} — campo minado cooperativo",
+  "changelogFixes": "🔧 *Correções & melhorias*\n- Velocidade de resposta melhorada para múltiplos chats simultâneos\n- ManyBot atualizado para v5.13\n- Comando {{add}} removido; agora basta mandar o convite do grupo que eu peço confirmação antes de entrar",
+  "changelogBirthday": "",
+  "changelogFooter": "Outras mudanças relacionadas ao ManyBot, ManyPlug e à comunidade:\nhttps://whatsapp.com/channel/0029Vb81rD2BvvslyeHtgp24",
+  "setupLoaded": "autocorrect carregado.",
+  "categoryLabels": {
+    "geral": "💬 Geral",
+    "utilidade": "🔧 Utilidade",
+    "midias": "🎬 Mídias",
+    "jogos": "🎮 Jogos",
+    "brincadeiras": "🎉 Brincadeiras",
+    "comunidades": "👥 Grupos/Comunidades",
+    "adm": "🔨 Administração",
+    "devutils": "💻 Dev Utils",
+    "config": "⚙️ Configurações",
+    "halloween": "🎃 Halloween"
+  },
+  "configCommands": [
+    {
+      "name": "👋 Boas-Vindas",
+      "commands": [
+        "welcome config"
+      ]
+    },
+    {
+      "name": "➕ Counting",
+      "commands": [
+        "counting on",
+        "counting off"
+      ]
+    },
+    {
+      "name": "👉 Tema de Ações",
+      "commands": [
+        "actiontheme",
+        "actiontheme <nome>"
+      ]
+    },
+    {
+      "name": "🌐 Idioma",
+      "commands": [
+        "language"
+      ]
+    }
+  ],
+  "plugins": [
+    {
+      "id": "ajuda",
+      "name": "❓ Ajuda",
+      "category": "geral",
+      "aliases": [
+        "help",
+        "many",
+        "hello",
+        "ola",
+        "olá",
+        "ajuda",
+        "menu",
+        "comandos",
+        "comando",
+        "commands",
+        "manual",
+        "instrucoes",
+        "instruções",
+        "oi",
+        "oii",
+        "start",
+        "inicio",
+        "início",
+        "duvida",
+        "dúvida",
+        "duvidas",
+        "dúvidas",
+        "socorro",
+        "sos"
+      ],
+      "commands": [
+        "many",
+        "help"
+      ],
+      "description": "Não sabe o que eu faço? É simples:\n\n{{many}} -> mostra as categorias de comandos\n{{many nome da categoria}} -> mostra os comandos daquela categoria\n{{help nome do comando}} -> explica um comando específico em detalhes\n\nExemplo: mande {{help figurinha}} pra saber como criar figurinhas, ou {{many jogos}} pra ver os jogos disponíveis.\n\nTambém respondo por: {{ola}}, {{olá}}, {{hello}}, {{ajuda}}\n\n💡 Se ficar mais de 3 dias sem falar comigo, vou me apresentar novamente quando você voltar pra fazer questão de que você não vai esquecer de mim :3!"
+    },
+    {
+      "id": "colabore",
+      "name": "❤️ Colabore!",
+      "category": "geral",
+      "aliases": [
+        "bug",
+        "report",
+        "colabore",
+        "reportar",
+        "reportarbug",
+        "sugestao",
+        "sugestão",
+        "feedback",
+        "erro",
+        "problema",
+        "reclamacao",
+        "reclamação",
+        "contribuir",
+        "doar",
+        "apoiar",
+        "dev",
+        "developer"
+      ],
+      "commands": [
+        "bug",
+        "sugestao"
+      ],
+      "description": "Avistou um bug e quer reportar pra corrigirmos? Mande:\n{{bug descrição do problema}}\nIsso manda as últimas 10 mensagens do chat e a sua descrição pros desenvolvedores, sem nenhuma informação pessoal como número, nome ou ID.\n\nQuer sugerir um comando novo ou uma funcionalidade pra Many?\n{{sugestao descrição da sugestão}}\nIsso manda a sua sugestão direto pros desenvolvedores!\n\n💡 Se precisar, os desenvolvedores conseguem te responder diretamente sobre o report, sem que isso exponha seus dados pessoais pra eles.\n\nAgradecemos por querer apoiar o projeto!! ❤️❤️"
+    },
+    {
+      "id": "figurinha",
+      "name": "🖼️ Figurinhas",
+      "category": "utilidade",
+      "aliases": [
+        "figurinha",
+        "figurinhas",
+        "sticker",
+        "stickers",
+        "f",
+        "lote",
+        "figura",
+        "figuras",
+        "criarfigurinha",
+        "fazerfigurinha",
+        "extrairfigurinha",
+        "webp",
+        "transparente"
+      ],
+      "commands": [
+        "f",
+        "f extrair",
+        "f lote"
+      ],
+      "description": "Transforma qualquer imagem, vídeo ou GIF em figurinha do WhatsApp. Além de conseguir extrair a imagem de figurinhas usando {{f extrair}}.\n\nDuas formas de usar:\n\n*Rápida:* mande uma imagem já com {{f}} na legenda, ou responda a uma imagem que já foi enviada com o comando.\n\n*Em lote:* mande {{f lote}} pra abrir uma sessão. Depois é só mandar no máximo 30 mídias seguidas, de tipos diferentes se quiser. Quando terminar, mande {{f lote criar}} e eu transformo tudo de uma vez! Pra cancelar, mande {{f lote parar}}.\n\n💡 Dica: pra criar figurinhas transparentes, mande a imagem como documento:\n\n1. Clique no clipe 📎 (do lado da câmera)\n2. Escolha a imagem transparente (PNG)\n3. Coloque {{f}} na legenda\n4. Envie!\n\nIsso também funciona pra documentos enviados antes: só responder eles com o comando, sem precisar mandar de novo.\n\n✏️ Pra editar o nome e o pack da figurinha, use {{f edit pack <nome>}}, {{f edit autor <nome>}} ou {{f edit reset}} pra voltar ao padrão."
+    },
+    {
+      "id": "baixar videos ou audios",
+      "name": "📺 Baixar vídeos ou áudios",
+      "category": "utilidade",
+      "aliases": [
+        "manymedia",
+        "media",
+        "video",
+        "vídeo",
+        "audio",
+        "áudio",
+        "download",
+        "baixar",
+        "baixarvideo",
+        "baixaraudio",
+        "linkdownload",
+        "downloadlink",
+        "salvarvideo",
+        "salvaraudio",
+        "ytdl",
+        "youtubedownload",
+        "tiktokdownload",
+        "instagramdownload",
+        "reelsdownload"
+      ],
+      "commands": [
+        "baixar-video",
+        "baixar-audio"
+      ],
+      "description": "Baixa vídeos e músicas de links e te envia um link de download! 📥\n\nFunciona com YouTube, Instagram, TikTok, Reddit e muito mais.\n\nComo usar:\n{{baixar-video link do vídeo}} -> baixa o vídeo\n{{baixar-audio link do vídeo}} -> baixa só o áudio (ótimo pra músicas!)\n\nExemplo:\n{{video https://www.youtube.com/watch?v=dQw4w9WgXcQ}}\n\n💡 Dica: cole o link junto com o comando, na mesma mensagem."
+    },
+    {
+      "id": "manyai",
+      "name": "🤖 Many AI",
+      "category": "utilidade",
+      "aliases": [
+        "manyai",
+        "manyia",
+        "ai",
+        "ia",
+        "inteligenciaartificial",
+        "chatbot",
+        "gpt",
+        "assistente",
+        "perguntar",
+        "chat",
+        "transcrever",
+        "transcricao",
+        "transcrição",
+        "whisper"
+      ],
+      "commands": [
+        "transcrever"
+      ],
+      "description": "Me faça uma pergunta e eu respondo com IA! 🧠\n\nPode ser qualquer coisa: dúvidas, resumos, traduções, explicações, curiosidades... É só perguntar!\n\nLembre-se de falar \"Many\" na mensagem, caso contrário ela não consegue entender que está falando com ela.\n\n*Transcrição de áudios:*\nResponda a qualquer áudio com {{transcrever}} e eu converto para texto usando IA (Whisper via Groq)."
+    },
+    {
+      "id": "musica e videos",
+      "name": "▶️ Tocar Música e Vídeos",
+      "category": "utilidade",
+      "aliases": [
+        "mp3",
+        "mp4",
+        "musica",
+        "música",
+        "tocarmusica",
+        "playlist",
+        "play",
+        "ouvirmusica",
+        "baixarmusica",
+        "somdomp3",
+        "musicadownload"
+      ],
+      "commands": [
+        "mp3",
+        "mp4"
+      ],
+      "description": "Baixa áudios e vídeos a partir de um termo de busca ou link, e manda direto aqui no chat, sem precisar abrir link nenhum. Também toca playlists salvas.\n\nComo usar:\n{{mp3 termo ou nome da música}} -> manda o áudio\n{{mp4 termo ou link do vídeo}} -> manda o vídeo\n\nPlaylists (só áudio):\n{{mp3 playlist}} -> cria uma nova\n{{mp3 playlist <nome> add <termo>}} -> adiciona uma música\n{{mp3 playlist <nome>}} -> toca a playlist inteira\n{{mp3 playlist <nome> info}} -> lista as músicas\n{{mp3 playlist <nome> zip}} -> manda tudo em um .zip\n{{mp3 playlist list}} -> lista suas playlists\n\nExemplos:\n{{mp3 rap do minecraft}}\n{{mp4 https://youtu.be/dQw4w9WgXcQ}}\n\n💡 Diferença pro {{video}}/{{audio}}: lá eu mando um link pra você baixar, aqui o áudio ou vídeo já chega pronto no chat."
+    },
+    {
+      "id": "forca",
+      "name": "🎮 Forca",
+      "category": "jogos",
+      "aliases": [
+        "forca",
+        "hangman",
+        "jogodaforca",
+        "palavrasecreta",
+        "adivinharpalavra"
+      ],
+      "commands": [
+        "forca"
+      ],
+      "description": "O clássico jogo da forca, aqui no WhatsApp! 🪢\n\nComo jogar:\n{{forca começar}} -> inicia uma partida\nDepois é só mandar uma letra por mensagem pra tentar adivinhar a palavra\n{{forca parar}} -> cancela a partida atual\n\n💡 Cuidado, as tentativas são limitadas!"
+    },
+    {
+      "id": "adivinhacao",
+      "name": "🎮 Adivinhação",
+      "category": "jogos",
+      "aliases": [
+        "adivinhacao",
+        "adivinhação",
+        "adivinhar",
+        "numero",
+        "número",
+        "adivinhe",
+        "jogodonumero",
+        "numerosecreto",
+        "chuteonumero"
+      ],
+      "commands": [
+        "adivinhacao"
+      ],
+      "description": "Adivinhe o número que estou pensando! 🔢\n\nComo jogar:\n{{adivinhacao começar}} -> eu escolho um número secreto\nDepois é só mandar um número por mensagem pra tentar adivinhar\nEu aviso se é maior ou menor, até você acertar!\n{{adivinhacao parar}} -> desiste da partida atual"
+    },
+    {
+      "id": "counting",
+      "name": "➕ Counting",
+      "category": "jogos",
+      "aliases": [
+        "counting",
+        "couting",
+        "contagem",
+        "contando",
+        "jogodacontagem",
+        "contar"
+      ],
+      "commands": [
+        "counting"
+      ],
+      "description": "Jogo da contagem:\n\nMande o próximo número da sequência.\nVocê não pode contar duas vezes seguidas, precisa esperar outra pessoa continuar.\nQualquer erro zera a contagem!\n\n*Configuração:*\n\n{{counting on}} - ativa o jogo no grupo atual\n{{counting off}} - desativa o jogo no grupo atual"
+    },
+    {
+      "id": "gerador de memes",
+      "name": "🤡 Gerador de Memes",
+      "category": "brincadeiras",
+      "aliases": [
+        "quote",
+        "brat",
+        "brat2",
+        "simples",
+        "classico",
+        "clássico",
+        "desmot",
+        "papa",
+        "meme",
+        "memes",
+        "gerarmeme",
+        "criarmeme",
+        "frase",
+        "citacao",
+        "citação",
+        "poster",
+        "desmotivacional",
+        "papameme",
+        "popememe",
+        "pope",
+        "papaholdingmeme"
+      ],
+      "commands": [
+        "quote",
+        "brat",
+        "brat2",
+        "classico",
+        "simples",
+        "desmot",
+        "papa"
+      ],
+      "description": "{{quote}} -> responda uma mensagem de texto. Eu transformo em uma imagem estilo citação histórica, com a foto de perfil de quem mandou.\n\n{{brat}} -> responda um texto ou mande junto com o comando ({{brat meu texto legal}}). Transforma o texto em uma imagem no estilo brat.\n\n{{classico}} -> responda ou mande um vídeo/foto/gif/figurinha, com duas frases separadas por `/`: uma fica em cima e outra embaixo da imagem. Exemplo: {{classico frase de cima / frase de baixo}}\n\n{{simples}} -> responda uma imagem/foto/gif/figurinha com uma frase só, que fica em cima. Exemplo: {{simples quando colocam um meme dentro de um tutorial da many}}\n\n{{desmot}} -> responda ou mande um vídeo/foto/gif/figurinha, com título e legenda separados por `/`. Gera um poster estilo desmotivacional: moldura preta, imagem emoldurada e texto embaixo. Exemplo: {{desmot WHAT / minha legenda aqui}}\n\n{{papa}} -> gera o meme do papa segurando uma foto. Três formas de usar:\n- {{papa}} sozinho: usa sua própria foto de perfil\n- {{papa @pessoa}} ou respondendo a uma mensagem de texto de alguém: usa a foto de perfil dessa pessoa\n- Respondendo a uma imagem ou mandando uma imagem com {{papa}} na legenda: usa a imagem enviada"
+    },
+    {
+      "id": "jogo da velha",
+      "name": "❌ Jogo da Velha",
+      "category": "jogos",
+      "aliases": [
+        "velha",
+        "jogodavelha",
+        "tictactoe",
+        "tic tac toe",
+        "tic-tac-toe",
+        "ttt",
+        "jogovelha"
+      ],
+      "commands": [
+        "velha"
+      ],
+      "description": "Responda a mensagem da pessoa que você quer desafiar com {{velha}}. Pra jogar, cada um digita a coordenada de onde quer colocar sua peça. Exemplo: coluna A e linha 2 -> A2 ou 2A. Simples assim."
+    },
+    {
+      "id": "minas",
+      "name": "💣 Campo Minado",
+      "category": "jogos",
+      "aliases": [
+        "minas",
+        "campominado",
+        "campo-minado",
+        "minesweeper",
+        "minefield",
+        "flag",
+        "sairminas"
+      ],
+      "commands": [
+        "minas",
+        "minas facil",
+        "minas medio",
+        "minas dificil",
+        "flag <coord>",
+        "sairminas"
+      ],
+      "description": "Campo minado cooperativo — o grupo inteiro joga junto! 💣\n\nComo jogar:\n{{minas}} -> inicia com dificuldade padrão\n{{minas facil}} / {{minas medio}} / {{minas dificil}} -> escolhe a dificuldade\n\nDurante a partida, qualquer um pode:\n- digitar uma coordenada (ex: *A1*, *B3*) pra revelar uma célula\n- {{flag A1}} pra marcar ou desmarcar uma bandeira\n- {{sairminas}} pra encerrar (só quem iniciou)\n\n💡 Revele todas as células sem explodir pra vencer!"
+    },
+    {
+      "id": "ship",
+      "name": "💘 Ship",
+      "category": "brincadeiras",
+      "aliases": [
+        "ship",
+        "compatibilidade",
+        "match",
+        "casal",
+        "amor",
+        "shipar"
+      ],
+      "commands": [
+        "ship @pessoa1 @pessoa2"
+      ],
+      "description": "Descubra a compatibilidade entre dois membros do grupo! 💑\n\nComo usar:\n{{ship @pessoa1 @pessoa2}} -> gera uma imagem com a porcentagem de compatibilidade entre os dois\n\nSó funciona dentro de grupos. Marque exatamente dois membros reais."
+    },
+    {
+      "id": "acoes",
+      "name": "👉 Ações",
+      "category": "brincadeiras",
+      "aliases": [
+        "acoes",
+        "ações",
+        "reacoes",
+        "reações",
+        "acao",
+        "ação",
+        "gifreacao",
+        "abracar",
+        "abraçar",
+        "beijar",
+        "tapa",
+        "cafune",
+        "cafuné",
+        "cutucar",
+        "morder",
+        "chutar",
+        "socar",
+        "cocegas",
+        "cócegas",
+        "acenar",
+        "dancar",
+        "dançar",
+        "matar",
+        "apertar mao",
+        "hug",
+        "kiss",
+        "slap",
+        "pat",
+        "poke",
+        "bite",
+        "kick",
+        "punch",
+        "tickle",
+        "wave",
+        "dance",
+        "kill",
+        "handshake",
+        "actiontheme"
+      ],
+      "commands": [
+        "abraçar",
+        "beijar",
+        "tapa",
+        "cafuné",
+        "cutucar",
+        "morder",
+        "chutar",
+        "socar",
+        "cócegas",
+        "acenar",
+        "dançar",
+        "matar",
+        "cumprimentar",
+        "actiontheme"
+      ],
+      "description": "Manda um gif de reação animado pra outra pessoa do grupo. Pra usar, marque a pessoa (@) ou responda a mensagem dela junto com o comando — por exemplo {{hug @pessoa}} ou respondendo a uma mensagem com {{kiss}}. Se você tentar usar em si mesmo, o bot avisa e não envia o gif.\n\nComandos disponíveis: {{hug}} (abraçar), {{kiss}} (beijar), {{slap}} (dar tapa), {{pat}} (fazer cafuné), {{poke}} (cutucar), {{bite}} (morder), {{kick}} (chutar), {{punch}} (socar), {{tickle}} (fazer cócegas), {{wave}} (acenar), {{dance}} (dançar), {{kill}} (matar) e {{handshake}} (apertar a mão).\n\nOs gifs vêm de uma API com uma galeria de anime, mas cada grupo também pode ter seus próprios temas de gifs locais. Use {{actiontheme}} sozinho pra ver o tema atual e a lista de temas locais disponíveis, ou {{actiontheme <nome>}} pra trocar o tema (só admins, dentro de grupos)."
+    },
+    {
+      "id": "welcome",
+      "name": "👋 Welcome",
+      "category": "comunidades",
+      "aliases": [
+        "welcome",
+        "bemvindo",
+        "bem-vindo",
+        "boasvindas",
+        "boas-vindas",
+        "novomembro",
+        "mensagemdeboasvindas"
+      ],
+      "commands": [
+        "welcome"
+      ],
+      "description": "Dê boas-vindas pros novos membros do jeito mais maneiro possível!\n\nMande {{welcome config}} pra começar a configuração, que te guia passo a passo. Depois disso, sempre que alguém entrar no grupo eu mando um card personalizado com a foto de perfil da pessoa!\n\nMais indicado pra grupos grandes e comunidades. Em grupos pequenos de amigos, geralmente não precisa configurar."
+    },
+    {
+      "id": "niver",
+      "name": "🎂 Aniversários",
+      "category": "comunidades",
+      "aliases": [
+        "niver",
+        "aniversario",
+        "aniversário",
+        "aniversarios",
+        "aniversários",
+        "birthday",
+        "aniversariante",
+        "avisodeaniversario"
+      ],
+      "commands": [
+        "niver add",
+        "niver rm",
+        "niver horario",
+        "niver list"
+      ],
+      "description": "Cadastre os aniversários da galera do grupo e eu aviso automaticamente no dia! 🎉\n\n{{niver add DD/MM @membro}} -> cadastra (ou marque/responda a pessoa)\n{{niver rm @membro}} -> remove um aniversário cadastrado\n{{niver horario HH:MM}} -> define o horário do aviso (padrão 00:00)\n{{niver list}} -> lista todos os aniversários cadastrados no grupo\n\n💡 Só administradores podem cadastrar, remover ou mudar o horário. Só funciona em grupos."
+    },
+    {
+      "id": "add",
+      "name": "➕ Adicionar em grupo",
+      "category": "comunidades",
+      "aliases": [
+        "add",
+        "adicionar",
+        "entrar",
+        "adicionarbot",
+        "entrarnogrupo",
+        "convite",
+        "invite",
+        "participar"
+      ],
+      "commands": [
+        "add"
+      ],
+      "description": "Quer me colocar em outro grupo? Basta me enviar o link de convite do grupo que eu peço confirmação antes de entrar.\n\nSe o grupo exigir aprovação de admin, eu aviso que estou aguardando ser aceita."
+    },
+    {
+      "id": "get-info-membros",
+      "name": "👤 Info de Membros",
+      "category": "comunidades",
+      "aliases": [
+        "getpfp",
+        "get-pfp",
+        "getname",
+        "get-name",
+        "fotodeperfil",
+        "nomedeperfil",
+        "perfilmembro"
+      ],
+      "commands": [
+        "get-pfp @pessoa",
+        "get-name @pessoa"
+      ],
+      "description": "Comandos para consultar informações de membros do grupo.\n\n{{get-pfp @pessoa}} -> pega e envia a foto de perfil do membro mencionado (ou responda a mensagem dele)\n{{get-name @pessoa}} -> mostra o nome de exibição atual do membro"
+    },
+    {
+      "id": "cargos",
+      "name": "🏷️ Cargos",
+      "category": "comunidades",
+      "aliases": [
+        "cargo",
+        "cargos",
+        "role",
+        "roles",
+        "mencionar cargo",
+        "mencionar cargos",
+        "tag",
+        "tags",
+        "cargo grupo",
+        "cargos grupo"
+      ],
+      "commands": [
+        "cargo status",
+        "cargo membros <cargo>"
+      ],
+      "description": "Mencione grupos de membros do grupo usando @cargos — parecido com as roles do Discord!\n\nCrie cargos com emoji e nome, adicione membros, e mencione todo mundo do cargo de uma vez só digitando @nome_do_cargo no chat.\n\n@nome_do_cargo -> menciona todos os membros do cargo (basta digitar na mensagem)\n{{cargo status}} -> lista todos os cargos criados e quantos membros cada um tem\n{{cargo membros <nome>}} -> lista e menciona os membros de um cargo específico\n\n_Comandos de administração (somente admins):_\n{{cargo criar <nome> <emoji>}} -> cria um novo cargo\n{{cargo apagar <nome>}} -> apaga um cargo\n{{cargo emoji <nome> <emoji>}} -> muda o emoji do cargo\n{{cargo add <nome>}} -> adiciona membros mencionados ou respondidos ao cargo\n{{cargo remover <nome>}} -> remove membros do cargo\n\n💡 Os cargos são compartilhados em toda a comunidade."
+    },
+    {
+      "id": "todos-admins",
+      "name": "📢 Mencionar Todos / Admins",
+      "category": "comunidades",
+      "aliases": [
+        "todos",
+        "admins",
+        "mencionartodos",
+        "marcartodos",
+        "mencionaradmins"
+      ],
+      "commands": [
+        "todos",
+        "admins"
+      ],
+      "description": "Menciona todos os membros ou só os administradores do grupo de uma vez.\n\n{{todos}} -> menciona todos os membros do grupo (abrange toda a comunidade se vinculada)\n{{admins}} -> menciona só os administradores\n\n💡 Só administradores podem usar esses comandos."
+    },
+    {
+      "id": "converter",
+      "name": "🔄 Conversor de Arquivos",
+      "category": "utilidade",
+      "aliases": [
+        "converter",
+        "conversor",
+        "conversao",
+        "conversão",
+        "v2a",
+        "v2g",
+        "g2v",
+        "f2p",
+        "p2f",
+        "converterarquivo",
+        "mudarformato",
+        "transformararquivo",
+        "extrairaudio",
+        "videoparaaudio",
+        "videoparagif",
+        "gifparavideo",
+        "fotoparapdf",
+        "pdfparafoto",
+        "ffmpeg"
+      ],
+      "commands": [
+        "video-audio",
+        "video-gif",
+        "gif-video",
+        "foto-pdf",
+        "pdf-foto"
+      ],
+      "description": "Converte arquivos entre formatos usando ffmpeg. Mande o arquivo já com o comando na legenda, ou responda a uma mídia com o comando.\n\n{{video-audio}} -> extrai o áudio de um vídeo em mp3\n{{video-gif}} -> transforma um vídeo em gif (máx. 15s)\n{{gif-video}} -> transforma um gif em vídeo\n{{foto-pdf}} -> transforma uma foto em PDF\n{{pdf-foto}} -> transforma cada página de um PDF em foto e manda em sequência\n\n💡 Adicione `link` depois do comando (ex: {{video-audio link}}) pra receber um link de download em vez do arquivo direto no chat."
+    },
+    {
+      "id": "admin",
+      "name": "🔨 Administração",
+      "category": "adm",
+      "aliases": [
+        "admin",
+        "administracao",
+        "administração",
+        "moderacao",
+        "moderação",
+        "banir",
+        "expulsar",
+        "punir",
+        "silenciar",
+        "dessilenciar",
+        "desmutar",
+        "antiflood",
+        "limparmensagens",
+        "apagarmensagens",
+        "promote",
+        "demote",
+        "mute",
+        "unmute",
+        "antispam",
+        "cleanmsg",
+        "autoban"
+      ],
+      "commands": [
+        "ban",
+        "promote",
+        "demote",
+        "mute",
+        "unmute",
+        "close",
+        "open",
+        "antispam",
+        "cleanmsg",
+        "autoban",
+        "cargo criar <nome> <emoji>",
+        "cargo apagar <nome>",
+        "cargo emoji <nome> <emoji>",
+        "cargo add <nome>",
+        "cargo remover <nome>"
+      ],
+      "description": "Comandos de administração para manter a ordem no grupo — a maioria exige ser admin:\n\n{{ban}} -> remove alguém de todos os grupos da comunidade (mencione ou responda à mensagem)\n\n{{promote}} / {{demote}} -> promove ou remove alguém da administração (mencione ou responda)\n\n{{mute <tempo>}} / {{unmute}} -> silencia alguém, apagando as mensagens enquanto durar. O tempo é opcional (ex: {{mute 10m}}, {{mute 2h}}); sem tempo o mute é permanente até o {{unmute}}\n\n{{close}} / {{open}} -> fecha ou abre o grupo (somente admins podem enviar). Suporta agendamento com {{close agenda}}\n\n{{antispam on/off}} -> remove automaticamente quem manda muitas mensagens em pouco tempo\n\n{{cleanmsg <quantidade>}} -> apaga as últimas mensagens de alguém, até 100 de uma vez (mencione ou responda)\n\n{{autoban on/off}} -> remove automaticamente quem entra com número, DDD ou código de país bloqueado. {{autoban list}} mostra a lista, {{autoban add/remove numero|ddd|cc <valor>}} edita\n\n{{cargo criar <nome> <emoji>}} -> cria um cargo mencionável no grupo\n{{cargo apagar <nome>}} -> apaga um cargo\n{{cargo emoji <nome> <emoji>}} -> muda o emoji do cargo\n{{cargo add <nome>}} -> adiciona membros ao cargo (mencione ou responda)\n{{cargo remover <nome>}} -> remove membros do cargo"
+    },
+    {
+      "id": "linkblock",
+      "name": "🚫 Bloqueador de links desconhecidos",
+      "category": "adm",
+      "aliases": [
+        "linkblock",
+        "bloqueador de links",
+        "blocklink",
+        "bloquearlinks",
+        "antilink",
+        "antilinks",
+        "bloqueiodelinks"
+      ],
+      "commands": [
+        "linkblock"
+      ],
+      "description": "O nome já diz: não deixe nenhum safadinho mandar links suspeitos que podem te mandar para lugares desconhecidos.\n\nMas não são todos os links, alguns domínios listados aqui abaixo são permitidos:\n- youtube.com\n- youtu.be\n- instagram.com\n- twitter.com\n- x.com\n- tiktok.com\n- wikipedia.org\n- github.com\n- google.com\n- stxerr.dev\n- manybot.org\n\nEm breve vou possibilitar a configuração de quais links bloquear e de quais permitir."
+    },
+    {
+      "id": "rules",
+      "name": "📋 Regras",
+      "category": "adm",
+      "aliases": [
+        "rules",
+        "regras",
+        "regra",
+        "warn",
+        "advertencia",
+        "advertência",
+        "avisar",
+        "punir",
+        "warnmember"
+      ],
+      "commands": [
+        "rules",
+        "warn"
+      ],
+      "description": "Gerencie as regras do grupo e avise membros que as descumprirem.\n\n{{rules}} -> mostra as regras atuais\n{{rules add <texto>}} -> adiciona uma nova regra (opcional: {{rules add <texto> | penalty: <penalidade>}})\n{{rules rm <número>}} -> remove uma regra\n{{rules mv <número> up/down}} -> reordena as regras\n\n{{warn @pessoa <número da regra>}} -> envia a regra no PV da pessoa como aviso privado. Funciona bem junto com o {{welcome}} para manter novos membros informados."
+    },
+    {
+      "id": "dev utils",
+      "name": "💻 Dev Utils",
+      "category": "devutils",
+      "aliases": [
+        "lid",
+        "jid",
+        "devutils",
+        "devutil",
+        "ping"
+      ],
+      "commands": [
+        "ping",
+        "lid",
+        "jid"
+      ],
+      "description": "Comandos úteis para desenvolvedores ou quem está depurando integrações com a Many.\n\n{{ping}} -> responde com Pong! (verificação de latência)\n{{lid}} -> mencione ou responda à mensagem de alguém para ver o LID dela\n{{jid}} -> mostra o JID do grupo atual"
+    },
+    {
+      "id": "language",
+      "name": "🌐 Idioma",
+      "category": "config",
+      "aliases": [
+        "language",
+        "idioma",
+        "lingua",
+        "língua",
+        "lang",
+        "changelanguage",
+        "trocaridioma",
+        "mudaridioma",
+        "setlanguage"
+      ],
+      "commands": [
+        "language"
+      ],
+      "description": "Muda o idioma da Many para você.\n\n{{language}} -> mostra o idioma atual e os idiomas disponíveis\n{{language <código>}} -> muda o idioma (ex: {{language pt}}, {{language en}})\n\n💡 A configuração de idioma é por usuário — mudar o seu não afeta os outros."
+    },
+    {
+      "id": "cacafantasma",
+      "name": "👻 Caça-Fantasma",
+      "category": "halloween",
+      "aliases": [
+        "cacafantasma",
+        "caçafantasma",
+        "ghosthunt",
+        "fantasma",
+        "ghost",
+        "caça",
+        "catch"
+      ],
+      "commands": [
+        "caçafantasma",
+        "caça"
+      ],
+      "description": "Jogo exclusivo de Halloween — fantasmas aparecem aleatoriamente no grupo a cada 10–60 minutos. Seja o primeiro a mandar {{caça}} antes do fantasma sumir (15 segundos)!\n\nFantasmas têm 5 raridades — Comum 👻 (1pt), Incomum 🕷️ (2pts), Raro 🦇 (3pts), Épico 💀 (5pts), Lendário 🎃 (10pts). A raridade só é revelada quando capturado ou escapar.\n\nPontos são compartilhados entre a comunidade (se vinculada).\n\n{{caçafantasma}} — ver regras e ranking atual\n{{caça}} — capturar o fantasma quando aparecer\n{{caçafantasma confirm}} — ativar o jogo _(admin)_\n{{caçafantasma deactivate}} — desativar o jogo _(admin)_"
+    }
+  ],
+  "overviewCredit": "👤 _por SyntaxError! — stxerr.dev_",
+  "infoCreatorTitle": "\n👤 *Criador*",
+  "infoCreator": "   SyntaxError!\n   📞 +55 (16) 99462-0899\n   ✉️ me@stxerr.dev\n   🌐 https://stxerr.dev"
+}
+

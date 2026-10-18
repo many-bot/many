@@ -1,0 +1,6 @@
+{
+  "name": "many-help",
+  "key": "synt-xerror/many-help",
+  "description": "Help command for manybot.",
+  "main": "index.js"
+}

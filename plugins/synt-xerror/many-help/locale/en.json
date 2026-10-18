@@ -1,0 +1,692 @@
+{
+  "suggestion": "💡 \"!{{cmd}}\" doesn't exist, maybe you meant \"!{{best}}\". Try that!\n\n_Use !{{menuCmd}} to see all commands._",
+  "suggestionSpaced": "💡 \"!{{cmd}}\" doesn't exist. Try \"!{{best}}\" without a space after \"!\".\n\n_Use !{{menuCmd}} to see all commands._",
+  "spaceAfterPrefix": "💡 Don't put a space after \"!\" — it should be \"!{{cmd}}\".",
+  "punctuationComma": "💡 Don't put a comma right after the command — it should be \"!{{cmd}}\".",
+  "punctuationPeriod": "💡 Don't put a period right after the command — it should be \"!{{cmd}}\".",
+  "punctuationSemicolon": "💡 Don't put a semicolon right after the command — it should be \"!{{cmd}}\".",
+  "punctuationColon": "💡 Don't put a colon right after the command — it should be \"!{{cmd}}\".",
+  "punctuationExclamation": "💡 Don't put an exclamation mark right after the command — it should be \"!{{cmd}}\".",
+  "punctuationQuestion": "💡 Don't put a question mark right after the command — it should be \"!{{cmd}}\".",
+  "unknownCommand": "💡 \"{{cmd}}\" isn't a command. Use !{{helpCmd}} or !{{menuCmd}} to see what's available.",
+  "overviewHeader": "🤖 *Many {{version}}*\n_By *SyntaxError!* <16 99462-0899>_\n\nChoose a category:\n​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​",
+
+  "overviewInfo": "*Info:*\n- {{many info}}",
+  "overviewTip": "💡 For details, send:\n- {{help COMMAND}}\n_Replace `COMMAND` with the command you want to know more about_",
+  "categorySectionTip": "💡 For details, send:\n- {{help COMMAND}}\n_Replace `COMMAND` with the command you want to know more about_",
+  "pluginNotFound": "I couldn't find the command *{{name}}*. {{many}} to see the categories.",
+  "infoTitle": "ℹ️ *Info*\n",
+  "infoManyBotVersion": "⚙️ ManyBot version: `{{version}}`",
+  "infoManyVersion": "🤖 Many version: `{{version}}`",
+  "infoChangelog": "📋 Changelog: {{changelog}}",
+  "infoLicense": "📜 License: {{license}}",
+  "infoGroup": "💬 WhatsApp group: https://wa.manybot.org",
+  "infoSite": "🌐 Our website: https://manybot.org",
+  "infoChannel": "📢 Announcements channel: https://whatsapp.com/channel/0029Vb81rD2BvvslyeHtgp24",
+  "licenseTitle": "📜 *Terms of Use*",
+  "license1": "1. This software is provided \"as is\". The authors make no guarantees about its operation and are not responsible for misuse or any problems or damages caused by its use.",
+  "license2": "2. This is FREE software. If you paid for it in any way, ask for a refund and report it!",
+  "license3": "3. Your personal data, conversations and phone number are never sold or shared with third parties. Only Many's own messages are stored for diagnostic purposes.",
+  "licenseShort": "📜 By using this bot you agree to our terms of use (send {{license}} to read them).",
+  "addRemoved": "The add command was removed due to technical issues. If you want me to join a group, just send me the invite and I'll join.",
+  "inviteConfirmPrompt": "This looks like a group invite, would you like me to join? Reply \"yes\" or \"no\".",
+  "inviteJoined": "Done!",
+  "inviteJoinedPending": "Done, but an admin needs to approve my join request first.",
+  "inviteError401": "WhatsApp didn't let me join that group. This usually happens when I've been removed from it before.\n\nThe only way to add me now is to do it manually:\n- Add my contact\n- Tap your group name\n- Go to 'Add member'\n- Find me in your contact list and add me to the group.\n\nFor better support, you can send a message to my owner: +55 (16) 99462-0899. _He doesn't bite, don't worry_.",
+  "inviteErrorGeneric": "An error occurred while trying to join the group. You can report the problem with {{bug}} or by contacting the developer.",
+  "backtickTip": "💡 Tip: do NOT put backticks in commands. _I use them only as examples!_",
+  "chatterTip": "🤖 Looks like you're trying to chat with me! I work through commands, so I don't respond to regular messages.\n\nSend {{many}} to see everything I can do.",
+  "supportTip": "💡 Need help? Contact support:\n- Phone: 5516994620899\n- Email: manybot@pm.me\n- Our group: wa.manybot.org",
+  "greetingText": "Hey, I'm Many! 👋 The official ManyBot project bot.\n\n{{licenseShort}}\n\nTo see everything I can do:\n- {{many}}\n\nTo add me to a group:\n- {{add}}\n\nTo change the language:\n- {{language}}\n\nJoin our group if you have any questions: https://wa.manybot.org",
+  "changelogTitle": "*Changelog — Many {{version}}*",
+  "changelogAdmin": "⚙️ *Administration*\n- New: {{mute}}/{{unmute}} — silence members natively (ManyBot-level, ignores all commands)\n- New: {{todos}}/{{admins}} — mention all members or admins; {{mute all}} spans the whole community\n- New: {{close}}/{{open}} — lock or unlock groups, with scheduled close/open support\n- New: {{warn}} — send a private warning with the rule text to someone's DM\n- New: {{get-pfp}}/{{get-name}} — fetch profile photo or display name of any member\n- New: {{transcrever}} — transcribe audio messages with AI (Whisper via Groq)\n- New: @roles — mention groups of members like Discord roles",
+  "changelogConverter": "🔄 *Media & Utilities*\n- Media commands moved to their own category (separate from utilities)\n- New: {{rules}} — community rules, compatible with {{welcome}} and {{warn}}",
+  "changelogMusic": "🌐 *Language support*\n- New: {{language}} — switch Many's language per-user (pt and en available)\n- Most commands translated to pt-BR and en-US",
+  "changelogMenu": "📋 *Menu & UX*\n- Dev Utils now shown in the menu\n- Autocorrect UX improved: no longer reads as a question; also fixes commands with trailing punctuation\n- Autocorrect now only fires when the message starts with the command pattern",
+  "changelogCommunity": "👻 *Halloween*\n- New: {{caçafantasma}} — Halloween-exclusive ghost hunt game, community-wide ranking",
+  "changelogSupport": "🎲 *New commands*\n- {{roll}} — roll dice (e.g. !roll d20, !roll 2d6)\n- {{papa}} — pope holding a photo meme\n- {{brat}}, {{brat2}} — brat-style meme images\n- {{handshake}}, {{kill}} — new social actions\n- {{ship}} — compatibility between two members\n- {{minas}} — cooperative minesweeper",
+  "changelogFixes": "🔧 *Fixes & improvements*\n- Response speed improved for multiple simultaneous chats\n- ManyBot updated to v5.13\n- {{add}} command removed; just send a group invite and I'll ask for confirmation before joining",
+  "changelogBirthday": "",
+  "changelogFooter": "Other changes related to ManyBot, ManyPlug and the community:\nhttps://whatsapp.com/channel/0029Vb81rD2BvvslyeHtgp24",
+  "setupLoaded": "autocorrect loaded.",
+  "categoryLabels": {
+    "geral": "💬 General",
+    "utilidade": "🔧 Utilities",
+    "midias": "🎬 Media",
+    "jogos": "🎮 Games",
+    "brincadeiras": "🎉 Fun",
+    "comunidades": "👥 Groups/Communities",
+    "adm": "🔨 Administration",
+    "devutils": "💻 Dev Utils",
+    "config": "⚙️ Settings",
+    "halloween": "🎃 Halloween"
+  },
+  "configCommands": [
+    {
+      "name": "👋 Welcome",
+      "commands": [
+        "welcome config"
+      ]
+    },
+    {
+      "name": "➕ Counting",
+      "commands": [
+        "counting on",
+        "counting off"
+      ]
+    },
+    {
+      "name": "👉 Action Theme",
+      "commands": [
+        "actiontheme",
+        "actiontheme <name>"
+      ]
+    },
+    {
+      "name": "🌐 Language",
+      "commands": [
+        "language"
+      ]
+    }
+  ],
+  "plugins": [
+    {
+      "id": "ajuda",
+      "name": "❓ Help",
+      "category": "geral",
+      "aliases": [
+        "help",
+        "many",
+        "hello",
+        "ola",
+        "olá",
+        "ajuda",
+        "menu",
+        "comandos",
+        "comando",
+        "commands",
+        "manual",
+        "instrucoes",
+        "instruções",
+        "oi",
+        "oii",
+        "start",
+        "inicio",
+        "início",
+        "duvida",
+        "dúvida",
+        "duvidas",
+        "dúvidas",
+        "socorro",
+        "sos"
+      ],
+      "commands": [
+        "many",
+        "help"
+      ],
+      "description": "Not sure what I do? It's simple:\n\n{{many}} -> shows the command categories\n{{many category name}} -> shows the commands in that category\n{{help command name}} -> explains a specific command in detail\n\nExample: send {{help figurinha}} to learn how to create stickers, or {{many jogos}} to see the available games.\n\nI also respond to: {{ola}}, {{hello}}, {{ajuda}}\n\n💡 If more than 3 days go by without talking to me, I'll introduce myself again when you come back — just so you don't forget me :3!"
+    },
+    {
+      "id": "colabore",
+      "name": "❤️ Contribute!",
+      "category": "geral",
+      "aliases": [
+        "bug",
+        "report",
+        "colabore",
+        "reportar",
+        "reportarbug",
+        "sugestao",
+        "sugestão",
+        "feedback",
+        "erro",
+        "problema",
+        "reclamacao",
+        "reclamação",
+        "contribuir",
+        "doar",
+        "apoiar",
+        "dev",
+        "developer"
+      ],
+      "commands": [
+        "bug",
+        "sugestao"
+      ],
+      "description": "Spotted a bug and want to report it? Send:\n{{bug description of the problem}}\nThis sends the last 10 messages from the chat along with your description to the developers, with no personal information like your number, name or ID.\n\nWant to suggest a new command or feature for Many?\n{{sugestao description of your suggestion}}\nThis sends your suggestion directly to the developers!\n\n💡 If needed, developers can reply to you directly about the report, without exposing your personal data to them.\n\nThank you for wanting to support the project!! ❤️❤️"
+    },
+    {
+      "id": "figurinha",
+      "name": "🖼️ Stickers",
+      "category": "utilidade",
+      "aliases": [
+        "figurinha",
+        "figurinhas",
+        "sticker",
+        "stickers",
+        "f",
+        "lote",
+        "figura",
+        "figuras",
+        "criarfigurinha",
+        "fazerfigurinha",
+        "extrairfigurinha",
+        "webp",
+        "transparente"
+      ],
+      "commands": [
+        "f",
+        "f extrair",
+        "f lote"
+      ],
+      "description": "Turns any image, video or GIF into a WhatsApp sticker. You can also extract the image from stickers using {{f extrair}}.\n\nTwo ways to use it:\n\n*Quick:* send an image with {{f}} as the caption, or reply to an already-sent image with the command.\n\n*Batch:* send {{f lote}} to open a session. Then just send up to 30 media files in a row, different types if you want. When you're done, send {{f lote criar}} and I'll convert them all at once! To cancel, send {{f lote parar}}.\n\n💡 Tip: to create transparent stickers, send the image as a document:\n\n1. Tap the clip 📎 (next to the camera)\n2. Choose the transparent image (PNG)\n3. Put {{f}} as the caption\n4. Send!\n\nThis also works for documents sent earlier: just reply to them with the command, no need to resend.\n\n✏️ To edit the sticker name and pack, use {{f edit pack <name>}}, {{f edit autor <name>}} or {{f edit reset}} to restore the default."
+    },
+    {
+      "id": "baixar videos ou audios",
+      "name": "📺 Download Videos or Audio",
+      "category": "utilidade",
+      "aliases": [
+        "manymedia",
+        "media",
+        "video",
+        "vídeo",
+        "audio",
+        "áudio",
+        "download",
+        "baixar",
+        "baixarvideo",
+        "baixaraudio",
+        "linkdownload",
+        "downloadlink",
+        "salvarvideo",
+        "salvaraudio",
+        "ytdl",
+        "youtubedownload",
+        "tiktokdownload",
+        "instagramdownload",
+        "reelsdownload"
+      ],
+      "commands": [
+        "baixar-video",
+        "baixar-audio"
+      ],
+      "description": "Downloads videos and music from links and sends you a download link! 📥\n\nWorks with YouTube, Instagram, TikTok, Reddit and much more.\n\nHow to use:\n{{baixar-video video link}} -> downloads the video\n{{baixar-audio video link}} -> downloads audio only (great for music!)\n\nExample:\n{{video https://www.youtube.com/watch?v=dQw4w9WgXcQ}}\n\n💡 Tip: paste the link together with the command, in the same message."
+    },
+    {
+      "id": "manyai",
+      "name": "🤖 Many AI",
+      "category": "utilidade",
+      "aliases": [
+        "manyai",
+        "manyia",
+        "ai",
+        "ia",
+        "inteligenciaartificial",
+        "chatbot",
+        "gpt",
+        "assistente",
+        "perguntar",
+        "chat",
+        "transcrever",
+        "transcription",
+        "whisper"
+      ],
+      "commands": [
+        "transcrever"
+      ],
+      "description": "Ask me anything and I'll answer with AI! 🧠\n\nIt can be anything: questions, summaries, translations, explanations, fun facts... Just ask!\n\nRemember to mention \"Many\" in your message, otherwise she won't know you're talking to her.\n\n*Audio transcription:*\nReply to any audio with {{transcrever}} and I'll convert it to text using AI (Whisper via Groq)."
+    },
+    {
+      "id": "musica e videos",
+      "name": "▶️ Play Music & Videos",
+      "category": "utilidade",
+      "aliases": [
+        "mp3",
+        "mp4",
+        "musica",
+        "música",
+        "tocarmusica",
+        "playlist",
+        "play",
+        "ouvirmusica",
+        "baixarmusica",
+        "somdomp3",
+        "musicadownload"
+      ],
+      "commands": [
+        "mp3",
+        "mp4"
+      ],
+      "description": "Downloads audio and video from a search term or link, and sends it directly here in the chat — no need to open any links. Also plays saved playlists.\n\nHow to use:\n{{mp3 term or song name}} -> sends the audio\n{{mp4 term or video link}} -> sends the video\n\nPlaylists (audio only):\n{{mp3 playlist}} -> creates a new one\n{{mp3 playlist <name> add <term>}} -> adds a song\n{{mp3 playlist <name>}} -> plays the whole playlist\n{{mp3 playlist <name> info}} -> lists the songs\n{{mp3 playlist <name> zip}} -> sends everything as a .zip\n{{mp3 playlist list}} -> lists your playlists\n\nExamples:\n{{mp3 minecraft rap}}\n{{mp4 https://youtu.be/dQw4w9WgXcQ}}\n\n💡 Difference from {{video}}/{{audio}}: those send you a download link — here the audio or video arrives ready in the chat."
+    },
+    {
+      "id": "forca",
+      "name": "🎮 Hangman",
+      "category": "jogos",
+      "aliases": [
+        "forca",
+        "hangman",
+        "jogodaforca",
+        "palavrasecreta",
+        "adivinharpalavra"
+      ],
+      "commands": [
+        "forca"
+      ],
+      "description": "The classic hangman game, right here on WhatsApp! 🪢\n\nHow to play:\n{{forca começar}} -> starts a match\nThen just send one letter per message to try to guess the word\n{{forca parar}} -> cancels the current match\n\n💡 Watch out — guesses are limited!"
+    },
+    {
+      "id": "adivinhacao",
+      "name": "🎮 Number Guessing",
+      "category": "jogos",
+      "aliases": [
+        "adivinhacao",
+        "adivinhação",
+        "adivinhar",
+        "numero",
+        "número",
+        "adivinhe",
+        "jogodonumero",
+        "numerosecreto",
+        "chuteonumero"
+      ],
+      "commands": [
+        "adivinhacao"
+      ],
+      "description": "Guess the number I'm thinking of! 🔢\n\nHow to play:\n{{adivinhacao começar}} -> I pick a secret number\nThen just send a number per message to try to guess\nI'll tell you if it's higher or lower, until you get it right!\n{{adivinhacao parar}} -> gives up on the current match"
+    },
+    {
+      "id": "counting",
+      "name": "➕ Counting",
+      "category": "jogos",
+      "aliases": [
+        "counting",
+        "couting",
+        "contagem",
+        "contando",
+        "jogodacontagem",
+        "contar"
+      ],
+      "commands": [
+        "counting"
+      ],
+      "description": "Counting game:\n\nSend the next number in the sequence.\nYou can't count twice in a row — you have to wait for someone else to continue.\nAny mistake resets the count!\n\n*Setup:*\n\n{{counting on}} - enables the game in the current group\n{{counting off}} - disables the game in the current group"
+    },
+    {
+      "id": "gerador de memes",
+      "name": "🤡 Meme Generator",
+      "category": "brincadeiras",
+      "aliases": [
+        "quote",
+        "brat",
+        "brat2",
+        "simples",
+        "classico",
+        "clássico",
+        "desmot",
+        "papa",
+        "meme",
+        "memes",
+        "gerarmeme",
+        "criarmeme",
+        "frase",
+        "citacao",
+        "citação",
+        "poster",
+        "desmotivacional",
+        "papameme",
+        "popememe",
+        "pope",
+        "papaholdingmeme"
+      ],
+      "commands": [
+        "quote",
+        "brat",
+        "brat2",
+        "classico",
+        "simples",
+        "desmot",
+        "papa"
+      ],
+      "description": "{{quote}} -> reply to a text message. I turn it into a historical-quote style image, with the sender's profile photo.\n\n{{brat}} -> reply to a text or send it with the command ({{brat my cool text}}). Turns the text into a brat-style image.\n\n{{classico}} -> reply to or send a video/photo/gif/sticker, with two phrases separated by `/`: one goes above and the other below the image. Example: {{classico top text / bottom text}}\n\n{{simples}} -> reply to an image/photo/gif/sticker with a single phrase that goes on top. Example: {{simples when they put a meme inside a many tutorial}}\n\n{{desmot}} -> reply to or send a video/photo/gif/sticker, with a title and caption separated by `/`. Generates a demotivational-poster style image: black frame, framed image and text below. Example: {{desmot WHAT / my caption here}}\n\n{{papa}} -> generates the pope holding a photo meme. Three ways to use it:\n- {{papa}} alone: uses your own profile photo\n- {{papa @person}} or replying to someone's text message: uses that person's profile photo\n- Replying to an image or sending an image with {{papa}} as the caption: uses the image provided"
+    },
+    {
+      "id": "jogo da velha",
+      "name": "❌ Tic-Tac-Toe",
+      "category": "jogos",
+      "aliases": [
+        "velha",
+        "jogodavelha",
+        "tictactoe",
+        "tic tac toe",
+        "tic-tac-toe",
+        "ttt",
+        "jogovelha"
+      ],
+      "commands": [
+        "velha"
+      ],
+      "description": "Reply to the message of the person you want to challenge with {{velha}}. To play, each player types the coordinate where they want to place their piece. Example: column A and row 2 -> A2 or 2A. Simple as that."
+    },
+    {
+      "id": "acoes",
+      "name": "👉 Actions",
+      "category": "brincadeiras",
+      "aliases": [
+        "acoes",
+        "ações",
+        "reacoes",
+        "reações",
+        "acao",
+        "ação",
+        "gifreacao",
+        "abracar",
+        "abraçar",
+        "beijar",
+        "tapa",
+        "cafune",
+        "cafuné",
+        "cutucar",
+        "morder",
+        "chutar",
+        "socar",
+        "cocegas",
+        "cócegas",
+        "acenar",
+        "dancar",
+        "dançar",
+        "hug",
+        "kiss",
+        "slap",
+        "pat",
+        "poke",
+        "bite",
+        "kick",
+        "punch",
+        "tickle",
+        "wave",
+        "dance",
+        "actiontheme"
+      ],
+      "commands": [
+        "hug",
+        "kiss",
+        "slap",
+        "pat",
+        "poke",
+        "bite",
+        "kick",
+        "punch",
+        "tickle",
+        "wave",
+        "dance",
+        "kill",
+        "handshake"
+      ],
+      "description": "Sends an animated reaction gif to another person in the group. To use it, mention (@) the person or reply to their message with the command — for example {{hug @person}} or by replying to a message with {{kiss}}. If you try to use it on yourself, the bot will warn you and won't send the gif.\nAvailable commands: {{hug}}, {{kiss}}, {{slap}}, {{pat}}, {{poke}}, {{bite}}, {{kick}}, {{punch}}, {{tickle}}, {{wave}} and {{dance}}. Gifs come from an anime gallery API, but each group can also have its own local gif themes.\nUse {{actiontheme}} alone to see the current theme and the list of available local themes, or {{actiontheme <name>}} to switch the theme used by the commands above. Switching themes can only be done by administrators when used inside a group."
+    },
+    {
+      "id": "welcome",
+      "name": "👋 Welcome",
+      "category": "comunidades",
+      "aliases": [
+        "welcome",
+        "bemvindo",
+        "bem-vindo",
+        "boasvindas",
+        "boas-vindas",
+        "novomembro",
+        "mensagemdeboasvindas"
+      ],
+      "commands": [
+        "welcome"
+      ],
+      "description": "Welcome new members in the coolest way possible!\n\nSend {{welcome config}} to start the setup wizard, which guides you step by step. After that, whenever someone joins the group I'll send a personalized card with their profile photo!\n\nBest suited for large groups and communities. In small friend groups, you usually don't need to set it up."
+    },
+    {
+      "id": "linkblock",
+      "name": "🚫 Unknown Link Blocker",
+      "category": "adm",
+      "aliases": [
+        "linkblock",
+        "bloqueador de links",
+        "blocklink",
+        "bloquearlinks",
+        "antilink",
+        "antilinks",
+        "bloqueiodelinks"
+      ],
+      "commands": [
+        "linkblock"
+      ],
+      "description": "The name says it all: don't let anyone send suspicious links that could take you to unknown places.\n\nBut not all links are blocked — some allowed domains are listed below:\n- youtube.com\n- youtu.be\n- instagram.com\n- twitter.com\n- x.com\n- tiktok.com\n- wikipedia.org\n- github.com\n- google.com\n- stxerr.dev\n- manybot.org\n\nSoon I'll allow you to configure which links to block and which to allow."
+    },
+    {
+      "id": "cargos",
+      "name": "🏷️ Roles",
+      "category": "comunidades",
+      "aliases": [
+        "cargo",
+        "cargos",
+        "role",
+        "roles",
+        "mention role",
+        "mention roles",
+        "tag",
+        "tags",
+        "group role",
+        "group roles"
+      ],
+      "commands": [
+        "cargo status",
+        "cargo membros <role>"
+      ],
+      "description": "Mention groups of members using @roles — just like Discord roles!\n\nCreate roles with an emoji and name, add members, and mention everyone in a role at once by typing @role_name in chat.\n\n@role_name -> mentions all members of that role (just type it in any message)\n{{cargo status}} -> lists all created roles and how many members each has\n{{cargo membros <name>}} -> lists and mentions the members of a specific role\n\n_Admin commands (admins only):_\n{{cargo criar <name> <emoji>}} -> creates a new role\n{{cargo apagar <name>}} -> deletes a role\n{{cargo emoji <name> <emoji>}} -> changes the role's emoji\n{{cargo add <name>}} -> adds mentioned or replied members to the role\n{{cargo remover <name>}} -> removes members from the role\n\n💡 Roles are shared across the whole community."
+    },
+    {
+      "id": "rules",
+      "name": "📋 Rules",
+      "category": "adm",
+      "aliases": [
+        "rules",
+        "regras",
+        "regra",
+        "warn",
+        "advertencia",
+        "advertência",
+        "avisar",
+        "punir",
+        "warnmember"
+      ],
+      "commands": [
+        "rules",
+        "warn"
+      ],
+      "description": "Manage the group's rules and warn members who break them.\n\n{{rules}} -> shows the current rules\n{{rules add <text>}} -> adds a new rule (optionally with penalty: {{rules add <text> | penalty: <penalty>}})\n{{rules rm <number>}} -> removes a rule\n{{rules mv <number> up/down}} -> reorders rules\n\n{{warn @person <rule number>}} -> sends the rule to the person's DM as a private warning. Works great alongside {{welcome}} to keep new members informed."
+    },
+    {
+      "id": "niver",
+      "name": "🎂 Birthdays",
+      "category": "comunidades",
+      "aliases": [
+        "niver",
+        "aniversario",
+        "aniversário",
+        "aniversarios",
+        "aniversários",
+        "birthday",
+        "aniversariante",
+        "avisodeaniversario"
+      ],
+      "commands": [
+        "niver add",
+        "niver rm",
+        "niver horario",
+        "niver list"
+      ],
+      "description": "Register group members' birthdays and I'll automatically notify everyone on the day! 🎉\n\n{{niver add DD/MM @member}} -> registers (or mention/reply to the person)\n{{niver rm @member}} -> removes a registered birthday\n{{niver horario HH:MM}} -> sets the notification time (default 00:00)\n{{niver list}} -> lists all birthdays registered in the group\n\n💡 Only administrators can register, remove or change the time. Only works in groups."
+    },
+    {
+      "id": "add",
+      "name": "➕ Add to Group",
+      "category": "comunidades",
+      "aliases": [
+        "add",
+        "adicionar",
+        "entrar",
+        "adicionarbot",
+        "entrarnogrupo",
+        "convite",
+        "invite",
+        "participar"
+      ],
+      "commands": [
+        "add"
+      ],
+      "description": "Want to add me to another group? Just send me the group invite link and I'll ask for confirmation before joining.\n\nIf the group requires admin approval, I'll let you know that I'm waiting to be accepted."
+    },
+    {
+      "id": "converter",
+      "name": "🔄 File Converter",
+      "category": "utilidade",
+      "aliases": [
+        "converter",
+        "conversor",
+        "conversao",
+        "conversão",
+        "v2a",
+        "v2g",
+        "g2v",
+        "f2p",
+        "p2f",
+        "converterarquivo",
+        "mudarformato",
+        "transformararquivo",
+        "extrairaudio",
+        "videoparaaudio",
+        "videoparagif",
+        "gifparavideo",
+        "fotoparapdf",
+        "pdfparafoto",
+        "ffmpeg"
+      ],
+      "commands": [
+        "video-audio",
+        "video-gif",
+        "gif-video",
+        "foto-pdf",
+        "pdf-foto"
+      ],
+      "description": "Converts files between formats using ffmpeg. Send the file with the command as the caption, or reply to a media file with the command.\n\n{{video-audio}} -> extracts audio from a video as mp3\n{{video-gif}} -> turns a video into a gif (max 15s)\n{{gif-video}} -> turns a gif into a video\n{{foto-pdf}} -> turns a photo into a PDF\n{{pdf-foto}} -> turns each page of a PDF into a photo and sends them in sequence\n\n💡 Add `link` after the command (e.g. {{video-audio link}}) to receive a download link instead of the file directly in the chat."
+    },
+    {
+      "id": "admin",
+      "name": "🔨 Administration",
+      "category": "adm",
+      "aliases": [
+        "admin",
+        "administracao",
+        "administração",
+        "moderacao",
+        "moderação",
+        "banir",
+        "expulsar",
+        "punir",
+        "silenciar",
+        "dessilenciar",
+        "desmutar",
+        "antiflood",
+        "limparmensagens",
+        "apagarmensagens",
+        "promote",
+        "demote",
+        "mute",
+        "unmute",
+        "antispam",
+        "cleanmsg",
+        "autoban"
+      ],
+      "commands": [
+        "ban",
+        "promote",
+        "demote",
+        "mute",
+        "unmute",
+        "todos",
+        "admins",
+        "close",
+        "open",
+        "antispam",
+        "cleanmsg",
+        "autoban",
+        "get-pfp",
+        "get-name",
+        "transcrever",
+        "cargo criar <name> <emoji>",
+        "cargo apagar <name>",
+        "cargo emoji <name> <emoji>",
+        "cargo add <name>",
+        "cargo remover <name>"
+      ],
+      "description": "Administration commands to keep order in the group — most require admin rights:\n\n{{ban}} -> removes someone from every group in the community (mention or reply)\n\n{{promote}} / {{demote}} -> grants or removes admin rights (mention or reply)\n\n{{mute <time>}} / {{unmute}} -> silences someone, deleting their messages while it lasts. Time is optional (e.g. {{mute 10m}}, {{mute 2h}}); without it the mute is permanent until {{unmute}}\n\n{{todos}} / {{admins}} -> mentions all members or only admins in the group. {{mute all}} spans the whole community\n\n{{close}} / {{open}} -> locks or unlocks the group (admins-only mode). Supports scheduled close/open with {{close agenda}}\n\n{{antispam on/off}} -> automatically removes anyone who sends too many messages in a short period\n\n{{cleanmsg <count>}} -> deletes someone's last messages, up to 100 at a time (mention or reply)\n\n{{autoban on/off}} -> auto-removes anyone who joins with a blocked number, area code or country code. {{autoban list}} shows the list, {{autoban add/remove numero|ddd|cc <value>}} edits it\n\n{{get-pfp @person}} -> gets someone's profile photo\n\n{{get-name @person}} -> gets someone's display name\n\n{{transcrever}} -> reply to an audio message to transcribe it using AI (Whisper/Groq)\n\n{{cargo criar <name> <emoji>}} -> creates a mentionable role in the group\n{{cargo apagar <name>}} -> deletes a role\n{{cargo emoji <name> <emoji>}} -> changes the role emoji\n{{cargo add <name>}} -> adds members to the role (mention or reply)\n{{cargo remover <name>}} -> removes members from the role"
+    },
+    {
+      "id": "dev utils",
+      "name": "💻 Dev Utils",
+      "category": "devutils",
+      "aliases": [
+        "lid",
+        "jid",
+        "devutils",
+        "devutil",
+        "ping"
+      ],
+      "commands": [
+        "ping",
+        "lid",
+        "jid"
+      ],
+      "description": "Useful commands for developers or anyone debugging Many integrations.\n\n{{ping}} -> replies with Pong! (latency check)\n{{lid}} -> mention or reply to someone to see their LID\n{{jid}} -> shows the JID of the current group"
+    },
+    {
+      "id": "language",
+      "name": "🌐 Language",
+      "category": "config",
+      "aliases": [
+        "language",
+        "idioma",
+        "lingua",
+        "lang",
+        "changelanguage",
+        "setlanguage"
+      ],
+      "commands": [
+        "language"
+      ],
+      "description": "Change Many's language for you.\n\n{{language}} -> shows the current language and available languages\n{{language <code>}} -> changes the language (e.g. {{language pt}}, {{language en}})\n\n💡 Language is per-user — changing yours doesn't affect others."
+    },
+    {
+      "id": "cacafantasma",
+      "name": "👻 Ghost Hunt",
+      "category": "halloween",
+      "aliases": [
+        "cacafantasma",
+        "caçafantasma",
+        "ghosthunt",
+        "fantasma",
+        "ghost",
+        "catch",
+        "caça"
+      ],
+      "commands": [
+        "ghosthunt",
+        "catch"
+      ],
+      "description": "Halloween-exclusive game — ghosts appear randomly in the group every 10–60 minutes. Be the first to send {{catch}} before the ghost vanishes (15 seconds)!\n\nGhosts have 5 rarities — Common 👻 (1pt), Uncommon 🕷️ (2pts), Rare 🦇 (3pts), Epic 💀 (5pts), Legendary 🎃 (10pts). Rarity is only revealed when caught or escaped.\n\nPoints are shared across the community (if linked).\n\n{{ghosthunt}} — view rules and current ranking\n{{catch}} — catch the ghost when it appears\n{{ghosthunt confirm}} — enable the game _(admin)_\n{{ghosthunt deactivate}} — disable the game _(admin)_"
+    }
+  ],
+  "overviewCredit": "👤 _by SyntaxError! — stxerr.dev_",
+  "infoCreatorTitle": "\n👤 *Creator*",
+  "infoCreator": "   SyntaxError!\n   📞 +55 (16) 99462-0899\n   ✉️ me@stxerr.dev\n   🌐 https://stxerr.dev"
+}
+
