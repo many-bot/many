@@ -1,0 +1,15 @@
+{
+  "name": "admin",
+  "key": "synt-xerror/admin",
+  "version": "1.0.0",
+  "description": "admin plugin for ManyBot",
+  "category": "utility",
+  "author": {
+    "name": "synt-xerror"
+  },
+  "license": "MIT",
+  "repo": "https://github.com/synt-xerror/admin.many",
+  "main": "dist/index.js",
+  "dependencies": {},
+  "externalDependencies": {}
+}
