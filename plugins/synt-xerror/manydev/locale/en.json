@@ -1,7 +1,7 @@
 {
-  "plugin": {
-    "name": "manydev",
-    "description": "manydev plugin for ManyBot"
-  },
-  "commands": {}
+  "lidMissingTarget": "Mention someone or reply to a message.",
+  "lidResult": "{{name}}'s LID is:\n{{id}}",
+  "jidGroupOnly": "This command only works in groups.",
+  "jidResult": "This chat's JID is:\n{{id}}"
 }
+

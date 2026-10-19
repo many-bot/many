@@ -3,30 +3,38 @@
 
 /** @param {import('@manybot/types').PluginContext} ctx */
 export default async function (ctx) {
-  const { msg, chat } = ctx;
+  const { msg, chat, contacts } = ctx;
+  const { t } = ctx.i18n.createT(import.meta.url);
 
   if (msg.is("lid")) {
     const reply = await msg.getReply();
+    const mentionedId = msg.mentionedJid?.[0];
 
-    if (!reply) {
-      await msg.reply.text("Você precisa responder a uma mensagem.");
+    let cont = null;
+    if (reply) {
+      cont = await reply.getContact();
+    } else if (mentionedId) {
+      cont = await contacts.get(mentionedId).catch(() => null);
+    }
+
+    if (!cont) {
+      await msg.reply.text(t("lidMissingTarget"));
       return;
     }
 
-    const cont = await reply.getContact();
-
     await msg.reply.text(
-      `O LID do usuário ${cont.mention.text} é:\n${cont.id}`,
+      t("lidResult", { name: cont.mention.text, id: cont.id }),
       cont.mention
     );
   }
-  
+
   if (msg.is("jid")) {
     if (!chat.isGroup) {
-      await msg.reply.text("Esse comando só funciona em grupos.");
+      await msg.reply.text(t("jidGroupOnly"));
       return;
     }
 
-    await msg.reply.text(`O JID desse chat é:\n${chat.id}`);
+    await msg.reply.text(t("jidResult", { id: chat.id }));
   }
 }
+

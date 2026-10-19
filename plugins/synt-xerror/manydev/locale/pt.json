@@ -1,7 +1,7 @@
 {
-  "plugin": {
-    "name": "manydev",
-    "description": "Plugin manydev para ManyBot"
-  },
-  "commands": {}
+  "lidMissingTarget": "Marque alguém ou responda a uma mensagem.",
+  "lidResult": "O LID do usuário {{name}} é:\n{{id}}",
+  "jidGroupOnly": "Esse comando só funciona em grupos.",
+  "jidResult": "O JID desse chat é:\n{{id}}"
 }
+
