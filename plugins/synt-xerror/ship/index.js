@@ -25,6 +25,9 @@ const FONT_DEFS = [
   { path: join(__dirname, "fonts", "NotoSansBamum-Regular.ttf"), family: "ShipBamum" },
   { path: join(__dirname, "fonts", "NotoSerifKhitanSmallScript-Regular.ttf"), family: "ShipKhitan" },
   { path: join(__dirname, "fonts", "STIXTwoMath-Regular.ttf"), family: "ShipMath" },
+  // Display font usada só no número do score (% grande) — Anton (Google
+  // Fonts, OFL), condensada/black, legível em qualquer tamanho grande.
+  { path: join(__dirname, "fonts", "Anton-Regular.ttf"), family: "ShipScore" },
 ];
 for (const { path, family } of FONT_DEFS) {
   if (existsSync(path)) {
@@ -33,6 +36,7 @@ for (const { path, family } of FONT_DEFS) {
   }
 }
 const FONT_STACK = `"ShipSans", "ShipEmoji", "ShipBamum", "ShipKhitan", "ShipMath", sans-serif`;
+const SCORE_FONT_STACK = `"ShipScore", ${FONT_STACK}`;
 
 const WIDTH = 900;
 const HEIGHT = 560;
@@ -50,7 +54,8 @@ const BAR_Y = HEIGHT - 70;
 const COLOR_STOPS = [
   { at: 0, color: [21, 101, 192] },
   { at: 50, color: [142, 36, 170] },
-  { at: 85, color: [229, 57, 53] },
+  { at: 80, color: [229, 57, 53] },
+  { at: 90, color: [255, 20, 147] },
   { at: 100, color: [255, 20, 147] },
 ];
 
@@ -69,8 +74,8 @@ export default async function (ctx) {
     return;
   }
 
-  const jids = ctx.msg.mentionedJid;
-  if (!ctx.msg.hasMention || jids.length !== 2) {
+  const jids = await resolveShipJids(ctx);
+  if (!jids) {
     await ctx.msg.reply.text(t("error.mentions"));
     return;
   }
@@ -95,7 +100,7 @@ export default async function (ctx) {
 
   // Shippar com o próprio bot é sempre 0% — não entra na persistência nem
   // no histórico, é sempre recalculado (ou melhor, nunca calculado).
-  const isBotMention = ctx.msg.hasBotMention;
+  const isBotMention = jids.includes(ctx.botId);
   const score = isBotMention
     ? 0
     : resolveScore(ctx, jids[0], jids[1], names[0], names[1]);
@@ -116,6 +121,27 @@ export default async function (ctx) {
   const caption = buildCaption(t, score, contacts[0], contacts[1], isBotMention);
   const mentions = [...contacts[0].mention.mentions, ...contacts[1].mention.mentions];
   await ctx.msg.reply.image(imageBuffer, caption, { mentions });
+}
+
+// ── Resolução dos dois alvos ──────────────────────────────────────────────
+//
+// Formas aceitas:
+// - !ship @membro1 @membro2            (duas menções)
+// - respondendo msg de membro1 + !ship @membro2   (reply + uma menção)
+
+async function resolveShipJids(ctx) {
+  const mentioned = ctx.msg.hasMention ? ctx.msg.mentionedJid : [];
+
+  if (mentioned.length === 2) return mentioned;
+
+  if (mentioned.length === 1) {
+    const replied = await ctx.msg.getReply();
+    if (replied?.sender && replied.sender !== mentioned[0]) {
+      return [replied.sender, mentioned[0]];
+    }
+  }
+
+  return null;
 }
 
 // ── Legenda com @menção e frase divertida por faixa de score ────────────────
@@ -454,30 +480,41 @@ async function renderShipImage({ names, avatarPaths, score }) {
     c.stroke();
   }
 
+  // Texto sempre com contorno + cor escolhida pela luminância do fundo —
+  // nunca interpolar a cor do texto a partir da cor do fundo (score alto
+  // = fundo vermelho/rosa, texto também tendendo a vermelho = some).
+  const textIsLight = luminance(bgColor) <= 140;
+  const nameFill = textIsLight ? "#fff" : "#111";
+  const nameStroke = textIsLight ? "rgba(0,0,0,0.65)" : "rgba(255,255,255,0.75)";
+
   c.font = `32px ${FONT_STACK}`;
   c.textAlign = "center";
   c.textBaseline = "alphabetic";
-  c.fillStyle = "#fff";
-  c.fillText(truncateText(c, names[0], NAME_MAX_WIDTH), AVATAR_LEFT_X, NAME_Y);
-  c.fillText(truncateText(c, names[1], NAME_MAX_WIDTH), AVATAR_RIGHT_X, NAME_Y);
+  c.lineJoin = "round";
+  c.lineWidth = 4;
+  c.strokeStyle = nameStroke;
+  c.fillStyle = nameFill;
+  for (const [name, x] of [[names[0], AVATAR_LEFT_X], [names[1], AVATAR_RIGHT_X]]) {
+    const text = truncateText(c, name, NAME_MAX_WIDTH);
+    c.strokeText(text, x, NAME_Y);
+    c.fillText(text, x, NAME_Y);
+  }
 
   const fontSize = Math.round(lerp(70, 120, score / 100));
-  c.font = `bold ${fontSize}px ${FONT_STACK}`;
+  c.font = `${fontSize}px ${SCORE_FONT_STACK}`;
   c.textAlign = "center";
   c.textBaseline = "middle";
+  c.lineJoin = "round";
 
   const label = `${score}%`;
+  const scoreFill = score === 100 ? "#ff1493" : textIsLight ? "#fff" : "#111";
+  const scoreStroke = textIsLight ? "rgba(0,0,0,0.75)" : "rgba(255,255,255,0.8)";
 
-  if (score === 100) {
-    c.lineWidth = 8;
-    c.strokeStyle = "#000";
-    c.strokeText(label, WIDTH / 2, SCORE_Y);
-    c.fillStyle = "#ff1493";
-    c.fillText(label, WIDTH / 2, SCORE_Y);
-  } else {
-    c.fillStyle = rgb(lerpColor([255, 255, 255], [229, 57, 53], score / 100));
-    c.fillText(label, WIDTH / 2, SCORE_Y);
-  }
+  c.lineWidth = Math.round(fontSize * 0.09);
+  c.strokeStyle = scoreStroke;
+  c.strokeText(label, WIDTH / 2, SCORE_Y);
+  c.fillStyle = scoreFill;
+  c.fillText(label, WIDTH / 2, SCORE_Y);
 
   drawProgressBar(c, score, bgColor);
 
