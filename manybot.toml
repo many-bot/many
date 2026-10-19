@@ -181,6 +181,7 @@ AUTOCORRECT_COMMANDS = [
   "close",
   "transcrever",
   "minas",
+  "ghosthunt",
   "open"
 ]
 
