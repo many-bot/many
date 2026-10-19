@@ -29,7 +29,7 @@ const MODES = {
 const DEFAULT_MODE_GROUP   = "medio";
 const DEFAULT_MODE_PRIVATE = "facil";
 
-const GAME_TTL_MS = 60 * 60 * 1000;
+const GAME_TTL_MS = 30 * 60000;
 
 // ─── Emojis ──────────────────────────────────────────────────────────────────
 
@@ -287,6 +287,9 @@ export async function setup(ctx) {
  */
 export default async function (ctx) {
   const { t } = ctx.i18n.createT(import.meta.url);
+  // Rodapé com os comandos (!flag / !sairminas) repetido em toda mensagem
+  // da partida, pra ninguém precisar rolar até a mensagem inicial.
+  const footer = "\n\n" + t("instrucoes");
 
   // ── !minas [modo] ────────────────────────────────────────────────────────────
   if (ctx.msg.is("minas")) {
@@ -309,8 +312,7 @@ export default async function (ctx) {
       t("iniciada", { modo: mode.label, minas: mode.mines }) +
         "\n\n" +
         renderBoard({ ...game, cells: buildHiddenCells(mode.cols, mode.rows) }) +
-        "\n\n" +
-        t("instrucoes")
+        footer
     );
     return;
   }
@@ -334,12 +336,12 @@ export default async function (ctx) {
 
     const coordStr = ctx.msg.args.join(" ");
     const coord = parseCoord(coordStr, game.cols, game.rows);
-    if (!coord) return void (await ctx.msg.reply.text(t("coordInvalida")));
+    if (!coord) return void (await ctx.msg.reply.text(t("coordInvalida") + footer));
 
     const key = cellKey(coord.col, coord.row);
     const cell = game.cells?.[key];
     if (!cell) return;
-    if (cell.revealed) return void (await ctx.msg.reply.text(t("celulaRevelada")));
+    if (cell.revealed) return void (await ctx.msg.reply.text(t("celulaRevelada") + footer));
 
     cell.flagged = !cell.flagged;
     game.flags += cell.flagged ? 1 : -1;
@@ -347,7 +349,7 @@ export default async function (ctx) {
 
     const boardTxt = renderBoard(game);
     const remaining = game.mines - game.flags;
-    await ctx.send.text(boardTxt + "\n\n" + t("bandeiras", { restantes: remaining }));
+    await ctx.send.text(boardTxt + "\n\n" + t("bandeiras", { restantes: remaining }) + footer);
     return;
   }
 
@@ -366,8 +368,8 @@ export default async function (ctx) {
   }
 
   const cell = game.cells[key];
-  if (cell.revealed) return void (await ctx.msg.reply.text(t("celulaRevelada")));
-  if (cell.flagged)  return void (await ctx.msg.reply.text(t("celulaFlagged", { coord: ctx.msg.body.trim().toUpperCase() })));
+  if (cell.revealed) return void (await ctx.msg.reply.text(t("celulaRevelada") + footer));
+  if (cell.flagged)  return void (await ctx.msg.reply.text(t("celulaFlagged", { coord: ctx.msg.body.trim().toUpperCase() }) + footer));
 
   if (cell.mine) {
     // Derrota
@@ -394,7 +396,7 @@ export default async function (ctx) {
 
   const remaining = game.mines - game.flags;
   await ctx.send.text(
-    renderBoard(game) + "\n\n" + t("progresso", { reveladas: game.revealed, restantes: remaining })
+    renderBoard(game) + "\n\n" + t("progresso", { reveladas: game.revealed, restantes: remaining }) + footer
   );
 }
 
