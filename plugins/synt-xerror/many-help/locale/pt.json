@@ -36,7 +36,7 @@
   "backtickTip": "💡 Dica: NÃO coloque ` nos comandos. _Eu uso isso apenas para exemplos!_",
   "chatterTip": "🤖 Parece que você está tentando conversar comigo! Eu funciono por comandos, então mensagens normais eu não respondo.\n\nMande {{many}} pra ver tudo que eu sei fazer.",
   "supportTip": "💡 Precisa de ajuda? Contate o suporte:\n- Número: 5516994620899\n- E-mail: manybot@pm.me\n- Nosso grupo: wa.manybot.org",
-  "greetingText": "Oi, eu sou a Many! 👋 A bot oficial do projeto ManyBot.\n\n{{licenseShort}}\n\nPara ver tudo que eu faço:\n- {{many}}\n\nPara me adicionar a um grupo:\n- {{add}}\n\nPara trocar o idioma:\n- {{language}}\n\nEntre no nosso grupo se tiver dúvidas: https://wa.manybot.org",
+  "greetingText": "Oi, eu sou a Many! 👋 A bot oficial do projeto ManyBot.\n\n{{licenseShort}}\n\nPara ver tudo que eu faço:\n- {{many}}\n\nPara trocar o idioma:\n- {{language}}\n\nEntre no nosso grupo se tiver dúvidas: https://wa.manybot.org",
   "changelogTitle": "*Changelog — Many {{version}}*",
   "changelogAdmin": "⚙️ *Administração*\n- Novo: {{mute}}/{{unmute}} — silenciar membros nativamente (nível ManyBot, ignora todos os comandos)\n- Novo: {{todos}}/{{admins}} — mencionar todos os membros ou só admins; {{mute all}} abrange a comunidade inteira\n- Novo: {{close}}/{{open}} — fechar ou abrir grupos, com suporte a agendamento\n- Novo: {{warn}} — enviar aviso privado com o texto da regra no PV da pessoa\n- Novo: {{get-pfp}}/{{get-name}} — pegar foto de perfil ou nome de exibição de qualquer membro\n- Novo: {{transcrever}} — transcrever áudios com IA (Whisper via Groq)\n- Novo: @cargos — mencione grupos de membros como cargos, estilo Discord",
   "changelogConverter": "🔄 *Mídias & Utilidades*\n- Comandos de mídia movidos para categoria própria (separado das utilidades)\n- Novo: {{rules}} — regras da comunidade, compatível com {{welcome}} e {{warn}}",
@@ -759,7 +759,12 @@
       ],
       "commands": [
         "caçafantasma",
-        "caça"
+        "caçafantasma ativar",
+        "caçafantasma desativar",
+        "caçafantasma ranking",
+        "caçafantasma status",
+        "caçafantasma reset",
+        "caçar"
       ],
       "description": "Jogo exclusivo de Halloween — fantasmas aparecem aleatoriamente no grupo a cada 10–60 minutos. Seja o primeiro a mandar {{caça}} antes do fantasma sumir (15 segundos)!\n\nFantasmas têm 5 raridades — Comum 👻 (1pt), Incomum 🕷️ (2pts), Raro 🦇 (3pts), Épico 💀 (5pts), Lendário 🎃 (10pts). A raridade só é revelada quando capturado ou escapar.\n\nPontos são compartilhados entre a comunidade (se vinculada).\n\n{{caçafantasma}} — ver regras e ranking atual\n{{caça}} — capturar o fantasma quando aparecer\n{{caçafantasma confirm}} — ativar o jogo _(admin)_\n{{caçafantasma deactivate}} — desativar o jogo _(admin)_"
     }

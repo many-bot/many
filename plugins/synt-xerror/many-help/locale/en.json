@@ -680,6 +680,11 @@
       ],
       "commands": [
         "ghosthunt",
+        "ghosthunt activate",
+        "ghosthunt deactivate",
+        "ghosthunt ranking",
+        "ghosthunt status",
+        "ghosthunt reset",
         "catch"
       ],
       "description": "Halloween-exclusive game — ghosts appear randomly in the group every 10–60 minutes. Be the first to send {{catch}} before the ghost vanishes (15 seconds)!\n\nGhosts have 5 rarities — Common 👻 (1pt), Uncommon 🕷️ (2pts), Rare 🦇 (3pts), Epic 💀 (5pts), Legendary 🎃 (10pts). Rarity is only revealed when caught or escaped.\n\nPoints are shared across the community (if linked).\n\n{{ghosthunt}} — view rules and current ranking\n{{catch}} — catch the ghost when it appears\n{{ghosthunt confirm}} — enable the game _(admin)_\n{{ghosthunt deactivate}} — disable the game _(admin)_"
