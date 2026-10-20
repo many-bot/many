@@ -74,6 +74,8 @@ const activeHunts = new Map();
 const nextSpawn = new Map();
 // "chatId:senderJid" → { scope, timeout }
 const pendingReset = new Map();
+// "chatId:senderJid" → { communityId, conflictGroupId, timeout }
+const pendingActivation = new Map();
 
 function scheduleNextSpawn(groupId, log) {
   const minMs = 5 * 60 * 1000;
@@ -181,6 +183,44 @@ export default async function (ctx) {
     }
   }
 
+  // ── pending "activate / switch group" confirmation ───────────
+  const activationKey = `${ctx.chat.id}:${ctx.msg.sender}`;
+  if (pendingActivation.has(activationKey)) {
+    const answer = ctx.msg.body?.trim().toLowerCase();
+    if (YES_WORDS.has(answer) || NO_WORDS.has(answer)) {
+      const pending = pendingActivation.get(activationKey);
+      clearTimeout(pending.timeout);
+      pendingActivation.delete(activationKey);
+
+      if (YES_WORDS.has(answer)) {
+        const activeGroups = ctx.settings.global.get("activeGroups", []);
+        const filtered = activeGroups.filter((e) => e.groupId !== pending.conflictGroupId);
+        filtered.push({ groupId: ctx.chat.id, communityId: pending.communityId ?? null });
+        ctx.settings.global.set("activeGroups", filtered);
+
+        const conflictHunt = activeHunts.get(pending.conflictGroupId);
+        if (conflictHunt) {
+          clearTimeout(conflictHunt.timeout);
+          activeHunts.delete(pending.conflictGroupId);
+        }
+        nextSpawn.delete(pending.conflictGroupId);
+        ctx.settings.forChat(pending.conflictGroupId).set("ghostHuntActive", false);
+
+        ctx.settings.set("ghostHuntActive", true);
+        if (!nextSpawn.has(ctx.chat.id)) scheduleNextSpawn(ctx.chat.id, ctx.log);
+
+        try {
+          await ctx.send.to(pending.conflictGroupId).text(t("switchNotify", { group: ctx.chat.name ?? "" }));
+        } catch (_) {}
+
+        await ctx.msg.reply.text(t("switchDone"));
+      } else {
+        await ctx.msg.reply.text(t("switchCancelled"));
+      }
+      return;
+    }
+  }
+
   // ── caçafantasma / ghosthunt ─────────────────────────────────
   if (ctx.msg.is("caçafantasma") || ctx.msg.is("ghosthunt")) {
     const sub = ctx.msg.args[0]?.toLowerCase();
@@ -203,12 +243,14 @@ export default async function (ctx) {
         const conflict = activeGroups.find((entry) => entry.communityId === communityId && entry.groupId !== ctx.chat.id);
         if (conflict) {
           const conflictChat = ctx.chats.all().find((c) => c.id === conflict.groupId);
-          const mention = conflictChat ? { text: conflictChat.name, mentions: [conflict.groupId] } : null;
-          if (mention) {
-            await ctx.msg.reply.text(t("alreadyActiveMention", { group: mention.text }), mention);
-          } else {
-            await ctx.msg.reply.text(t("alreadyActive"));
-          }
+          const groupName = conflictChat?.name ?? conflict.groupId;
+          const opts = conflictChat ? { mentions: [conflict.groupId] } : undefined;
+
+          if (pendingActivation.has(activationKey)) clearTimeout(pendingActivation.get(activationKey).timeout);
+          const timeout = setTimeout(() => pendingActivation.delete(activationKey), RESET_CONFIRM_MS);
+          pendingActivation.set(activationKey, { communityId, conflictGroupId: conflict.groupId, timeout });
+
+          await ctx.msg.reply.text(t("switchConfirm", { group: groupName }), opts);
           return;
         }
       }
