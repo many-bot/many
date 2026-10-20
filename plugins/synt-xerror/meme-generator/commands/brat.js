@@ -3,7 +3,7 @@ import { randomUUID } from "crypto";
 import pkg from "@napi-rs/canvas";
 const { createCanvas } = pkg;
 import { FONT_STACKS } from "../lib/fonts.js";
-import { makeMeasureCtx, fitFontSize, justifyLine } from "../lib/text.js";
+import { makeMeasureCtx, fitFontSize, justifyLine, drawTextLine } from "../lib/text.js";
 import { getReplyText } from "../lib/media.js";
 
 const SIZE = 1080;
@@ -45,12 +45,12 @@ function drawBrat(text, bg) {
     const isLastLine = i === lines.length - 1 || lines.length === 1;
 
     if (isLastLine) {
-      ctx.fillText(line, padding, y);
+      drawTextLine(ctx, line, padding, y, { fontSize: size });
       return;
     }
 
     for (const { word, x } of justifyLine(measureCtx, line, maxWidth, font)) {
-      ctx.fillText(word, padding + x, y);
+      drawTextLine(ctx, word, padding + x, y, { fontSize: size });
     }
   });
 

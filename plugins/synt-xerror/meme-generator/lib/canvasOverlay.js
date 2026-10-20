@@ -1,7 +1,7 @@
 import pkg from "@napi-rs/canvas";
 const { createCanvas, loadImage } = pkg;
 import { FONT_STACKS } from "./fonts.js";
-import { makeMeasureCtx, fitFontSize } from "./text.js";
+import { makeMeasureCtx, fitFontSize, drawTextLine } from "./text.js";
 
 const CLASSICO_CFG = { fontFamily: FONT_STACKS.classic, uppercase: true, strokeRatio: 0.06 };
 
@@ -32,8 +32,7 @@ function drawClassicoBar(ctx, text, width, height, y, align) {
   lines.forEach((line, i) => {
     const offset = align === "top" ? i * lineH : -(lines.length - 1 - i) * lineH;
     const ly = y + offset;
-    ctx.strokeText(line, width / 2, ly);
-    ctx.fillText(line, width / 2, ly);
+    drawTextLine(ctx, line, width / 2, ly, { stroke: true, fontSize: size });
   });
 }
 
@@ -89,7 +88,7 @@ function drawSimplesBar(ctx, width, barHeight, size, lines, lineH) {
   const startY = (barHeight - blockH) / 2;
 
   lines.forEach((line, i) => {
-    ctx.fillText(line, width / 2, startY + i * lineH);
+    drawTextLine(ctx, line, width / 2, startY + i * lineH, { fontSize: size });
   });
 }
 
@@ -190,14 +189,14 @@ function drawDesmotText(ctx, layout) {
   if (title.lines.length) {
     ctx.font = `bold ${title.size}px ${FONT_STACKS.serif}`;
     ctx.fillStyle = "#fff";
-    title.lines.forEach((line, i) => ctx.fillText(line, canvasW / 2, y + i * title.lineH));
+    title.lines.forEach((line, i) => drawTextLine(ctx, line, canvasW / 2, y + i * title.lineH, { fontSize: title.size }));
     y += title.lines.length * title.lineH + gapMid;
   }
 
   if (caption.lines.length) {
     ctx.font = `${caption.size}px ${FONT_STACKS.serif}`;
     ctx.fillStyle = "rgba(255,255,255,0.85)";
-    caption.lines.forEach((line, i) => ctx.fillText(line, canvasW / 2, y + i * caption.lineH));
+    caption.lines.forEach((line, i) => drawTextLine(ctx, line, canvasW / 2, y + i * caption.lineH, { fontSize: caption.size }));
   }
 }
 

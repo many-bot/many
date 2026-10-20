@@ -6,7 +6,7 @@ import { randomUUID, createHash } from "crypto";
 import { existsSync } from "fs";
 import { PLUGIN_ROOT } from "../lib/paths.js";
 import { FONT_STACKS } from "../lib/fonts.js";
-import { makeMeasureCtx, fitFontSize } from "../lib/text.js";
+import { makeMeasureCtx, fitFontSize, drawTextLine } from "../lib/text.js";
 
 const measureCtx = makeMeasureCtx();
 
@@ -132,7 +132,7 @@ async function render(config) {
   ctx.textBaseline = "top";
 
   for (const [i, line] of lines.entries()) {
-    ctx.fillText(line, textX, startY + QUOTE_TEXT_OFFSET_Y + i * lineH);
+    drawTextLine(ctx, line, textX, startY + QUOTE_TEXT_OFFSET_Y + i * lineH, { fontSize: quoteFontSize });
   }
 
   const quoteMarkSize = Math.min(quoteFontSize * 8.2, 200);
@@ -156,7 +156,7 @@ async function render(config) {
   ctx.font = authorFont;
   ctx.fillStyle = "rgba(160,160,160,0.9)";
   ctx.textBaseline = "top";
-  ctx.fillText(authorText, textX, sepY + SEP_GAP_BOTTOM);
+  drawTextLine(ctx, authorText, textX, sepY + SEP_GAP_BOTTOM, { fontSize: AUTHOR_FONT_SIZE });
 
   const buffer = await canvas.encode("png");
   await writeFile(config.output, buffer);
