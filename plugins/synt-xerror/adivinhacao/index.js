@@ -1,18 +1,43 @@
 /**
  * plugins/adivinhacao/index.js
  *
- * Game state lives here — isolated in the plugin.
- * Multiple groups can play simultaneously without conflict.
+ * Game state persisted to disk (ctx.storage) — survives bot restarts.
+ * One JSON file per chat, same pattern as the jogo-da-velha plugin.
  */
 
-const RANGE       = { min: 1, max: 100 };
-const jogosAtivos = new Map();
-const sorteio     = () =>
+import { existsSync, readFileSync, writeFileSync, unlinkSync } from "node:fs";
+
+const RANGE   = { min: 1, max: 100 };
+const sorteio = () =>
   Math.floor(Math.random() * (RANGE.max - RANGE.min + 1)) + RANGE.min;
+
+function gameFilePath(ctx) {
+  const safeId = ctx.chat.id.replace(/[^a-zA-Z0-9]/g, "_");
+  return ctx.storage.resolve(`partida-${safeId}.json`);
+}
+
+function loadNumber(ctx) {
+  const path = gameFilePath(ctx);
+  if (!existsSync(path)) return null;
+  try {
+    return JSON.parse(readFileSync(path, "utf-8")).numero ?? null;
+  } catch {
+    unlinkSync(path);
+    return null;
+  }
+}
+
+function saveNumber(ctx, numero) {
+  writeFileSync(gameFilePath(ctx), JSON.stringify({ numero }));
+}
+
+function deleteNumber(ctx) {
+  const path = gameFilePath(ctx);
+  if (existsSync(path)) unlinkSync(path);
+}
 
 export default async function (ctx) {
   const { msg }  = ctx;
-  const chatId   = ctx.chat.id;
   const prefix   = ctx.config.get("CMD_PREFIX");
   const { t }    = ctx.i18n.createT(import.meta.url);
 
@@ -30,14 +55,14 @@ export default async function (ctx) {
     }
 
     if (sub === "começar") {
-      jogosAtivos.set(chatId, sorteio());
+      saveNumber(ctx, sorteio());
       await ctx.send.text(t("started"));
       ctx.log.info(t("gameLog.started"));
       return;
     }
 
     if (sub === "parar") {
-      jogosAtivos.delete(chatId);
+      deleteNumber(ctx);
       await ctx.send.text(t("stopped"));
       ctx.log.info(t("gameLog.stopped"));
       return;
@@ -50,8 +75,8 @@ export default async function (ctx) {
   }
 
   // ── Guesses during active game ────────────────────────────
-  const numero = jogosAtivos.get(chatId);
-  if (numero === undefined) return;
+  const numero = loadNumber(ctx);
+  if (numero === null) return;
 
   const tentativa = msg.body.trim();
   if (!/^\d+$/.test(tentativa)) return;
@@ -66,8 +91,9 @@ export default async function (ctx) {
     await msg.reply.text(
       `${t("correct", { number: numero })} \`${prefix}adivinhação começar\` ${t("playAgain")}`
     );
-    jogosAtivos.delete(chatId);
+    deleteNumber(ctx);
   } else {
     await ctx.send.text(num > numero ? t("lower") : t("higher"));
   }
 }
+

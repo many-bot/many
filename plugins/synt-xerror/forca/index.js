@@ -1,8 +1,10 @@
 /**
  * Hangman game plugin
- * Game state is stored internally per chat.
+ * Game state is persisted to disk (ctx.storage) — survives bot restarts.
+ * One JSON file per chat, same pattern as the jogo-da-velha plugin.
  */
 
+import { existsSync, readFileSync, writeFileSync, unlinkSync } from "node:fs";
 import { readFile }      from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -10,50 +12,87 @@ import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const words     = JSON.parse(await readFile(join(__dirname, "words.json"), "utf8"));
 
-const GAME_TIMEOUT_MS = 5 * 60 * 1000;
-
-const activeGames        = new Map();
-const activeParticipants = new Map();
-const lastWords           = new Map();
-const gameTimers          = new Map();
+const GAME_TTL_MS = 5 * 60 * 1000;
 
 const generateProgress = word => word.replace(/\p{L}/gu, "_");
 const normalize        = l => l.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase();
-const pickWord = (WORDS, chatId) => {
+
+function safeId(chatId) {
+  return chatId.replace(/[^a-zA-Z0-9]/g, "_");
+}
+
+function gameFilePath(ctx) {
+  return ctx.storage.resolve(`partida-${safeId(ctx.chat.id)}.json`);
+}
+
+function lastWordFilePath(ctx) {
+  return ctx.storage.resolve(`ultima-palavra-${safeId(ctx.chat.id)}.json`);
+}
+
+// TTL checado na leitura (preguiçoso, sem setTimeout) — igual ao jogo-da-velha.
+// Trade-off: o bot não avisa mais sozinho quando o tempo esgota; o jogo só
+// "some" quando alguém mexe de novo depois do TTL (ou inicia outro).
+function loadGame(ctx) {
+  const path = gameFilePath(ctx);
+  if (!existsSync(path)) return null;
+  try {
+    const raw = JSON.parse(readFileSync(path, "utf-8"));
+    if (Date.now() - (raw.updatedAt ?? 0) > GAME_TTL_MS) {
+      unlinkSync(path);
+      return null;
+    }
+    return {
+      ...raw,
+      guessed: new Set(raw.guessed),
+      participants: new Map(Object.entries(raw.participants ?? {})),
+    };
+  } catch {
+    unlinkSync(path);
+    return null;
+  }
+}
+
+function saveGame(ctx, game) {
+  const payload = {
+    ...game,
+    guessed: [...game.guessed],
+    participants: Object.fromEntries(game.participants),
+    updatedAt: Date.now(),
+  };
+  writeFileSync(gameFilePath(ctx), JSON.stringify(payload, null, 2));
+}
+
+function deleteGame(ctx) {
+  const path = gameFilePath(ctx);
+  if (existsSync(path)) unlinkSync(path);
+}
+
+function loadLastWord(ctx) {
+  const path = lastWordFilePath(ctx);
+  if (!existsSync(path)) return null;
+  try {
+    return JSON.parse(readFileSync(path, "utf-8")).word ?? null;
+  } catch {
+    return null;
+  }
+}
+
+function saveLastWord(ctx, word) {
+  writeFileSync(lastWordFilePath(ctx), JSON.stringify({ word }));
+}
+
+const pickWord = (WORDS, ctx) => {
   if (WORDS.length === 1) return WORDS[0];
+  const last = loadLastWord(ctx);
   let choice;
   do {
     choice = WORDS[Math.floor(Math.random() * WORDS.length)];
-  } while (choice.word === lastWords.get(chatId));
+  } while (choice.word === last);
   return choice;
 };
 
-const clearGameTimer = chatId => {
-  const timer = gameTimers.get(chatId);
-  if (timer) clearTimeout(timer);
-  gameTimers.delete(chatId);
-};
-
-const endGame = chatId => {
-  activeGames.delete(chatId);
-  activeParticipants.delete(chatId);
-  clearGameTimer(chatId);
-};
-
-const scheduleGameTimer = (chatId, send, t) => {
-  clearGameTimer(chatId);
-  const timer = setTimeout(async () => {
-    const game = activeGames.get(chatId);
-    if (!game) return;
-    endGame(chatId);
-    await send.text(t("timeout", { word: game.word }));
-  }, GAME_TIMEOUT_MS);
-  gameTimers.set(chatId, timer);
-};
-
 export default async function (ctx) {
-  const { msg, chat, config, i18n, send } = ctx;
-  const chatId = chat.id;
+  const { msg, config, i18n, send } = ctx;
   const prefix = config.get("CMD_PREFIX");
   const { t }  = i18n.createT(import.meta.url);
 
@@ -73,29 +112,34 @@ export default async function (ctx) {
     }
 
     if (sub === t("startCommand") || sub === t("startCommandAlt")) {
-      if (activeGames.has(chatId)) {
+      if (loadGame(ctx)) {
         await send.text(t("alreadyRunning"));
         return;
       }
 
-      const random = pickWord(WORDS, chatId);
+      const random = pickWord(WORDS, ctx);
       const word   = random.word.toLowerCase();
-      lastWords.set(chatId, random.word);
-      activeGames.set(chatId, { word, theme: random.theme, lives: 6, progress: generateProgress(word), guessed: new Set() });
-      activeParticipants.set(chatId, new Map());
-      scheduleGameTimer(chatId, send, t);
+      saveLastWord(ctx, random.word);
+      saveGame(ctx, {
+        word,
+        theme: random.theme,
+        lives: 6,
+        progress: generateProgress(word),
+        guessed: new Set(),
+        participants: new Map(),
+      });
 
       await send.text(t("started", { theme: random.theme, word: generateProgress(word), lives: 6 }));
       return;
     }
 
     if (sub === t("stopCommand")) {
-      if (!activeGames.has(chatId)) {
+      const game = loadGame(ctx);
+      if (!game) {
         await send.text(t("noGame", { cmd: `${prefix}forca ${t("startCommand")}` }));
         return;
       }
-      const game = activeGames.get(chatId);
-      endGame(chatId);
+      deleteGame(ctx);
       await send.text(t("stopped", { word: game.word }));
       return;
     }
@@ -105,7 +149,7 @@ export default async function (ctx) {
   }
 
   // ── Tentativa de letra ou palavra ─────────────────────────
-  const game = activeGames.get(chatId);
+  const game = loadGame(ctx);
   if (!game) return;
 
   const attempt = (msg.body ?? "").trim().toLowerCase();
@@ -115,19 +159,17 @@ export default async function (ctx) {
   const isWord   = !isLetter && attempt.length > 1 && /^\p{L}+$/u.test(normalize(attempt));
   if (!isLetter && !isWord) return;
 
-  const participants = activeParticipants.get(chatId);
-  if (!participants.has(msg.sender)) participants.set(msg.sender, msg.senderName);
-
-  scheduleGameTimer(chatId, send, t);
+  if (!game.participants.has(msg.sender)) game.participants.set(msg.sender, msg.senderName);
 
   // ── Palpite de palavra completa ───────────────────────────
   if (isWord) {
     if (normalize(attempt) === normalize(game.word)) {
-      const winners = [...participants.values()].join(", ") || t("nobody");
+      const winners = [...game.participants.values()].join(", ") || t("nobody");
       await msg.reply.text(t("won", { word: game.word, participants: winners }));
-      endGame(chatId);
+      deleteGame(ctx);
       return;
     }
+    saveGame(ctx, game);
     return;
   }
 
@@ -151,20 +193,23 @@ export default async function (ctx) {
   if (!hit) game.lives--;
 
   if (game.progress === game.word) {
-    const winners = [...participants.values()].join(", ") || t("nobody");
+    const winners = [...game.participants.values()].join(", ") || t("nobody");
     await msg.reply.text(t("won", { word: game.word, participants: winners }));
-    endGame(chatId);
+    deleteGame(ctx);
     return;
   }
 
   if (game.lives <= 0) {
     await msg.reply.text(t("lost", { word: game.word }));
-    endGame(chatId);
+    deleteGame(ctx);
     return;
   }
+
+  saveGame(ctx, game);
 
   await msg.reply.text(
     `${t("status", { word: game.progress, lives: game.lives, guessed: [...game.guessed].sort().join(", ") })}\n` +
     (hit ? t("correct") : t("wrong"))
   );
 }
+

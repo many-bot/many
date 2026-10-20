@@ -98,29 +98,36 @@ export default async function (ctx) {
     (c) => c.pushname || c.name || c.numberPretty || "?"
   );
 
-  // Shippar com o próprio bot é sempre 0% — não entra na persistência nem
-  // no histórico, é sempre recalculado (ou melhor, nunca calculado).
-  const isBotMention = jids.includes(ctx.botId);
-  const score = isBotMention
-    ? 0
-    : resolveScore(ctx, jids[0], jids[1], names[0], names[1]);
-
-  const avatarPaths = await fetchAvatars(ctx, jids);
-
-  let imageBuffer;
+  // Sessão só pra evitar que um restart no meio do render/envio deixe
+  // trabalho pela metade — fecha assim que a imagem é enviada (ou falha).
+  ctx.session.acquire();
   try {
-    imageBuffer = await renderShipImage({ names, avatarPaths, score });
-  } catch (err) {
-    ctx.log.warn(`ship: render failed - ${err.message}`);
-    await ctx.msg.reply.text(t("error.render"));
-    return;
-  } finally {
-    await cleanupAvatars(avatarPaths);
-  }
+    // Shippar com o próprio bot é sempre 0% — não entra na persistência nem
+    // no histórico, é sempre recalculado (ou melhor, nunca calculado).
+    const isBotMention = jids.includes(ctx.botId);
+    const score = isBotMention
+      ? 0
+      : resolveScore(ctx, jids[0], jids[1], names[0], names[1]);
 
-  const caption = buildCaption(t, score, contacts[0], contacts[1], isBotMention);
-  const mentions = [...contacts[0].mention.mentions, ...contacts[1].mention.mentions];
-  await ctx.msg.reply.image(imageBuffer, caption, { mentions });
+    const avatarPaths = await fetchAvatars(ctx, jids);
+
+    let imageBuffer;
+    try {
+      imageBuffer = await renderShipImage({ names, avatarPaths, score });
+    } catch (err) {
+      ctx.log.warn(`ship: render failed - ${err.message}`);
+      await ctx.msg.reply.text(t("error.render"));
+      return;
+    } finally {
+      await cleanupAvatars(avatarPaths);
+    }
+
+    const caption = buildCaption(t, score, contacts[0], contacts[1], isBotMention);
+    const mentions = [...contacts[0].mention.mentions, ...contacts[1].mention.mentions];
+    await ctx.msg.reply.image(imageBuffer, caption, { mentions });
+  } finally {
+    ctx.session.release();
+  }
 }
 
 // ── Resolução dos dois alvos ──────────────────────────────────────────────

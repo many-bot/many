@@ -13,6 +13,8 @@
 
   "penaltySkipped": "✅ Regra *#{{num}}* criada: _{{text}}_\n(sem punição)",
 
+  "penaltyExpired": "⌛ A pergunta sobre a punição da regra *#{{num}}* expirou. Ela ficou sem punição por enquanto.",
+
   "rmUsage": "Me diz o número da regra que você quer remover (de 1 a {{max}}):\n`{{cmd}} rm 2`",
 
   "removed": "🗑️ Regra removida: _{{text}}_",

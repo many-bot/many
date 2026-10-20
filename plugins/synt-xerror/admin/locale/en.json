@@ -79,6 +79,7 @@
 
   "closeAgendaTimeout": "Timed out, the schedule setup was cancelled. Start again with `{{prefix}}close agenda`.",
   "closeAgendaAlreadyInProgress": "You already have a schedule setup in progress. Answer the previous question or type \"cancelar\".",
+  "closeAgendaChatLocked": "This chat has another session active right now (another interactive command in progress). Wait for it to finish and try again.",
   "closeAgendaLimitReached": "This group already has {{max}} schedules, the limit. Remove one with `{{prefix}}close agenda reset` before adding another.",
   "closeAgendaChooseType": "Let's schedule the group's close/open (times are always in Brasília time). You can type \"cancelar\" at any point to back out.\n\nHow should it repeat?\n1 - Daily\n2 - Weekly\n3 - Monthly\n4 - Specific date (just once)\n5 - Annual (repeats every year)",
   "closeAgendaWeeklyDays": "Pick the weekdays, comma-separated (seg, ter, qua, qui, sex, sab, dom).",

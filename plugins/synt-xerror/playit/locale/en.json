@@ -40,5 +40,7 @@
   "playlistAddCurrentNone": "No recently played song to add.",
   "playlistAddCurrentAskName": "🔎 Add *{{title}}* - {{channel}}?\n\n{{list}}\n\nReply with the playlist name.",
   "usage": "*!{{cmd}}* — download and send audio/video\n\n`!{{cmd}} <name/url>` — search or download\n`!{{cmd}} playlist` — create a new playlist\n`!{{cmd}} playlist list` — list your playlists\n`!{{cmd}} playlist <n>` — play the playlist\n`!{{cmd}} playlist <n> info` — list songs (with index)\n`!{{cmd}} playlist <n> add <name/url>` — add a song\n`!{{cmd}} playlist add tocando` — add the last played song\n`!{{cmd}} playlist <n> del <index>` — remove a song\n`!{{cmd}} playlist <n> zip` — download as .zip\n`!{{cmd}} playlist <n> del` — delete the playlist",
-  "usageVideo": "*!{{cmd}}* — download and send video\n\n`!{{cmd}} <name/url>` — search or download\n\n_Playlists are mp3-only._"
+  "usageVideo": "*!{{cmd}}* — download and send video\n\n`!{{cmd}} <name/url>` — search or download\n\n_Playlists are mp3-only._",
+  "lockedElsewhere": "There's another session running in this chat. Wait for it to finish and try again."
 }
+

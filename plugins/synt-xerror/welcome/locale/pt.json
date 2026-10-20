@@ -66,6 +66,7 @@
     "savedCard": "🎉 *Boas-vindas ativadas, com card!* Já vale pro próximo que entrar.\n\nDigite \"{{prefix}}welcome status\" pra ver ou ajustar alguma coisa.",
     "savedSimple": "🎉 *Boas-vindas ativadas, só com mensagem!* Já vale pro próximo que entrar.\n\nQuer o card depois? Digite \"{{prefix}}welcome set card\" e responda \"sim\".\nPra ver ou ajustar o resto: \"{{prefix}}welcome status\".",
     "alreadyInProgress": "⚠️ Você já tem uma configuração ou edição em andamento.\n\nDigite \"cancelar\" nesse chat, ou espere expirar.",
+    "chatLocked": "⚠️ Esse chat está com outra sessão ativa agora (outro comando interativo em andamento). Espere terminar e tente de novo.",
     "startConfigNeedGroup": "⚠️ Rode esse comando dentro do grupo que vai iniciar a configuração.",
     "confirmConfig": "👋 Tem certeza que quer configurar boas-vindas a novos membros nesse grupo?\n\nDigite *sim* ou *não*.",
     "chooseCard": "🖼️ Boas-vindas com card?\nO card é uma imagem com a foto da pessoa.\nComo responder:\n`sim`\n↳ com card\n`não`\n↳ só mensagem (qualquer outra resposta também)\n📌 Dá pra mudar depois: {{prefix}}welcome set card",

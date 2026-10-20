@@ -440,16 +440,22 @@ function promptVars(t, step) {
   }
 }
 
-function startConfirmConfigSession(adminId, watchGroupId) {
-  const session = { adminId, anchorChatId: watchGroupId, mode: "confirmConfig", watchGroupId, timeoutHandle: null };
+// anchorCtx fica salvo na sessão pra sempre liberar o ctx.session do chat
+// certo (anchorChatId), mesmo quando o cleanup acontece a partir de uma
+// mensagem vinda de outro chat (quickEdit aceita isso) ou de um timeout.
+function startConfirmConfigSession(ctx, adminId, watchGroupId) {
+  const session = { adminId, anchorChatId: watchGroupId, mode: "confirmConfig", watchGroupId, timeoutHandle: null, anchorCtx: ctx };
   sessions.set(adminId, session);
+  ctx.session.acquire();
   return session;
 }
 
-function endSession(adminId) {
-  const session = sessions.get(adminId);
-  if (session?.timeoutHandle) clearTimeout(session.timeoutHandle);
-  sessions.delete(adminId);
+/** @param {object} session */
+function endSession(session) {
+  if (!session) return;
+  if (session.timeoutHandle) clearTimeout(session.timeoutHandle);
+  sessions.delete(session.adminId);
+  session.anchorCtx?.session.release();
 }
 
 /**
@@ -460,6 +466,7 @@ function armTimeout(ctx, session) {
   if (session.timeoutHandle) clearTimeout(session.timeoutHandle);
   session.timeoutHandle = setTimeout(async () => {
     sessions.delete(session.adminId);
+    session.anchorCtx?.session.release();
     const { t: rawT } = ctx.i18n.createT(import.meta.url);
     const t = withPrefix(ctx, rawT);
     await ctx.send.to(session.anchorChatId).text(t("wizard.timeout"));
@@ -499,7 +506,7 @@ async function handleConfirmConfigMessage(ctx, session) {
   if (ctx.chat.id !== session.anchorChatId) return;
 
   if (!WORDS_CONFIRM.includes(normWord(ctx.msg.body))) {
-    endSession(session.adminId);
+    endSession(session);
     await ctx.msg.reply.text(t("wizard.cancelled"));
     return;
   }
@@ -521,7 +528,7 @@ async function handleChooseCardMessage(ctx, session) {
   if (ctx.chat.id !== session.anchorChatId) return;
 
   const useCard = WORDS_CONFIRM.includes(normWord(ctx.msg.body));
-  endSession(session.adminId);
+  endSession(session);
 
   const configs = loadConfigs(ctx);
   const groupName = await resolveGroupName(ctx, session.watchGroupId);
@@ -721,14 +728,16 @@ function quickEditPrompt(t, field) {
 }
 
 /**
+ * @param {PluginContext} ctx
  * @param {string} adminId
  * @param {string} anchorChatId
  * @param {string} field
  * @param {string} watchGroupId
  */
-function startQuickEditSession(adminId, anchorChatId, field, watchGroupId) {
-  const session = { adminId, anchorChatId, mode: "quickEdit", field, watchGroupId, timeoutHandle: null };
+function startQuickEditSession(ctx, adminId, anchorChatId, field, watchGroupId) {
+  const session = { adminId, anchorChatId, mode: "quickEdit", field, watchGroupId, timeoutHandle: null, anchorCtx: ctx };
   sessions.set(adminId, session);
+  ctx.session.acquire();
   return session;
 }
 
@@ -959,7 +968,11 @@ async function handleSetCommand(ctx) {
       await ctx.msg.reply.text(t("wizard.alreadyInProgress"));
       return;
     }
-    const session = startQuickEditSession(senderId, ctx.chat.id, field, config.watchGroupId);
+    if (ctx.session.isLocked() && !ctx.session.isMine()) {
+      await ctx.msg.reply.text(t("wizard.chatLocked"));
+      return;
+    }
+    const session = startQuickEditSession(ctx, senderId, ctx.chat.id, field, config.watchGroupId);
     armTimeout(ctx, session);
     await ctx.send.to(session.anchorChatId).text(quickEditPrompt(t, field));
     return;
@@ -985,7 +998,7 @@ async function handleQuickEditMessage(ctx, session) {
   const inAnchor = ctx.chat.id === session.anchorChatId;
 
   if (WORDS_CANCEL.includes(word) && inAnchor) {
-    endSession(session.adminId);
+    endSession(session);
     await ctx.send.to(ctx.chat.id).text(t("wizard.editCancelled"));
     return;
   }
@@ -995,7 +1008,7 @@ async function handleQuickEditMessage(ctx, session) {
   const configs = loadConfigs(ctx);
   const config = configs.find((c) => c.watchGroupId === session.watchGroupId);
   if (!config) {
-    endSession(session.adminId);
+    endSession(session);
     await ctx.send.to(session.anchorChatId).text(t("quickEdit.configGone"));
     return;
   }
@@ -1037,7 +1050,7 @@ async function handleQuickEditMessage(ctx, session) {
   }
 
   saveConfigs(ctx, configs);
-  endSession(session.adminId);
+  endSession(session);
   await reply(
     t("set.updated", { status: formatStatus(ctx, config) }) + setHints(t, session.field, config)
   );
@@ -1334,7 +1347,12 @@ async function handleConfigCommand(ctx, senderId, existing) {
     return;
   }
 
-  const session = startConfirmConfigSession(senderId, ctx.chat.id);
+  if (ctx.session.isLocked() && !ctx.session.isMine()) {
+    await ctx.msg.reply.text(t("wizard.chatLocked"));
+    return;
+  }
+
+  const session = startConfirmConfigSession(ctx, senderId, ctx.chat.id);
   armTimeout(ctx, session);
   await ctx.msg.reply.text(t("wizard.confirmConfig"));
 }

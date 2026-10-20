@@ -66,6 +66,7 @@
     "savedCard": "🎉 *Welcome is on, with card!* It already applies to the next person who joins.\n\nType \"{{prefix}}welcome status\" to see or tweak anything.",
     "savedSimple": "🎉 *Welcome is on, message only!* It already applies to the next person who joins.\n\nWant the card later? Type \"{{prefix}}welcome set card\" and answer \"sim\".\nTo see or tweak the rest: \"{{prefix}}welcome status\".",
     "alreadyInProgress": "⚠️ You already have a setup or edit in progress.\n\nType \"cancelar\" in that chat, or wait for it to expire.",
+    "chatLocked": "⚠️ This chat has another session active right now (another interactive command in progress). Wait for it to finish and try again.",
     "startConfigNeedGroup": "⚠️ Run this command inside the group that will start the configuration.",
     "confirmConfig": "👋 Are you sure you want to set up welcome messages for new members in this group?\n\nType *sim* (yes) or *não* (no).",
     "chooseCard": "🖼️ Welcome with a card?\nThe card is an image with the person's photo.\nHow to answer:\n`sim`\n↳ with card\n`não`\n↳ message only (any other answer too)\n📌 Change it later: {{prefix}}welcome set card",

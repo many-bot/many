@@ -13,10 +13,18 @@ export async function setup(ctx) {
 export default async function (ctx) {
   const { t } = ctx.i18n.createT(import.meta.url);
 
-  await quote(ctx, t);
-  await classico(ctx, t);
-  await simples(ctx, t);
-  await brat(ctx, t);
-  await desmot(ctx, t);
-  await papa(ctx, t);
+  // Sessão só pra evitar que um restart no meio da geração/envio (ffmpeg,
+  // canvas) deixe trabalho pela metade — fecha assim que termina a leva.
+  ctx.session.acquire();
+  try {
+    await quote(ctx, t);
+    await classico(ctx, t);
+    await simples(ctx, t);
+    await brat(ctx, t);
+    await desmot(ctx, t);
+    await papa(ctx, t);
+  } finally {
+    ctx.session.release();
+  }
 }
+

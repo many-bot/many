@@ -79,6 +79,7 @@
 
   "closeAgendaTimeout": "Tempo esgotado, o agendamento foi cancelado. Pode começar de novo com `{{prefix}}close agenda`.",
   "closeAgendaAlreadyInProgress": "Você já tem um agendamento em andamento. Responda a pergunta anterior ou digite \"cancelar\".",
+  "closeAgendaChatLocked": "Esse chat está com outra sessão ativa agora (outro comando interativo em andamento). Espere terminar e tente de novo.",
   "closeAgendaLimitReached": "Esse grupo já tem {{max}} agendamentos, o limite. Apague algum com `{{prefix}}close agenda reset` antes de criar outro.",
   "closeAgendaChooseType": "Vamos agendar o fechamento do grupo (horários sempre no fuso de Brasília). A qualquer momento digite \"cancelar\" pra desistir.\n\nComo vai se repetir?\n1 - Diário\n2 - Semanal\n3 - Mensal\n4 - Data específica (só uma vez)\n5 - Anual (repete todo ano)",
   "closeAgendaWeeklyDays": "Escolha os dias da semana separados por vírgula (seg, ter, qua, qui, sex, sab, dom).",

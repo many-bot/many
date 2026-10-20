@@ -21,9 +21,10 @@
     "created": "successfully created",
     "failed": "failed",
     "failDetail": "Reason for failures:",
-  "hintDirectMode": "To make just one sticker, you don't need a batch: reply or send the photo/video directly with `{{command}}`.",
-  "hintMaxReached": "This batch reached the {{max}} media limit per session.",
-  "burstDetected": "💡 Noticed several stickers in a row with `{{command}}`. It's faster in batch: type `{{lote}}`, send all your photos/videos, then `{{batch}}`."
+    "hintDirectMode": "To make just one sticker, you don't need a batch: reply or send the photo/video directly with `{{command}}`.",
+    "hintMaxReached": "This batch reached the {{max}} media limit per session.",
+    "burstDetected": "💡 Noticed several stickers in a row with `{{command}}`. It's faster in batch: type `{{lote}}`, send all your photos/videos, then `{{batch}}`.",
+    "lockedElsewhere": "There's another session running in this chat. Wait for it to finish and try again."
   },
   "extract": {
     "noSticker": "Reply a sticker with this command to extract the media."

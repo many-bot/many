@@ -21,9 +21,10 @@
     "created": "criadas com sucesso",
     "failed": "falharam",
     "failDetail": "Motivo dos erros:",
-  "hintDirectMode": "Pra criar só uma figurinha, não precisa abrir um lote: responda ou mande a foto/vídeo direto com `{{command}}`.",
-  "hintMaxReached": "Esse lote chegou ao limite de {{max}} mídias por sessão.",
-  "burstDetected": "💡 Notei várias figurinhas seguidas com `{{command}}`. Fica mais rápido no lote: digite `{{lote}}`, envie todas as fotos/vídeos e *depois* `{{batch}}`."
+    "hintDirectMode": "Pra criar só uma figurinha, não precisa abrir um lote: responda ou mande a foto/vídeo direto com `{{command}}`.",
+    "hintMaxReached": "Esse lote chegou ao limite de {{max}} mídias por sessão.",
+    "burstDetected": "💡 Notei várias figurinhas seguidas com `{{command}}`. Fica mais rápido no lote: digite `{{lote}}`, envie todas as fotos/vídeos e *depois* `{{batch}}`.",
+    "lockedElsewhere": "Tem outra sessão em andamento nesse chat. Espere ela terminar e tente de novo."
   },
   "extract": {
     "noSticker": "Responda uma figurinha com esse comando para extrair a mídia."

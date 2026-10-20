@@ -518,6 +518,11 @@ export default async function (ctx) {
       return;
     }
 
+    if (!ctx.session.acquire()) {
+      await msg.reply.text(t("error.lockedElsewhere"));
+      return;
+    }
+
     await msg.reply.text(t("downloading"));
 
     const uplToSrv  = ctx.config.get("UPL_MEDIA_TO_SRV", "no");
@@ -563,7 +568,8 @@ export default async function (ctx) {
         } catch {
           await msg.reply.text(t("error.generic"));
         }
-      });
+      })
+      .finally(() => ctx.session.release());
 
     return;
   }

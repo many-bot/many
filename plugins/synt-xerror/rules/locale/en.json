@@ -13,6 +13,8 @@
 
   "penaltySkipped": "✅ Rule *#{{num}}* created: _{{text}}_\n(no penalty)",
 
+  "penaltyExpired": "⌛ The penalty question for rule *#{{num}}* expired. It's left without a penalty for now.",
+
   "rmUsage": "Reply with the number of the rule you want to remove (1 to {{max}}):\n`{{cmd}} rm 2`",
 
   "removed": "🗑️ Rule removed: _{{text}}_",

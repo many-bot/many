@@ -40,5 +40,7 @@
   "playlistAddCurrentNone": "Nenhuma música tocando pra adicionar.",
   "playlistAddCurrentAskName": "🔎 Adicionar *{{title}}* - {{channel}}?\n\n{{list}}\n\nResponda com o nome da playlist.",
   "usage": "*!{{cmd}}* — baixa e envia áudio/vídeo\n\n`!{{cmd}} <nome/link>` — busca ou baixa\n`!{{cmd}} playlist` — cria uma nova playlist\n`!{{cmd}} playlist list` — lista suas playlists\n`!{{cmd}} playlist <nome>` — toca a playlist\n`!{{cmd}} playlist <nome> info` — lista músicas (com índice)\n`!{{cmd}} playlist <nome> add <nome/link>` — adiciona música\n`!{{cmd}} playlist add tocando` — adiciona a última tocada\n`!{{cmd}} playlist <nome> del <índice>` — remove uma música\n`!{{cmd}} playlist <nome> zip` — baixa em .zip\n`!{{cmd}} playlist <nome> del` — apaga a playlist",
-  "usageVideo": "*!{{cmd}}* — baixa e envia vídeo\n\n`!{{cmd}} <nome/link>` — busca ou baixa\n\n_Playlists são exclusivas do `!mp3`._"
+  "usageVideo": "*!{{cmd}}* — baixa e envia vídeo\n\n`!{{cmd}} <nome/link>` — busca ou baixa\n\n_Playlists são exclusivas do `!mp3`._",
+  "lockedElsewhere": "Tem outra sessão em andamento nesse chat. Espere ela terminar e tente de novo."
 }
+

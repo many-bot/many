@@ -25,9 +25,17 @@ export function getRule(ctx, index, chatId) {
   return rules[index - 1] ?? null;
 }
 
-// --- Pending "add penalty?" flow state (chatId -> { ruleIndex, sender }) ---
+// --- Pending "add penalty?" flow state (chatId -> { ruleIndex, sender, timeoutHandle }) ---
 
 const pendingPenalty = new Map();
+const PENALTY_SESSION_TIMEOUT = 2 * 60 * 1000;
+
+function endPendingPenalty(ctx, chatId) {
+  const pending = pendingPenalty.get(chatId);
+  if (pending?.timeoutHandle) clearTimeout(pending.timeoutHandle);
+  pendingPenalty.delete(chatId);
+  ctx.session.release();
+}
 
 // --- Plugin handler ---
 
@@ -39,18 +47,18 @@ export default async function (ctx) {
   const warnCmd = `${prefix}warn`;
 
   // Continuation of "!rules add" waiting for a penalty answer
-  if (pendingPenalty.has(ctx.chat.id)) {
+  if (ctx.session.isMine() && pendingPenalty.has(ctx.chat.id)) {
     const pending = pendingPenalty.get(ctx.chat.id);
     const raw = (ctx.msg.body ?? "").trim();
 
     if (prefix && raw.startsWith(prefix)) return;
     if (ctx.msg.sender !== pending.sender) return;
 
-    pendingPenalty.delete(ctx.chat.id);
-
     const rules = getRulesFromSettings(ctx);
     const rule = rules[pending.ruleIndex];
     const num = pending.ruleIndex + 1;
+
+    endPendingPenalty(ctx, ctx.chat.id);
 
     const skip = !raw || ["não", "nao", "no", "n", "-"].includes(raw.toLowerCase());
     if (!skip && rule) {
@@ -104,7 +112,18 @@ export default async function (ctx) {
       rules.push({ text, penalty: null });
       saveRules(ctx, rules);
 
-      pendingPenalty.set(ctx.chat.id, { ruleIndex: rules.length - 1, sender: ctx.msg.sender });
+      if (!ctx.session.acquire()) {
+        await ctx.msg.reply.text(t("added", { num: rules.length, text }));
+        return;
+      }
+
+      const chatId = ctx.chat.id;
+      const timeoutHandle = setTimeout(async () => {
+        endPendingPenalty(ctx, chatId);
+        await ctx.send.to(chatId).text(t("penaltyExpired", { num: rules.length, text }));
+      }, PENALTY_SESSION_TIMEOUT);
+
+      pendingPenalty.set(chatId, { ruleIndex: rules.length - 1, sender: ctx.msg.sender, timeoutHandle });
 
       await ctx.msg.reply.text(t("added", { num: rules.length, text }));
       await ctx.msg.reply.text(t("askPenalty"));

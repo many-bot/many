@@ -8,6 +8,8 @@
     "startError": "Error al iniciar descarga:",
     "downloadFailed": "Descarga fallida. Verifica la URL.",
     "fileNotFound": "Archivo descargado no encontrado.",
-    "generic": "Error al descargar video. Intenta de nuevo más tarde."
+    "generic": "Error al descargar video. Intenta de nuevo más tarde.",
+    "lockedElsewhere": "Hay otra sesión en curso en este chat. Espera a que termine e intenta de nuevo."
   }
 }
+

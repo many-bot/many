@@ -24,11 +24,12 @@ const PDF_DPI         = 110;
 const A4              = { w: 595, h: 842 };
 
 const MESSAGES = {
-  noMedia:      "Envie o arquivo com o comando na legenda ou responda a ele.",
-  converting:   "Convertendo...",
-  invalidType:  "Este tipo de arquivo não é aceito por este comando.",
-  failed:       "Não foi possível converter o arquivo.",
-  noApiKey:     "O upload de links não está configurado.",
+  noMedia:        "Envie o arquivo com o comando na legenda ou responda a ele.",
+  converting:     "Convertendo...",
+  invalidType:    "Este tipo de arquivo não é aceito por este comando.",
+  failed:         "Não foi possível converter o arquivo.",
+  noApiKey:       "O upload de links não está configurado.",
+  lockedElsewhere: "Tem outra sessão em andamento nesse chat. Espere ela terminar e tente de novo.",
   pdfTruncated: n => `Enviando apenas as primeiras ${n} páginas.`,
 };
 
@@ -270,11 +271,25 @@ export default async function (ctx) {
     return;
   }
 
+  if (!ctx.session.acquire()) {
+    await msg.reply.text(MESSAGES.lockedElsewhere);
+    return;
+  }
+
   await msg.reply.text(MESSAGES.converting);
 
   ctx.download.enqueue(
-    () => runConversion(ctx, conversion, source, linkMode),
-    async err => ctx.log.error(`[manyconvert] queue error: ${err.message}`),
+    async () => {
+      try {
+        await runConversion(ctx, conversion, source, linkMode);
+      } finally {
+        ctx.session.release();
+      }
+    },
+    async err => {
+      ctx.log.error(`[manyconvert] queue error: ${err.message}`);
+      ctx.session.release();
+    },
   );
 }
 

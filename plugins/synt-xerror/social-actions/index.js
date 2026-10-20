@@ -222,35 +222,42 @@ export default async function (ctx) {
 
   const toBot = await isBotTarget(ctx, target.id);
 
-  const theme = currentTheme(ctx);
-  const localFile = theme !== DEFAULT_THEME ? pickLocalFile(ctx, command, theme) : null;
-  let media = localFile;
-  let isTemp = false;
-
-  if (!media) {
-    try {
-      media = await fetchGifToTempFile(ctx, action.category);
-      isTemp = true;
-    } catch (err) {
-      ctx.log.error(`social-actions: failed to fetch gif (${action.category}): ${err.message}`);
-      return void await ctx.msg.reply.text(t("fetchError"));
-    }
-  }
-
-  const senderTag = tag(ctx.msg.sender);
-  const targetTag = tag(target.id);
-  const caption = toBot
-    ? t("botLine", { sender: senderTag, action: t(`toBot.${command}`), emoji: action.emoji })
-    : t("actionLine", { sender: senderTag, verb, target: targetTag, emoji: action.emoji });
-  const mentions = toBot ? [ctx.msg.sender] : [ctx.msg.sender, target.id];
-
+  // Sessão só pra evitar que um restart no meio do fetch/envio deixe
+  // trabalho pela metade — fecha assim que a mídia é enviada (ou falha).
+  ctx.session.acquire();
   try {
-    const kind = mediaKind(media);
-    if (kind === "gif") await ctx.send.gif(media, caption, { mentions });
-    else if (kind === "video") await ctx.send.video(media, caption, { mentions });
-    else await ctx.send.image(media, caption, { mentions });
+    const theme = currentTheme(ctx);
+    const localFile = theme !== DEFAULT_THEME ? pickLocalFile(ctx, command, theme) : null;
+    let media = localFile;
+    let isTemp = false;
+
+    if (!media) {
+      try {
+        media = await fetchGifToTempFile(ctx, action.category);
+        isTemp = true;
+      } catch (err) {
+        ctx.log.error(`social-actions: failed to fetch gif (${action.category}): ${err.message}`);
+        return void await ctx.msg.reply.text(t("fetchError"));
+      }
+    }
+
+    const senderTag = tag(ctx.msg.sender);
+    const targetTag = tag(target.id);
+    const caption = toBot
+      ? t("botLine", { sender: senderTag, action: t(`toBot.${command}`), emoji: action.emoji })
+      : t("actionLine", { sender: senderTag, verb, target: targetTag, emoji: action.emoji });
+    const mentions = toBot ? [ctx.msg.sender] : [ctx.msg.sender, target.id];
+
+    try {
+      const kind = mediaKind(media);
+      if (kind === "gif") await ctx.send.gif(media, caption, { mentions });
+      else if (kind === "video") await ctx.send.video(media, caption, { mentions });
+      else await ctx.send.image(media, caption, { mentions });
+    } finally {
+      if (isTemp) fs.rmSync(media, { force: true });
+    }
   } finally {
-    if (isTemp) fs.rmSync(media, { force: true });
+    ctx.session.release();
   }
 }
 

@@ -8,6 +8,8 @@
     "startError": "Falha ao iniciar download:",
     "downloadFailed": "Download falhou. Verifique a URL.",
     "fileNotFound": "Arquivo baixado não encontrado.",
-    "generic": "Falha ao baixar vídeo. Tente novamente mais tarde."
+    "generic": "Falha ao baixar vídeo. Tente novamente mais tarde.",
+    "lockedElsewhere": "Tem outra sessão em andamento nesse chat. Espere ela terminar e tente de novo."
   }
 }
+

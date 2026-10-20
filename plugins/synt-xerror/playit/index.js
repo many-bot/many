@@ -203,6 +203,9 @@ async function handlePlay(ctx, t, mm, type, query) {
       t("needQueryOrUrl", { cmd: cmdName })
     );
   }
+  if (!ctx.session.acquire()) {
+    return msg.reply.text(t("lockedElsewhere"));
+  }
   await msg.reply.text(t("wait"));
   let media;
   let info;
@@ -230,6 +233,7 @@ async function handlePlay(ctx, t, mm, type, query) {
     await msg.reply.text(t("error"));
   } finally {
     await media?.cleanup?.();
+    ctx.session.release();
   }
 }
 
@@ -375,6 +379,10 @@ async function handlePlaylistInfo(ctx, t, playlist) {
 // command (!mp3/!mp4) was used to reach `... zip`.
 async function handlePlaylistZip(ctx, t, mm, playlist) {
   const { msg } = ctx;
+  if (!ctx.session.acquire()) {
+    return msg.reply.text(t("lockedElsewhere"));
+  }
+
   await msg.reply.text(t("playlistZipping", { name: playlist.name, count: playlist.items.length }));
 
   const folder = `${msg.sender.replace(/[^a-zA-Z0-9_-]/g, "_")}/${playlist.name.toLowerCase()}`;
@@ -407,6 +415,7 @@ async function handlePlaylistZip(ctx, t, mm, playlist) {
   } finally {
     for (const cleanup of cleanups) await cleanup?.();
     fs.rmSync(dir, { recursive: true, force: true });
+    ctx.session.release();
   }
 }
 
@@ -473,23 +482,31 @@ async function handlePlaylistLoad(ctx, t, mm, args) {
     return msg.reply.text(t("playlistLoadEmpty", { name: playlist.name }));
   }
 
-  await ctx.send.text(t("playlistLoading", { name: playlist.name }));
-
-  const titles = [];
-  if (playlist.ready && playlist.tracks) {
-    for (const track of playlist.tracks) {
-      const title = await sendResolvedTrack(ctx, t, mm, track);
-      titles.push(title ?? t("playlistItemFailed", { query: track.query }));
-    }
-  } else {
-    for (const query of playlist.items) {
-      const title = await sendPlaylistItem(ctx, t, mm, query);
-      titles.push(title ?? t("playlistItemFailed", { query }));
-    }
+  if (!ctx.session.acquire()) {
+    return msg.reply.text(t("lockedElsewhere"));
   }
 
-  const list = titles.map((title, i) => `${i + 1}. ${title}`).join("\n");
-  await msg.reply.text(`${t("playlistFinished", { name: playlist.name })}\n${list}`);
+  try {
+    await ctx.send.text(t("playlistLoading", { name: playlist.name }));
+
+    const titles = [];
+    if (playlist.ready && playlist.tracks) {
+      for (const track of playlist.tracks) {
+        const title = await sendResolvedTrack(ctx, t, mm, track);
+        titles.push(title ?? t("playlistItemFailed", { query: track.query }));
+      }
+    } else {
+      for (const query of playlist.items) {
+        const title = await sendPlaylistItem(ctx, t, mm, query);
+        titles.push(title ?? t("playlistItemFailed", { query }));
+      }
+    }
+
+    const list = titles.map((title, i) => `${i + 1}. ${title}`).join("\n");
+    await msg.reply.text(`${t("playlistFinished", { name: playlist.name })}\n${list}`);
+  } finally {
+    ctx.session.release();
+  }
 }
 
 // Removes a single song by its 1-based index (as shown by `... info`),

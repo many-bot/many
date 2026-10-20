@@ -174,18 +174,20 @@ async function fetchValidMedia(entry) {
 // seja limpo mesmo se `work` lançar exceção — antes a limpeza só rodava
 // no caminho de sucesso, e uma falha no meio do processamento deixava
 // arquivos temporários acumulando em disco.
-function runQueued(ctx, t, errLabel, work) {
+function runQueued(ctx, t, errLabel, work, onSettled) {
   ctx.download.enqueue(
     async () => {
       try {
         await work();
       } finally {
         ctx.utils.emptyFolder(DOWNLOADS_DIR);
+        onSettled?.();
       }
     },
     async (err) => {
       ctx.log.error(`${errLabel}: ${err.message}`);
       await ctx.send.text(t("error.conversionFailed"));
+      onSettled?.();
     }
   );
 }
@@ -351,6 +353,7 @@ export default async function (ctx) {
     }
     clearTimeout(session.timeout);
     sessions.delete(chatId);
+    ctx.session.release();
     await ctx.msg.reply.text(t("session.stopped"));
     return;
   }
@@ -439,7 +442,7 @@ export default async function (ctx) {
       } else {
         await ctx.send.text(`${summary}${hint}`);
       }
-    });
+    }, () => ctx.session.release());
     return;
   }
 
@@ -450,8 +453,14 @@ export default async function (ctx) {
       return;
     }
 
+    if (!ctx.session.acquire()) {
+      await ctx.msg.reply.text(t("session.lockedElsewhere"));
+      return;
+    }
+
     const timeout = setTimeout(async () => {
       sessions.delete(chatId);
+      ctx.session.release();
       try {
         await ctx.send.text(`${t("session.expired")} \`${loteCmd}\` ${t("session.expiredEnd")}`);
       } catch {}
@@ -515,6 +524,11 @@ export default async function (ctx) {
       }
     }
 
+    if (!ctx.session.acquire()) {
+      await ctx.msg.reply.text(t("session.lockedElsewhere"));
+      return;
+    }
+
     await ctx.msg.reply.text(t("session.generatingOne"));
 
     // Mídias imediatas também passam pela fila para não bloquear o Event Loop
@@ -523,7 +537,7 @@ export default async function (ctx) {
         const result = await processarUmaMedia(media, isGif, ctx, t, fName, fAuthor);
         if (!result.ok) await ctx.msg.reply.text(`❌ ${result.reason}`);
       }
-    });
+    }, () => ctx.session.release());
     return;
   }
 

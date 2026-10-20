@@ -501,16 +501,22 @@ function formatScheduleLine(t: any, s: CloseSchedule, index: number): string {
 
 const closeSessions = new Map<string, any>(); // adminId -> session
 
-function endCloseSession(adminId: string): void {
-  const session = closeSessions.get(adminId);
-  if (session?.timeoutHandle) clearTimeout(session.timeoutHandle);
-  closeSessions.delete(adminId);
+// Todo ponto que chama endCloseSession/o timeout roda com ctx.chat.id já
+// igual a session.anchorChatId (checado em handleCloseWizardMessage antes de
+// despachar, e os dois start* abaixo chamam armCloseTimeout logo após criar a
+// sessão no próprio chat), então ctx.session.release() sempre acerta o chat certo.
+function endCloseSession(ctx: any, session: any): void {
+  if (!session) return;
+  if (session.timeoutHandle) clearTimeout(session.timeoutHandle);
+  closeSessions.delete(session.adminId);
+  ctx.session.release();
 }
 
 function armCloseTimeout(ctx: any, session: any): void {
   if (session.timeoutHandle) clearTimeout(session.timeoutHandle);
   session.timeoutHandle = setTimeout(async () => {
     closeSessions.delete(session.adminId);
+    ctx.session.release();
     const { t } = ctx.i18n.createT(import.meta.url);
     const prefix = await ctx.config.get("CMD_PREFIX");
     await ctx.send.to(session.anchorChatId).text(t("closeAgendaTimeout", { prefix }));
@@ -533,6 +539,12 @@ async function startCloseAgendaWizard(ctx: any): Promise<void> {
     return;
   }
 
+  if (ctx.session.isLocked() && !ctx.session.isMine()) {
+    await msg.reply.text(t("closeAgendaChatLocked"));
+    return;
+  }
+  ctx.session.acquire();
+
   const session = { adminId: msg.sender, anchorChatId: chat.id, mode: "chooseType", draft: {}, timeoutHandle: null };
   closeSessions.set(msg.sender, session);
   armCloseTimeout(ctx, session);
@@ -553,6 +565,12 @@ async function startCloseAgendaReset(ctx: any): Promise<void> {
     await msg.reply.text(t("closeAgendaResetEmpty"));
     return;
   }
+
+  if (ctx.session.isLocked() && !ctx.session.isMine()) {
+    await msg.reply.text(t("closeAgendaChatLocked"));
+    return;
+  }
+  ctx.session.acquire();
 
   const session = { adminId: msg.sender, anchorChatId: chat.id, mode: "resetConfirm", draft: {}, timeoutHandle: null };
   closeSessions.set(msg.sender, session);
@@ -727,7 +745,7 @@ async function finishCloseAgendaWizard(ctx: any, session: any, community: boolea
   }
   await saveCloseSchedules(ctx, all);
 
-  endCloseSession(session.adminId);
+  endCloseSession(ctx, session);
 
   const summary = formatScheduleLine(t, schedule, (all[session.anchorChatId]?.length ?? 1) - 1);
   let text = t("closeAgendaSaved", { summary });
@@ -737,7 +755,7 @@ async function finishCloseAgendaWizard(ctx: any, session: any, community: boolea
 
 async function handleResetConfirm(ctx: any, session: any): Promise<void> {
   const body = ctx.msg.body ?? "";
-  if (answeredNo(body)) { endCloseSession(session.adminId); await repeat(ctx, "closeAgendaResetCancelled"); return; }
+  if (answeredNo(body)) { endCloseSession(ctx, session); await repeat(ctx, "closeAgendaResetCancelled"); return; }
   if (!answeredYes(body)) { await repeat(ctx, "closeAgendaYesNoInvalid"); return; }
 
   const all = await loadCloseSchedules(ctx);
@@ -753,7 +771,7 @@ async function handleResetConfirm(ctx: any, session: any): Promise<void> {
 
   delete all[session.anchorChatId];
   await saveCloseSchedules(ctx, all);
-  endCloseSession(session.adminId);
+  endCloseSession(ctx, session);
   await repeat(ctx, "closeAgendaResetDone");
 }
 
@@ -775,7 +793,7 @@ async function handleResetConfirmCommunity(ctx: any, session: any): Promise<void
   }
 
   await saveCloseSchedules(ctx, all);
-  endCloseSession(session.adminId);
+  endCloseSession(ctx, session);
   await repeat(ctx, "closeAgendaResetDone");
 }
 
@@ -783,7 +801,7 @@ async function handleCloseWizardMessage(ctx: any, session: any): Promise<void> {
   if (ctx.chat.id !== session.anchorChatId) return;
 
   if (WORDS_CANCEL.includes(normWord(ctx.msg.body ?? ""))) {
-    endCloseSession(session.adminId);
+    endCloseSession(ctx, session);
     await repeat(ctx, "closeAgendaCancelled");
     return;
   }

@@ -8,6 +8,8 @@
     "startError": "Failed to start download:",
     "downloadFailed": "Download failed. Check the URL.",
     "fileNotFound": "Downloaded file not found.",
-    "generic": "Failed to download video. Try again later."
+    "generic": "Failed to download video. Try again later.",
+    "lockedElsewhere": "There's another session running in this chat. Wait for it to finish and try again."
   }
 }
+
