@@ -116,8 +116,12 @@ async function runAutocorrect(ctx) {
 // ─── version ─────────────────────────────────────────────────────────────────
 
 const MANYBOT_VERSION    = "v5.13.0";
-const MANY_VERSION       = "v5.1";
 const MENU_IMAGE_FILENAME = "menu.jpg";
+
+// Ordem = mais recente primeiro. Única fonte da numeração; pt.json/en.json
+// guardam só o conteúdo (array de seções) em paralelo a este array, por índice.
+const CHANGELOG_VERSIONS = ["5.2", "5.1", "5.0"];
+const MANY_VERSION = `v${CHANGELOG_VERSIONS[0]}`;
 
 // ─── category meta ───────────────────────────────────────────────────────────
 
@@ -229,31 +233,14 @@ function buildPluginHelp(t, pluginName, pfx) {
 }
 
 function buildChangelog(t, pfx) {
-  return fmt([
-    t("changelogTitle",     { version: MANY_VERSION }),
-    "",
-    t("changelog51"),
-    "",
-    "---",
-    "",
-    t("changelogTitle",     { version: "v5.0" }),
-    "",
-    t("changelogAdmin"),
-    "",
-    t("changelogConverter"),
-    "",
-    t("changelogMusic"),
-    "",
-    t("changelogMenu"),
-    "",
-    t("changelogCommunity"),
-    "",
-    t("changelogSupport"),
-    "",
-    t("changelogFixes"),
-    "",
-    t("changelogFooter"),
-  ].join("\n"), pfx);
+  const lines = [];
+  t("changelogs").forEach((sections, i) => {
+    if (i > 0) lines.push("", "---", "");
+    lines.push(t("changelogTitle", { version: `v${CHANGELOG_VERSIONS[i]}` }), "");
+    lines.push(sections.join("\n\n"));
+  });
+  lines.push("", t("changelogFooter"));
+  return fmt(lines.join("\n"), pfx);
 }
 
 function buildLicense(t) {

@@ -38,15 +38,32 @@
   "supportTip": "💡 Precisa de ajuda? Contate o suporte:\n- Número: 5516994620899\n- E-mail: manybot@pm.me\n- Nosso grupo: wa.manybot.org",
   "greetingText": "Oi, eu sou a Many! 👋 A bot oficial do projeto ManyBot.\n\n{{licenseShort}}\n\nPara ver tudo que eu faço:\n- {{many}}\n\nPara trocar o idioma:\n- {{language}}\n\nEntre no nosso grupo se tiver dúvidas: https://wa.manybot.org",
   "changelogTitle": "*Changelog — Many {{version}}*",
-  "changelog51": "👻 *Caça-Fantasma*\n- Ranking agora exibe top 10 (antes era top 5)\n\n🤡 *Gerador de Memes*\n- Corrigido: palavras longas não saem mais da imagem",
-  "changelogAdmin": "⚙️ *Administração*\n- Novo: {{mute}}/{{unmute}} — silenciar membros nativamente (nível ManyBot, ignora todos os comandos)\n- Novo: {{todos}}/{{admins}} — mencionar todos os membros ou só admins; {{mute all}} abrange a comunidade inteira\n- Novo: {{close}}/{{open}} — fechar ou abrir grupos, com suporte a agendamento\n- Novo: {{warn}} — enviar aviso privado com o texto da regra no PV da pessoa\n- Novo: {{get-pfp}}/{{get-name}} — pegar foto de perfil ou nome de exibição de qualquer membro\n- Novo: {{transcrever}} — transcrever áudios com IA (Whisper via Groq)\n- Novo: @cargos — mencione grupos de membros como cargos, estilo Discord",
-  "changelogConverter": "🔄 *Mídias & Utilidades*\n- Comandos de mídia movidos para categoria própria (separado das utilidades)\n- Novo: {{rules}} — regras da comunidade, compatível com {{welcome}} e {{warn}}",
-  "changelogMusic": "🌐 *Suporte a idiomas*\n- Novo: {{language}} — trocar o idioma da Many por usuário (pt e en disponíveis)\n- Maioria dos comandos traduzidos para pt-BR e en-US",
-  "changelogMenu": "📋 *Menu & UX*\n- Dev Utils agora aparece no menu\n- UX do autocorretor melhorada: não parece mais uma pergunta; também corrige comandos com pontuação\n- Autocorretor agora só dispara quando a mensagem começa com o padrão do comando",
-  "changelogCommunity": "👻 *Halloween*\n- Novo: {{caçafantasma}} — jogo exclusivo de Halloween, ranking por comunidade",
-  "changelogSupport": "🎲 *Comandos novos*\n- {{roll}} — sorteio de dados (ex: !roll d20, !roll 2d6)\n- {{papa}} — meme do Papa Francisco segurando uma foto\n- {{brat}}, {{brat2}} — imagens no estilo brat\n- {{handshake}}, {{kill}} — novas ações sociais\n- {{ship}} — compatibilidade entre dois membros\n- {{minas}} — campo minado cooperativo",
-  "changelogFixes": "🔧 *Correções & melhorias*\n- Velocidade de resposta melhorada para múltiplos chats simultâneos\n- ManyBot atualizado para v5.13\n- Comando {{add}} removido; agora basta mandar o convite do grupo que eu peço confirmação antes de entrar",
-  "changelogBirthday": "",
+  "changelogs": [
+    {
+      "version": "5.2",
+      "sections": [
+        "👻 *Caça-Fantasma*\n- Não bloqueia mais se ativou em outro grupo da comunidade. Pergunta se quer desativar de lá e ativar no grupo atual."
+      ]
+    },
+    {
+      "version": "5.1",
+      "sections": [
+        "👻 *Caça-Fantasma*\n- Ranking agora exibe top 10 (antes era top 5)\n\n🤡 *Gerador de Memes*\n- Corrigido: palavras longas não saem mais da imagem"
+      ]
+    },
+    {
+      "version": "5.0",
+      "sections": [
+        "⚙️ *Administração*\n- Novo: {{mute}}/{{unmute}} — silenciar membros nativamente (nível ManyBot, ignora todos os comandos)\n- Novo: {{todos}}/{{admins}} — mencionar todos os membros ou só admins; {{mute all}} abrange a comunidade inteira\n- Novo: {{close}}/{{open}} — fechar ou abrir grupos, com suporte a agendamento\n- Novo: {{warn}} — enviar aviso privado com o texto da regra no PV da pessoa\n- Novo: {{get-pfp}}/{{get-name}} — pegar foto de perfil ou nome de exibição de qualquer membro\n- Novo: {{transcrever}} — transcrever áudios com IA (Whisper via Groq)\n- Novo: @cargos — mencione grupos de membros como cargos, estilo Discord",
+        "🔄 *Mídias & Utilidades*\n- Comandos de mídia movidos para categoria própria (separado das utilidades)\n- Novo: {{rules}} — regras da comunidade, compatível com {{welcome}} e {{warn}}",
+        "🌐 *Suporte a idiomas*\n- Novo: {{language}} — trocar o idioma da Many por usuário (pt e en disponíveis)\n- Maioria dos comandos traduzidos para pt-BR e en-US",
+        "📋 *Menu & UX*\n- Dev Utils agora aparece no menu\n- UX do autocorretor melhorada: não parece mais uma pergunta; também corrige comandos com pontuação\n- Autocorretor agora só dispara quando a mensagem começa com o padrão do comando",
+        "👻 *Halloween*\n- Novo: {{caçafantasma}} — jogo exclusivo de Halloween, ranking por comunidade",
+        "🎲 *Comandos novos*\n- {{roll}} — sorteio de dados (ex: !roll d20, !roll 2d6)\n- {{papa}} — meme do Papa Francisco segurando uma foto\n- {{brat}}, {{brat2}} — imagens no estilo brat\n- {{handshake}}, {{kill}} — novas ações sociais\n- {{ship}} — compatibilidade entre dois membros\n- {{minas}} — campo minado cooperativo",
+        "🔧 *Correções & melhorias*\n- Velocidade de resposta melhorada para múltiplos chats simultâneos\n- ManyBot atualizado para v5.13\n- Comando {{add}} removido; agora basta mandar o convite do grupo que eu peço confirmação antes de entrar"
+      ]
+    }
+  ],
   "changelogFooter": "Outras mudanças relacionadas ao ManyBot, ManyPlug e à comunidade:\nhttps://whatsapp.com/channel/0029Vb81rD2BvvslyeHtgp24",
   "setupLoaded": "autocorrect carregado.",
   "categoryLabels": {

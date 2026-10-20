@@ -10,7 +10,6 @@
   "punctuationQuestion": "💡 Don't put a question mark right after the command — it should be \"!{{cmd}}\".",
   "unknownCommand": "💡 \"{{cmd}}\" isn't a command. Use !{{helpCmd}} or !{{menuCmd}} to see what's available.",
   "overviewHeader": "🤖 *Many {{version}}*\n_By *SyntaxError!* <16 99462-0899>_\n\nChoose a category:\n​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​",
-
   "overviewInfo": "*Info:*\n- {{many info}}",
   "overviewTip": "💡 For details, send:\n- {{help COMMAND}}\n_Replace `COMMAND` with the command you want to know more about_",
   "categorySectionTip": "💡 For details, send:\n- {{help COMMAND}}\n_Replace `COMMAND` with the command you want to know more about_",
@@ -39,15 +38,32 @@
   "supportTip": "💡 Need help? Contact support:\n- Phone: 5516994620899\n- Email: manybot@pm.me\n- Our group: wa.manybot.org",
   "greetingText": "Hey, I'm Many! 👋 The official ManyBot project bot.\n\n{{licenseShort}}\n\nTo see everything I can do:\n- {{many}}\n\nTo add me to a group:\n- {{add}}\n\nTo change the language:\n- {{language}}\n\nJoin our group if you have any questions: https://wa.manybot.org",
   "changelogTitle": "*Changelog — Many {{version}}*",
-  "changelog51": "👻 *Ghost Hunt*\n- Ranking now shows top 10 (previously top 5)\n\n🤡 *Meme Generator*\n- Fixed: long words no longer overflow the image",
-  "changelogAdmin": "⚙️ *Administration*\n- New: {{mute}}/{{unmute}} — silence members natively (ManyBot-level, ignores all commands)\n- New: {{todos}}/{{admins}} — mention all members or admins; {{mute all}} spans the whole community\n- New: {{close}}/{{open}} — lock or unlock groups, with scheduled close/open support\n- New: {{warn}} — send a private warning with the rule text to someone's DM\n- New: {{get-pfp}}/{{get-name}} — fetch profile photo or display name of any member\n- New: {{transcrever}} — transcribe audio messages with AI (Whisper via Groq)\n- New: @roles — mention groups of members like Discord roles",
-  "changelogConverter": "🔄 *Media & Utilities*\n- Media commands moved to their own category (separate from utilities)\n- New: {{rules}} — community rules, compatible with {{welcome}} and {{warn}}",
-  "changelogMusic": "🌐 *Language support*\n- New: {{language}} — switch Many's language per-user (pt and en available)\n- Most commands translated to pt-BR and en-US",
-  "changelogMenu": "📋 *Menu & UX*\n- Dev Utils now shown in the menu\n- Autocorrect UX improved: no longer reads as a question; also fixes commands with trailing punctuation\n- Autocorrect now only fires when the message starts with the command pattern",
-  "changelogCommunity": "👻 *Halloween*\n- New: {{caçafantasma}} — Halloween-exclusive ghost hunt game, community-wide ranking",
-  "changelogSupport": "🎲 *New commands*\n- {{roll}} — roll dice (e.g. !roll d20, !roll 2d6)\n- {{papa}} — pope holding a photo meme\n- {{brat}}, {{brat2}} — brat-style meme images\n- {{handshake}}, {{kill}} — new social actions\n- {{ship}} — compatibility between two members\n- {{minas}} — cooperative minesweeper",
-  "changelogFixes": "🔧 *Fixes & improvements*\n- Response speed improved for multiple simultaneous chats\n- ManyBot updated to v5.13\n- {{add}} command removed; just send a group invite and I'll ask for confirmation before joining",
-  "changelogBirthday": "",
+  "changelogs": [
+    {
+      "version": "5.2",
+      "sections": [
+        "👻 *Ghost Hunt*\n- You can now enable it in a community even if it's already enable in one of its chats. You'll be asked if you want to disable there and enable in the current chat."
+      ]
+    },
+    {
+      "version": "5.1",
+      "sections": [
+        "👻 *Ghost Hunt*\n- Ranking now shows top 10 (previously top 5)\n\n🤡 *Meme Generator*\n- Fixed: long words no longer overflow the image"
+      ]
+    },
+    {
+      "version": "5.0",
+      "sections": [
+        "⚙️ *Administration*\n- New: {{mute}}/{{unmute}} — silence members natively (ManyBot-level, ignores all commands)\n- New: {{todos}}/{{admins}} — mention all members or admins; {{mute all}} spans the whole community\n- New: {{close}}/{{open}} — lock or unlock groups, with scheduled close/open support\n- New: {{warn}} — send a private warning with the rule text to someone's DM\n- New: {{get-pfp}}/{{get-name}} — fetch profile photo or display name of any member\n- New: {{transcrever}} — transcribe audio messages with AI (Whisper via Groq)\n- New: @roles — mention groups of members like Discord roles",
+        "🔄 *Media & Utilities*\n- Media commands moved to their own category (separate from utilities)\n- New: {{rules}} — community rules, compatible with {{welcome}} and {{warn}}",
+        "🌐 *Language support*\n- New: {{language}} — switch Many's language per-user (pt and en available)\n- Most commands translated to pt-BR and en-US",
+        "📋 *Menu & UX*\n- Dev Utils now shown in the menu\n- Autocorrect UX improved: no longer reads as a question; also fixes commands with trailing punctuation\n- Autocorrect now only fires when the message starts with the command pattern",
+        "👻 *Halloween*\n- New: {{caçafantasma}} — Halloween-exclusive ghost hunt game, community-wide ranking",
+        "🎲 *New commands*\n- {{roll}} — roll dice (e.g. !roll d20, !roll 2d6)\n- {{papa}} — pope holding a photo meme\n- {{brat}}, {{brat2}} — brat-style meme images\n- {{handshake}}, {{kill}} — new social actions\n- {{ship}} — compatibility between two members\n- {{minas}} — cooperative minesweeper",
+        "🔧 *Fixes & improvements*\n- Response speed improved for multiple simultaneous chats\n- ManyBot updated to v5.13\n- {{add}} command removed; just send a group invite and I'll ask for confirmation before joining"
+      ]
+    }
+  ],
   "changelogFooter": "Other changes related to ManyBot, ManyPlug and the community:\nhttps://whatsapp.com/channel/0029Vb81rD2BvvslyeHtgp24",
   "setupLoaded": "autocorrect loaded.",
   "categoryLabels": {
