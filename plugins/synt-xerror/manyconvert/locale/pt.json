@@ -1,0 +1,7 @@
+{
+  "plugin": {
+    "name": "manyconvert",
+    "description": "Plugin manyconvert para ManyBot"
+  },
+  "commands": {}
+}

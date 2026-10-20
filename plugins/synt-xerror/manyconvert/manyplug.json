@@ -1,0 +1,29 @@
+{
+  "name": "manyconvert",
+  "key": "synt-xerror/manyconvert",
+  "author": {
+    "name": "synt-xerror",
+    "email": "me@stxerr.dev",
+    "website": "https://www.stxerr.dev"
+  },
+  "description": "Convert videos, GIFs, photos and PDFs between formats.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "repo": "https://github.com/synt-xerror/manyconvert.many",
+  "category": "media",
+  "externalDependencies": {
+    "ffmpeg": {
+      "command": "ffmpeg",
+      "optional": false
+    },
+    "ffprobe": {
+      "command": "ffprobe",
+      "optional": false
+    },
+    "poppler-utils": {
+      "command": "pdftoppm",
+      "optional": false 
+    }
+  }
+}
+
