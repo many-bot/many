@@ -319,7 +319,7 @@ export default async function (ctx) {
       const entries = Object.entries(scores)
         .map(([jid, raw]) => [jid, normalizeStats(raw).pts])
         .sort((a, b) => b[1] - a[1])
-        .slice(0, 5);
+        .slice(0, 10);
       if (entries.length > 0) {
         const participants = await ctx.chat.getParticipants();
         const participantIds = new Set(participants.map((p) => p.id));
