@@ -1,5 +1,9 @@
 import { DatabaseSync } from "node:sqlite";
 import { existsSync }   from "fs";
+import { fileURLToPath } from "node:url";
+import { dirname, join } from "node:path";
+
+const PLUGIN_DIR = dirname(fileURLToPath(import.meta.url));
 
 // ─── utils ───────────────────────────────────────────────────────────────────
 
@@ -112,7 +116,7 @@ async function runAutocorrect(ctx) {
 // ─── version ─────────────────────────────────────────────────────────────────
 
 const MANYBOT_VERSION    = "v5.13.0";
-const MANY_VERSION       = "v5.0";
+const MANY_VERSION       = "v5.1";
 const MENU_IMAGE_FILENAME = "menu.jpg";
 
 // ─── category meta ───────────────────────────────────────────────────────────
@@ -167,7 +171,7 @@ function buildCategoryOverview(t, pfx) {
 
 async function sendOverview(ctx, t, pfx) {
   const caption = buildCategoryOverview(t, pfx);
-  const imgPath = ctx.storage.resolve(MENU_IMAGE_FILENAME);
+  const imgPath = join(PLUGIN_DIR, MENU_IMAGE_FILENAME);
   if (existsSync(imgPath)) {
     await ctx.msg.reply.image(imgPath, caption);
   } else {
@@ -227,6 +231,12 @@ function buildPluginHelp(t, pluginName, pfx) {
 function buildChangelog(t, pfx) {
   return fmt([
     t("changelogTitle",     { version: MANY_VERSION }),
+    "",
+    t("changelog51"),
+    "",
+    "---",
+    "",
+    t("changelogTitle",     { version: "v5.0" }),
     "",
     t("changelogAdmin"),
     "",
