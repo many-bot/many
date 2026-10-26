@@ -7,4 +7,6 @@ rsync -avz --delete --exclude='data/' \
   --exclude='telemetry.db*' \
   --exclude='scheduler.db*' \
   --exclude='alerts.log' \
+  --exclude='accounts.json' \
+  --exclude='history/' \
   ./. admin@stxerr.dev:.manybot/
