@@ -20,17 +20,23 @@ const GHOSTS = [
 // legendary goes from ~2% to ~7%.
 const NIGHT_WEIGHTS = [30, 58, 78, 93, 100];
 
-function isNighttime() {
+function hourInSP() {
   const h = new Date().toLocaleString("en-US", {
     timeZone: "America/Sao_Paulo",
     hour: "numeric",
     hour12: false,
   });
-  const hour = parseInt(h, 10);
+  return parseInt(h, 10);
+}
+
+function isNighttime() {
+  const hour = hourInSP();
   return hour >= 0 && hour < 6;
 }
 
 function rollGhost() {
+  const hour = hourInSP();
+  if (hour >= 6 && hour < 18 && Math.random() < 0.01) return altEntry();
   const weights = isNighttime() ? NIGHT_WEIGHTS : GHOSTS.map((g) => g.weight);
   const roll = Math.random() * 100;
   return GHOSTS.find((_, i) => roll < weights[i]);
@@ -77,6 +83,10 @@ const pendingReset = new Map();
 // "chatId:senderJid" → { communityId, conflictGroupId, timeout }
 const pendingActivation = new Map();
 
+function altEntry() {
+  return { emoji: "👁️", rarity: "x", pts: 15 };
+}
+
 function scheduleNextSpawn(groupId, log) {
   const minMs = 5 * 60 * 1000;
   const maxMs = 30 * 60 * 1000;
@@ -119,20 +129,26 @@ export async function setup(ctx) {
 
       scheduleNextSpawn(groupId, ctx.log);
 
+      const session = ctx.session.to(groupId);
+      if (!session.acquire()) continue;
+
       const ghost = rollGhost();
 
       let handle;
       try {
         handle = await ctx.send.to(groupId).text(ghost.emoji);
       } catch (_) {
+        session.release();
         continue;
       }
 
-      const hunt = { ghost, caughtBy: null, handle };
+      const hunt = { ghost, caughtBy: null, handle, session };
 
       hunt.timeout = setTimeout(async () => {
         activeHunts.delete(groupId);
         if (hunt.caughtBy) return;
+
+        hunt.session.release();
 
         try { await handle.delete(); } catch (_) {}
         try {
@@ -201,6 +217,7 @@ export default async function (ctx) {
         const conflictHunt = activeHunts.get(pending.conflictGroupId);
         if (conflictHunt) {
           clearTimeout(conflictHunt.timeout);
+          conflictHunt.session.release();
           activeHunts.delete(pending.conflictGroupId);
         }
         nextSpawn.delete(pending.conflictGroupId);
@@ -285,6 +302,7 @@ export default async function (ctx) {
       const hunt = activeHunts.get(ctx.chat.id);
       if (hunt) {
         clearTimeout(hunt.timeout);
+        hunt.session.release();
         activeHunts.delete(ctx.chat.id);
       }
       nextSpawn.delete(ctx.chat.id);
@@ -321,16 +339,18 @@ export default async function (ctx) {
       }
 
       const r = stats.rarity;
-      const lastAgo = timeAgo(stats.last.ts);
-      const lastArgs = { emoji: stats.last.emoji, rarity: t(stats.last.rarity), pts: stats.last.pts };
       const body = [
         t("statusHeader", { name: displayName }),
         t("statusSummary", { pts: stats.pts, catches: stats.catches }),
         t("statusBreakdown", { common: r.common, uncommon: r.uncommon, rare: r.rare, epic: r.epic, legendary: r.legendary }),
-        lastAgo ? t("statusLast", { ...lastArgs, time: lastAgo }) : t("statusLastNow", lastArgs),
-      ].join("\n");
+      ];
+      if (stats.last.rarity !== "x") {
+        const lastAgo = timeAgo(stats.last.ts);
+        const lastArgs = { emoji: stats.last.emoji, rarity: t(stats.last.rarity), pts: stats.last.pts };
+        body.push(lastAgo ? t("statusLast", { ...lastArgs, time: lastAgo }) : t("statusLastNow", lastArgs));
+      }
 
-      await ctx.msg.reply.text(body, opts);
+      await ctx.msg.reply.text(body.join("\n"), opts);
       return;
     }
 
@@ -396,6 +416,8 @@ export default async function (ctx) {
     hunt.caughtBy = ctx.msg.sender;
     activeHunts.delete(ctx.chat.id);
 
+    hunt.session.release();
+
     try { await hunt.handle.delete(); } catch (_) {}
 
     const communityId = ctx.chat.community ?? null;
@@ -416,11 +438,12 @@ export default async function (ctx) {
     const rankUp = newRank < prevRank;
 
     const msgKey = rankUp ? "caughtRankUp" : "caught";
+    const rarityLabel = hunt.ghost.rarity === "x" ? "???" : t(hunt.ghost.rarity);
     await ctx.msg.reply.text(
       t(msgKey, {
         name: ctx.msg.senderName,
         emoji: hunt.ghost.emoji,
-        rarity: t(hunt.ghost.rarity),
+        rarity: rarityLabel,
         pts: hunt.ghost.pts,
         total,
         rank: newRank,
