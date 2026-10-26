@@ -136,8 +136,37 @@ export default async function (ctx) {
 // - !ship @membro1 @membro2            (duas menções)
 // - respondendo msg de membro1 + !ship @membro2   (reply + uma menção)
 
+// TEMPORÁRIO (debug hasMention vs mentionedJid — ver MANYBOT-ship-mentions):
+// manda o contexto bruto pro dono quando hasMention não bate com
+// mentionedJid, pra investigar depois. Nunca deve derrubar o comando.
+async function reportMentionMismatch(ctx, mentionedJid) {
+  const owner = ctx.config.get("OWNER_NUMBER");
+  if (!owner) return;
+  const ownerJid = owner.includes("@") ? owner : `${owner}@s.whatsapp.net`;
+  const context = {
+    hasMention: ctx.msg.hasMention,
+    mentionedJid,
+    hasReply: ctx.msg.hasReply,
+    command: ctx.msg.command,
+    args: ctx.msg.args,
+    sender: ctx.msg.sender,
+    chatId: ctx.chat?.id,
+  };
+  try {
+    await ctx.send
+      .to(ownerJid)
+      .text(`[ship debug] hasMention=${ctx.msg.hasMention} x mentionedJid=${mentionedJid.length}\n\`\`\`${JSON.stringify(context, null, 2)}\`\`\``);
+  } catch (err) {
+    ctx.log.warn(`ship: failed to send mention-mismatch alert: ${err.message}`);
+  }
+}
+
 async function resolveShipJids(ctx) {
-  const mentioned = ctx.msg.hasMention ? ctx.msg.mentionedJid : [];
+  const mentioned = ctx.msg.mentionedJid ?? [];
+
+  if (!ctx.msg.hasMention && mentioned.length > 0) {
+    await reportMentionMismatch(ctx, mentioned);
+  }
 
   if (mentioned.length === 2) return mentioned;
 
