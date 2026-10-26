@@ -387,17 +387,24 @@ function formatScheduleLine(t, s, index) {
 // Uma sessão em memória por adminId, igual ao padrão do welcome.many — estado
 // descartável de curta duração, some sozinho se o bot reiniciar no meio.
 const closeSessions = new Map(); // adminId -> session
-function endCloseSession(adminId) {
-    const session = closeSessions.get(adminId);
-    if (session?.timeoutHandle)
+// Todo ponto que chama endCloseSession/o timeout roda com ctx.chat.id já
+// igual a session.anchorChatId (checado em handleCloseWizardMessage antes de
+// despachar, e os dois start* abaixo chamam armCloseTimeout logo após criar a
+// sessão no próprio chat), então ctx.session.release() sempre acerta o chat certo.
+function endCloseSession(ctx, session) {
+    if (!session)
+        return;
+    if (session.timeoutHandle)
         clearTimeout(session.timeoutHandle);
-    closeSessions.delete(adminId);
+    closeSessions.delete(session.adminId);
+    ctx.session.release();
 }
 function armCloseTimeout(ctx, session) {
     if (session.timeoutHandle)
         clearTimeout(session.timeoutHandle);
     session.timeoutHandle = setTimeout(async () => {
         closeSessions.delete(session.adminId);
+        ctx.session.release();
         const { t } = ctx.i18n.createT(import.meta.url);
         const prefix = await ctx.config.get("CMD_PREFIX");
         await ctx.send.to(session.anchorChatId).text(t("closeAgendaTimeout", { prefix }));
@@ -416,6 +423,11 @@ async function startCloseAgendaWizard(ctx) {
         await msg.reply.text(t("closeAgendaLimitReached", { max: CLOSE_SCHEDULE_MAX, prefix }));
         return;
     }
+    if (ctx.session.isLocked() && !ctx.session.isMine()) {
+        await msg.reply.text(t("closeAgendaChatLocked"));
+        return;
+    }
+    ctx.session.acquire();
     const session = { adminId: msg.sender, anchorChatId: chat.id, mode: "chooseType", draft: {}, timeoutHandle: null };
     closeSessions.set(msg.sender, session);
     armCloseTimeout(ctx, session);
@@ -433,6 +445,11 @@ async function startCloseAgendaReset(ctx) {
         await msg.reply.text(t("closeAgendaResetEmpty"));
         return;
     }
+    if (ctx.session.isLocked() && !ctx.session.isMine()) {
+        await msg.reply.text(t("closeAgendaChatLocked"));
+        return;
+    }
+    ctx.session.acquire();
     const session = { adminId: msg.sender, anchorChatId: chat.id, mode: "resetConfirm", draft: {}, timeoutHandle: null };
     closeSessions.set(msg.sender, session);
     armCloseTimeout(ctx, session);
@@ -614,7 +631,7 @@ async function finishCloseAgendaWizard(ctx, session, community) {
         applied.push(chatId);
     }
     await saveCloseSchedules(ctx, all);
-    endCloseSession(session.adminId);
+    endCloseSession(ctx, session);
     const summary = formatScheduleLine(t, schedule, (all[session.anchorChatId]?.length ?? 1) - 1);
     let text = t("closeAgendaSaved", { summary });
     if (community && skipped.length)
@@ -624,7 +641,7 @@ async function finishCloseAgendaWizard(ctx, session, community) {
 async function handleResetConfirm(ctx, session) {
     const body = ctx.msg.body ?? "";
     if (answeredNo(body)) {
-        endCloseSession(session.adminId);
+        endCloseSession(ctx, session);
         await repeat(ctx, "closeAgendaResetCancelled");
         return;
     }
@@ -643,7 +660,7 @@ async function handleResetConfirm(ctx, session) {
     }
     delete all[session.anchorChatId];
     await saveCloseSchedules(ctx, all);
-    endCloseSession(session.adminId);
+    endCloseSession(ctx, session);
     await repeat(ctx, "closeAgendaResetDone");
 }
 async function handleResetConfirmCommunity(ctx, session) {
@@ -666,14 +683,14 @@ async function handleResetConfirmCommunity(ctx, session) {
         delete all[session.anchorChatId];
     }
     await saveCloseSchedules(ctx, all);
-    endCloseSession(session.adminId);
+    endCloseSession(ctx, session);
     await repeat(ctx, "closeAgendaResetDone");
 }
 async function handleCloseWizardMessage(ctx, session) {
     if (ctx.chat.id !== session.anchorChatId)
         return;
     if (WORDS_CANCEL.includes(normWord(ctx.msg.body ?? ""))) {
-        endCloseSession(session.adminId);
+        endCloseSession(ctx, session);
         await repeat(ctx, "closeAgendaCancelled");
         return;
     }
@@ -1051,7 +1068,7 @@ export default async function (ctx) {
                 return;
             }
             if (sub === "allow" || sub === "disallow") {
-                const domains = msg.args?.toLowerCase().replace(/^www\./, "").replace(/^https:\/\/\./, "");
+                const domains = msg.args.slice(1).join(" ").toLowerCase().replace(/^www\./, "").replace(/^https:\/\/\./, "");
                 if (!domains) {
                     await msg.reply.text(t("linkblockDomainUsage", { action: sub, prefix }));
                     return;

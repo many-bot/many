@@ -1214,7 +1214,7 @@ export default async function (ctx: any) {
       }
 
       if (sub === "allow" || sub === "disallow") {
-        const domains = msg.args?.toLowerCase().replace(/^www\./, "").replace(/^https:\/\/\./, "");
+        const domains = msg.args.slice(1).join(" ").toLowerCase().replace(/^www\./, "").replace(/^https:\/\/\./, "");
         if (!domains) {
           await msg.reply.text(t("linkblockDomainUsage", { action: sub, prefix }));
           return;
