@@ -34,6 +34,14 @@ export default async function (ctx) {
       return;
     }
 
+    if (chat.community) {
+      const ids = await chat.getGroups(chat.community);
+      const idList = ids.map(group => `- ${group.id}`).join("\n");
+
+      await msg.reply.text(t("jidCommunityResult", { idList }));
+      return;
+    }
+
     await msg.reply.text(t("jidResult", { id: chat.id }));
   }
 }

@@ -2,6 +2,7 @@
   "lidMissingTarget": "Marque alguém ou responda a uma mensagem.",
   "lidResult": "O LID do usuário {{name}} é:\n{{id}}",
   "jidGroupOnly": "Esse comando só funciona em grupos.",
-  "jidResult": "O JID desse chat é:\n{{id}}"
+  "jidResult": "O JID desse chat é:\n{{id}}",
+  "jidCommunityResult": "Os JIDs dessa comunidade são:\n{{idList}}"
 }
 
