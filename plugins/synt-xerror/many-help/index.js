@@ -234,7 +234,8 @@ function buildPluginHelp(t, pluginName, pfx) {
 
 function buildChangelog(t, pfx) {
   const lines = [];
-  t("changelogs").forEach((sections, i) => {
+  t("changelogs").forEach((entry, i) => {
+    const sections = Array.isArray(entry) ? entry : entry.sections;
     if (i > 0) lines.push("", "---", "");
     lines.push(t("changelogTitle", { version: `v${CHANGELOG_VERSIONS[i]}` }), "");
     lines.push(sections.join("\n\n"));
